@@ -317,11 +317,14 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email"):
                         waiting_for="Tax specialist" if tax_human else None))
 
     # ---- Business ready record
+    effects = {}
     if existing:
         rid = existing["id"]
         rec = existing
+        effects = {"updatedRecord": rid}
         if req_type == "Add sales area" and not any(sa["area"] == sales_area for sa in rec.get("salesAreas", [])):
-            rec.setdefault("salesAreas", []).append({"area": sales_area, "paymentTerms": terms, "creditLimit": limit, "paymentMethod": method,
+            effects["addedSalesArea"] = sales_area
+            rec.setdefault("salesAreas", []).append({"addedBy": request_id, "area": sales_area, "paymentTerms": terms, "creditLimit": limit, "paymentMethod": method,
                                                      "pricingGroup": pricing, "taxClass": tax_class, "controlled": "CII–CV on" if dea.get("status") == "Active" else "Off"})
         rec.setdefault("history", []).insert(0, {"when": now, "change": f"{req_type}: {sales_area} ({request_id})", "by": "Match & merge agent"})
         summary = f"No new customer. {rid} updated."
@@ -337,6 +340,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email"):
                                     "creditLimit": None, "accountGroup": None, "salesOrg": None}],
                "successorOf": successor_of, "requestId": request_id,
                "history": [{"when": now, "change": f"Created from {request_id}", "by": "Orchestrator"}]}
+        effects = {"createdRecord": rid}
         summary = f"New Business ready record {rid}" + (f", successor of {successor_of}" if successor_of else "") + "."
     store.save_record(rec)
     stages.append(stage("record", "Business ready record", "agent", rid, summary, ["AG-003"] + (["MM-007a"] if successor_of else []),
@@ -355,7 +359,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email"):
             stages[0]["llmError"] = str(e)[:200]
 
     req = {"id": request_id, "created": now, "legalName": legal, "requestType": req_type, "recordId": rid, "decision": decision,
-           "stages": stages}
+           "effects": effects, "channel": channel, "stages": stages}
     refresh(req)
     store.save_request(req)
     return req
@@ -382,3 +386,20 @@ def approve(req, key, who, note):
     refresh(req)
     store.save_request(req)
     return req
+
+
+def delete(req):
+    """Removes a request and undoes what it did to the Business ready records."""
+    eff = req.get("effects") or {}
+    recs = store.records()
+    if eff.get("createdRecord") in recs:
+        del recs[eff["createdRecord"]]
+    rid = eff.get("updatedRecord")
+    if rid in recs:
+        rec = recs[rid]
+        rec["salesAreas"] = [sa for sa in rec.get("salesAreas", []) if sa.get("addedBy") != req["id"]]
+        rec["history"] = [h for h in rec.get("history", []) if f"({req['id']})" not in h.get("change", "")]
+    store.write("records", recs)
+    reqs = store.requests()
+    reqs.pop(req["id"], None)
+    store.write("requests", reqs)

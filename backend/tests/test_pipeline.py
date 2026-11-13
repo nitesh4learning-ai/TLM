@@ -52,3 +52,16 @@ def test_policies_and_edit():
 def test_upload_needs_key():
     r = c.post("/api/requests/upload", files=[("files", ("a.eml", b"Subject: hi\n\nhello", "message/rfc822"))])
     assert r.status_code == 503
+
+
+def test_delete_undoes_effects():
+    r = c.post("/api/scenarios/new-customer/run").json()
+    rec_id = r["recordId"]
+    assert c.get(f"/api/records/{rec_id}").status_code == 200
+    assert c.delete(f"/api/requests/{r['id']}").status_code == 200
+    assert c.get(f"/api/records/{rec_id}").status_code == 404
+    r2 = c.post("/api/scenarios/existing-customer/run").json()
+    c.post("/api/requests/delete", json={"ids": [r2["id"]]})
+    rec = c.get("/api/records/BRR-0004417").json()
+    assert all(sa.get("addedBy") != r2["id"] for sa in rec["salesAreas"])
+    assert r2["id"] not in [x["id"] for x in c.get("/api/requests").json()]

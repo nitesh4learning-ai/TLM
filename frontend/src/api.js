@@ -15,6 +15,7 @@ export const api = {
   post: (p, b) => call('POST', p, b ?? {}),
   put: (p, b) => call('PUT', p, b),
   patch: (p, b) => call('PATCH', p, b),
+  del: (p) => call('DELETE', p),
   upload: (p, files, field = 'files') => {
     const fd = new FormData();
     for (const f of files) fd.append(field, f);

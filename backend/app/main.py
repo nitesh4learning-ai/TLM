@@ -174,8 +174,32 @@ def text_request(body: TextRequest):
 
 @app.get("/api/requests")
 def list_requests():
-    reqs = sorted(store.requests().values(), key=lambda r: r["id"], reverse=True)
-    return [{k: r[k] for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision")} for r in reqs]
+    reqs = sorted(store.requests().values(), key=lambda r: int(r["id"].split("-")[1]), reverse=True)
+    return [{k: r.get(k) for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision", "channel")} for r in reqs]
+
+
+@app.delete("/api/requests/{rid}")
+def delete_request(rid: str):
+    r = store.requests().get(rid)
+    if not r:
+        raise HTTPException(404, "No such request")
+    pipeline.delete(r)
+    return {"deleted": rid, "undid": r.get("effects") or {}}
+
+
+class DeleteMany(BaseModel):
+    ids: list[str]
+
+
+@app.post("/api/requests/delete")
+def delete_many(body: DeleteMany):
+    done = []
+    for rid in body.ids:
+        r = store.requests().get(rid)
+        if r:
+            pipeline.delete(r)
+            done.append(rid)
+    return {"deleted": done}
 
 
 @app.get("/api/requests/{rid}")

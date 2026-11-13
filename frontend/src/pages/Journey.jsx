@@ -7,7 +7,24 @@ export default function Journey({ arg }) {
   const id = arg || (list.data && list.data[0] && list.data[0].id);
   const req = useLoad(() => (id ? api.get('/requests/' + id) : Promise.resolve(null)), [id]);
   const [open, setOpen] = useState(null);
+  const [picked, setPicked] = useState({});
+  const [q, setQ] = useState('');
+  const [msg, setMsg] = useState(null);
   useEffect(() => setOpen(null), [id]);
+  const runs = (list.data || []).filter((x) => !q || `${x.id} ${x.legalName} ${x.status} ${x.requestType}`.toLowerCase().includes(q.toLowerCase()));
+  const chosen = Object.keys(picked).filter((k) => picked[k]);
+  const afterDelete = (ids) => {
+    setPicked({}); setMsg(`Deleted ${ids.length} run${ids.length > 1 ? 's' : ''}: ${ids.join(', ')}. Records they created were removed and changes they made were undone.`);
+    if (ids.includes(id)) go('journey'); list.reload(); req.reload();
+  };
+  const delOne = async (x) => {
+    if (!window.confirm(`Delete ${x.id} (${x.legalName})? This also removes the record it created or undoes the change it made.`)) return;
+    await api.del('/requests/' + x.id); afterDelete([x.id]);
+  };
+  const delMany = async (ids) => {
+    if (!ids.length || !window.confirm(`Delete ${ids.length} run${ids.length > 1 ? 's' : ''}? Records they created are removed and their changes undone.`)) return;
+    await api.post('/requests/delete', { ids }); afterDelete(ids);
+  };
   const r = req.data;
   const st = r && (r.stages.find((s) => s.key === open) || r.stages[0]);
 
@@ -18,14 +35,30 @@ export default function Journey({ arg }) {
       </Title>
       <Err error={list.error || req.error} />
       <div className="row">
-        <div className="side" style={{ maxWidth: 300 }}>
+        <div className="side" style={{ maxWidth: 340 }}>
           <div className="stack">
-            {(list.data || []).map((x) => (
-              <button type="button" key={x.id} className={'list-item' + (x.id === id ? ' on' : '')} onClick={() => go('journey/' + x.id)}>
-                <span className="mono muted">{x.id}</span><strong>{x.legalName}</strong><span className="small muted">{x.status}</span>
-              </button>
+            <div className="row" style={{ justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
+              <h2>Test runs ({(list.data || []).length})</h2>
+            </div>
+            <label className="lbl" htmlFor="runs-q">Search runs</label>
+            <input id="runs-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="ID, party or status" />
+            <div className="row" style={{ gap: 8 }}>
+              <button type="button" className="btn" disabled={!chosen.length} onClick={() => delMany(chosen)}>Delete selected ({chosen.length})</button>
+              <button type="button" className="btn" disabled={!runs.length} onClick={() => delMany(runs.map((x) => x.id))}>Delete all shown</button>
+            </div>
+            {msg && <div className="notice info small" role="status">{msg}</div>}
+            {runs.map((x) => (
+              <div key={x.id} className={'list-item' + (x.id === id ? ' on' : '')} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, padding: 10 }}>
+                <input type="checkbox" aria-label={'Select ' + x.id} checked={!!picked[x.id]} onChange={(e) => setPicked({ ...picked, [x.id]: e.target.checked })} style={{ width: 20, height: 20, marginTop: 4 }} />
+                <button type="button" onClick={() => go('journey/' + x.id)} style={{ flex: 1, minWidth: 0, border: 0, background: 'transparent', textAlign: 'left', padding: 0, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <span className="mono muted">{x.id} · {x.created}</span><strong>{x.legalName}</strong>
+                  <span className="small muted">{x.requestType} · {x.channel || 'Email'}</span>
+                  <span className={'tag ' + (x.status === 'Complete' ? (x.touchless ? 'agent' : 'ok') : 'human')} style={{ alignSelf: 'flex-start', borderRadius: 8, lineHeight: '16px' }}>{x.status === 'Complete' && x.touchless ? 'Complete · touchless' : x.status}</span>
+                </button>
+                <button type="button" className="btn" aria-label={'Delete ' + x.id} title="Delete this run" onClick={() => delOne(x)} style={{ height: 36, padding: '0 10px' }}>Delete</button>
+              </div>
             ))}
-            {list.data && list.data.length === 0 && <p className="muted">No requests yet. Run one from <a href="#/intake">Intake</a>.</p>}
+            {list.data && list.data.length === 0 && <p className="muted">No test runs yet. Run one from <a href="#/intake">Intake</a>.</p>}
           </div>
         </div>
         {r && (
