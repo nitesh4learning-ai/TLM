@@ -69,12 +69,12 @@ Can you confirm the legal name and attach your current pharmacy license and W-9?
 -----Original Message-----
 From: Accounts Payable
 Please add a specialty account for Cedar Park Family Pharmacy, 1200 E Whitestone Blvd, Cedar Park TX 78613.
-We will order specialty oncology drugs through our GPO, Vizient. EIN 62-1415846."""},
+We will order specialty oncology drugs through our GPO, Keystone Purchasing Alliance. EIN 62-1415846."""},
         "attachments": {"W-9.txt": "Form W-9. Name: Cedar Park Family Pharmacy LLC. Address: 1200 E Whitestone Blvd, Cedar Park, TX 78613. EIN: 62-1415846.",
                         "TX_Pharmacy_License.txt": "Texas State Board of Pharmacy. Class A Pharmacy License TX-PH-337905. Expires 03/31/2027."},
         "fallback": {"legal_name": F("Cedar Park Family Pharmacy LLC", 0.99), "address": F("1200 E Whitestone Blvd, Cedar Park, TX 78613", 0.98),
                      "tax_id": F("62-1415846", 0.98, "W-9.txt"), "request_type": F("Add sales area", 0.96), "sales_area": F("Specialty · US02", 0.97),
-                     "customer_type": F("Independent retail pharmacy", 0.95), "gpo": F("Vizient", 0.93), "controlled_substances": F("yes", 0.9)},
+                     "customer_type": F("Independent retail pharmacy", 0.95), "gpo": F("Keystone Purchasing Alliance", 0.93), "controlled_substances": F("yes", 0.9)},
     },
     "new-owner": {
         "title": "Existing site, new owner", "party": "Westbrook Infusion Partners",
