@@ -10,10 +10,11 @@ export default function Intake() {
   const [error, setError] = useState(null);
   const [over, setOver] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [mode, setMode] = useState('auto');
 
   const run = async (label, fn) => {
     setBusy(label); setError(null);
-    try { const r = await fn(); go('journey/' + r.id); } catch (e) { setError(e.message); } finally { setBusy(''); }
+    try { const r = await fn(); go('journey/' + r.id + (mode === 'auto' ? '~run' : '')); } catch (e) { setError(e.message); } finally { setBusy(''); }
   };
   const load = async (fs) => {
     const all = [...files, ...fs];
@@ -28,6 +29,16 @@ export default function Intake() {
       <Title eyebrow="Work / Intake" title="Intake">
         Upload an email with its whole thread and attachments, paste a request, or run one of the walkthrough requests. The Intake agent reads everything and hands the key values to the other agents.
       </Title>
+      <section className="card" aria-label="How to run">
+        <div className="row" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="stack" style={{ gap: 4 }}><h2>How should the agents run?</h2>
+            <p className="small muted">{mode === 'auto' ? 'All agents run straight through; you watch them light up one by one.' : 'The request stops after each agent. You review what it did, then run the next one.'}</p></div>
+          <div className="seg" role="radiogroup" aria-label="Run mode">
+            <button type="button" role="radio" aria-checked={mode === 'auto'} className={mode === 'auto' ? 'on' : ''} onClick={() => setMode('auto')}>Auto run</button>
+            <button type="button" role="radio" aria-checked={mode === 'step'} className={mode === 'step' ? 'on' : ''} onClick={() => setMode('step')}>Agent by agent</button>
+          </div>
+        </div>
+      </section>
       <Err error={error} />
       {busy && <div className="notice info" role="status">{busy}…{busy.startsWith('Reading the upload') ? '' : ' the agents are working. This takes a few seconds with Claude.'}</div>}
 
@@ -45,7 +56,7 @@ export default function Intake() {
           <div className="row" style={{ alignItems: 'center' }}>
             <span className="small">{files.map((f) => f.name).join(' · ')}</span>
             <button type="button" className="btn" onClick={clear}>Remove</button>
-            {preview && <button type="button" className="btn dark" disabled={!!busy} onClick={() => run('Reading the email', () => api.post(`/uploads/${preview.id}/submit`))}>Submit to agents</button>}
+            {preview && <button type="button" className="btn dark" disabled={!!busy} onClick={() => run('Reading the email', () => api.post(`/uploads/${preview.id}/submit?mode=${mode}`))}>Submit to agents</button>}
           </div>
         )}
         {preview && <EmailPreview mail={preview} />}
@@ -55,7 +66,7 @@ export default function Intake() {
         <h2>Paste a request</h2>
         <label className="lbl" htmlFor="paste">Email text or form contents</label>
         <textarea id="paste" rows={6} value={text} onChange={(e) => setText(e.target.value)} placeholder="Hi, we'd like to open an account for…" />
-        <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={!text.trim() || !!busy} onClick={() => run('Reading the request', () => api.post('/requests/text', { text }))}>Submit to agents</button>
+        <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={!text.trim() || !!busy} onClick={() => run('Reading the request', () => api.post('/requests/text', { text, mode }))}>Submit to agents</button>
       </section>
 
       <section className="card">
@@ -68,7 +79,7 @@ export default function Intake() {
               <h3>{s.party}</h3>
               <span className="small">{s.subject}</span>
               <span className="small muted">Attachments: {s.attachments.join(', ')}</span>
-              <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={!!busy} onClick={() => run('Running ' + s.party, () => api.post(`/scenarios/${s.key}/run`))}>Run through the agents</button>
+              <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={!!busy} onClick={() => run('Running ' + s.party, () => api.post(`/scenarios/${s.key}/run?mode=${mode}`))}>Run through the agents</button>
             </div>
           ))}
         </div>

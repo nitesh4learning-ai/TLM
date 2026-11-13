@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { policyMap } from './api.js';
 
 let cache = {};
@@ -8,18 +9,41 @@ export function usePolicies() {
   return m;
 }
 
+function PolicyTip({ p, id }) {
+  if (!p) return <span>{id}</span>;
+  return (<><strong>{id} · {p.title}</strong><br />{p.text}<br /><span className="lv">Autonomy {p.level} · {p.levelName}</span>&nbsp; Agent: {p.agent}</>);
+}
+
+/** Hover or focus anywhere on the wrapped element shows a tooltip that always stays inside the window. */
+export function HoverTip({ content, children, as = 'span', className, style, ...rest }) {
+  const [pos, setPos] = useState(null);
+  const show = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const w = Math.min(340, window.innerWidth - 24);
+    let left = Math.min(Math.max(12, r.left), window.innerWidth - w - 12);
+    const below = r.bottom + 8, above = r.top - 8;
+    setPos({ left, top: below, above, w, flip: window.innerHeight - r.bottom < 180 });
+  };
+  const Tag = as;
+  return (
+    <Tag className={className} style={style} tabIndex={0} onMouseEnter={show} onMouseLeave={() => setPos(null)} onFocus={show} onBlur={() => setPos(null)} {...rest}>
+      {children}
+      {pos && content && createPortal(
+        <div className="htip" role="tooltip" style={{ left: pos.left, width: pos.w, ...(pos.flip ? { bottom: window.innerHeight - pos.above } : { top: pos.top }) }}>{content}</div>,
+        document.body)}
+    </Tag>
+  );
+}
+
 export function PolicyChip({ id }) {
   const m = usePolicies();
-  const p = m[id];
   if (!id) return null;
-  return (
-    <span className="chip" tabIndex={0} aria-label={p ? `${id}: ${p.title}` : id}>
-      {id}
-      <span className="tip" role="tooltip">
-        {p ? (<><strong>{id} · {p.title}</strong><br />Autonomy {p.level} · {p.levelName}<br />Agent: {p.agent} · Owner: {p.owner}<br />{p.text}</>) : id}
-      </span>
-    </span>
-  );
+  return <HoverTip className="chip2" content={<PolicyTip p={m[id]} id={id} />} aria-label={m[id] ? `${id}: ${m[id].title}` : id}>{id}</HoverTip>;
+}
+
+export function usePolicyTip() {
+  const m = usePolicies();
+  return (id) => (id ? <PolicyTip p={m[id]} id={id} /> : null);
 }
 
 export function Title({ eyebrow, title, children, right }) {
@@ -36,6 +60,7 @@ function Cell({ c }) {
 }
 
 function Section({ s }) {
+  const tip = usePolicyTip();
   return (
     <section className="card">
       <div className="row" style={{ justifyContent: 'space-between', gap: 8 }}><h3>{s.title}</h3><span className="small muted">{s.meta}</span></div>
@@ -53,7 +78,7 @@ function Section({ s }) {
         <ul className="checks">{s.rows.map((r, i) => {
           const cls = r.pass === true ? 'ok' : r.pass === 'human' ? 'person' : 'fail';
           const mark = r.pass === true ? '✓ Passed' : r.pass === 'human' ? '● Person' : '✕ Not met';
-          return (<li key={i} className={cls}><span className="mark">{mark}</span><span style={{ flex: '1 1 260px' }}>{r.k}<span className="muted"> · {r.note}</span></span><PolicyChip id={r.policy} /></li>);
+          return (<HoverTip as="li" key={i} className={cls} content={tip(r.policy)}><span className="mark">{mark}</span><span style={{ flex: '1 1 260px' }}>{r.k}<span className="muted"> · {r.note}</span></span>{r.policy && <span className="chip2">{r.policy}</span>}</HoverTip>);
         })}</ul>
       )}
     </section>
@@ -126,3 +151,21 @@ export function EmailPreview({ mail }) {
     </div>
   );
 }
+
+const P = (d) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{d}</svg>;
+export const AGENT_ICON = {
+  intake: P(<><path d="M4 13l2-7h12l2 7" /><path d="M4 13v5h16v-5h-5a3 3 0 0 1-6 0H4z" /></>),
+  search: P(<><circle cx="11" cy="11" r="6.5" /><path d="M20 20l-4-4" /></>),
+  match: P(<><circle cx="8" cy="12" r="4.5" /><circle cx="16" cy="12" r="4.5" /></>),
+  enrich: P(<><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" /><path d="M19 17l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" /></>),
+  validate: P(<><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" /><path d="M9 12l2 2 4-4" /></>),
+  legal: P(<><path d="M12 4v16M5 20h14M6 8h12" /><path d="M6 8l-3 6a3 3 0 0 0 6 0zM18 8l-3 6a3 3 0 0 0 6 0z" /></>),
+  procurement: P(<><path d="M4 5h2l2.2 10.5a1.5 1.5 0 0 0 1.5 1.2h7.6a1.5 1.5 0 0 0 1.5-1.1L20.5 9H7" /><circle cx="10" cy="20" r="1.2" /><circle cx="17" cy="20" r="1.2" /></>),
+  credit: P(<><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M7 15h4" /></>),
+  tax: P(<><path d="M6 3h9l4 4v14H6z" /><path d="M9 13l6-4M9.5 9.5h.01M14.5 13.5h.01" /></>),
+  record: P(<><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" /></>),
+  orchestrator: P(<><circle cx="12" cy="12" r="3" /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" /></>),
+  copilot: P(<><circle cx="12" cy="8" r="3.5" /><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6" /></>),
+  lifecycle: P(<><path d="M20 12a8 8 0 1 1-2.3-5.7" /><path d="M20 4v4h-4" /></>),
+  outreach: P(<><path d="M4 5h16v11H8l-4 4z" /></>),
+};

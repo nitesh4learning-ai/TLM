@@ -3,6 +3,7 @@ import tempfile
 
 os.environ["TLM_STORE_DIR"] = tempfile.mkdtemp()
 os.environ.pop("ANTHROPIC_API_KEY", None)
+os.environ["TLM_SECRETS_FILE"] = os.path.join(os.environ["TLM_STORE_DIR"], "secrets.json")
 
 from fastapi.testclient import TestClient  # noqa: E402
 from app.main import app  # noqa: E402
@@ -76,3 +77,31 @@ def test_upload_preview_and_files():
     assert f.status_code == 200 and f.content[:4] == b"%PDF"
     assert c.get(f"/api/uploads/{r['id']}/files/meta.json").status_code == 404
     assert c.post(f"/api/uploads/{r['id']}/submit").status_code == 503   # needs the Claude key
+
+
+def test_step_mode_commits_record_at_the_end():
+    c.post("/api/reset")
+    r = c.post("/api/scenarios/new-customer/run?mode=step").json()
+    assert r["revealed"] == 1 and c.get(f"/api/records/{r['recordId']}").status_code == 404
+    while True:
+        x = c.post(f"/api/requests/{r['id']}/next")
+        if x.status_code == 409:
+            break
+        r = x.json()
+    r = c.post(f"/api/requests/{r['id']}/stages/credit/approve", json={"who": "T"}).json()
+    while r["revealed"] < len(r["stages"]):
+        r = c.post(f"/api/requests/{r['id']}/next").json()
+    assert r["status"] == "Complete" and c.get(f"/api/records/{r['recordId']}").json()["status"] == "Active"
+
+
+def test_validation_names_its_sources():
+    r = c.post("/api/scenarios/new-owner/run").json()
+    v = next(s for s in r["stages"] if s["key"] == "validate")
+    srcs = [row["cells"][3]["v"] for row in v["sections"][0]["rows"]]
+    assert all("test data" in s for s in srcs) and r["testData"]
+
+
+def test_provider_secrets_are_masked():
+    p = c.put("/api/providers/lexisnexis", json={"config": {"baseUrl": "https://example.invalid"}, "secrets": {"apiKey": "super-secret-key-1234"}}).json()
+    assert p["secrets"]["apiKey"] == "••••1234"
+    assert "super-secret" not in str(c.get("/api/providers").json())

@@ -10,11 +10,12 @@ import Records from './pages/Records.jsx';
 import Hierarchy from './pages/Hierarchy.jsx';
 import Agents from './pages/Agents.jsx';
 import Policies from './pages/Policies.jsx';
+import Providers from './pages/Providers.jsx';
 
 const NAV = [
   ['tower', 'Control tower'], ['h', 'Work'], ['intake', 'Intake'], ['steward', 'Steward queue'],
   ['h', 'Records'], ['journey', 'Request journey'], ['records', 'Business ready records'], ['hierarchy', 'Hierarchies'],
-  ['h', 'Platform'], ['agents', 'Agents'], ['policies', 'Policy studio'],
+  ['h', 'Platform'], ['agents', 'Agents'], ['policies', 'Policy studio'], ['providers', 'Third-party data'],
 ];
 
 function useRoute() {
@@ -25,7 +26,8 @@ function useRoute() {
 }
 
 function App() {
-  const [page, arg] = useRoute();
+  const [page, ...rest] = useRoute();
+  const arg = rest.join('/');
   const [health, setHealth] = useState(null);
   const [queue, setQueue] = useState(0);
   useEffect(() => {
@@ -33,7 +35,7 @@ function App() {
     const t = () => api.get('/queue').then((q) => setQueue(q.length)).catch(() => {});
     t(); const i = setInterval(t, 5000); return () => clearInterval(i);
   }, []);
-  const P = { tower: ControlTower, intake: Intake, journey: Journey, steward: Steward, records: Records, hierarchy: Hierarchy, agents: Agents, policies: Policies }[page] || ControlTower;
+  const P = { tower: ControlTower, intake: Intake, journey: Journey, steward: Steward, records: Records, hierarchy: Hierarchy, agents: Agents, policies: Policies, providers: Providers }[page] || ControlTower;
   return (
     <div className="shell">
       <header className="top">

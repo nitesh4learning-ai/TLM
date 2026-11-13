@@ -127,7 +127,7 @@ def new_request_id():
     return f"REQ-{max(nums) + 1}"
 
 
-def run_from_mail(mail, channel):
+def run_from_mail(mail, channel, mode="auto"):
     rid = new_request_id()
     if llm.available():
         try:
@@ -136,7 +136,7 @@ def run_from_mail(mail, channel):
             raise HTTPException(502, f"Intake agent could not reach Claude: {str(e)[:300]}")
     else:
         raise HTTPException(503, "Set ANTHROPIC_API_KEY in backend/.env to let the Intake agent read uploaded emails.")
-    return pipeline.run(rid, fields, summary, mail=mail, channel=channel)
+    return pipeline.run(rid, fields, summary, mail=mail, channel=channel, mode=mode)
 
 
 @app.get("/api/scenarios")
@@ -146,14 +146,14 @@ def scenarios():
 
 
 @app.post("/api/scenarios/{key}/run")
-def run_scenario(key: str):
+def run_scenario(key: str, mode: str = "auto"):
     if key not in SCENARIOS:
         raise HTTPException(404, "No such scenario")
     mail = mail_for(key)
     if llm.available():
-        return run_from_mail(mail, "Email to the onboarding inbox")
+        return run_from_mail(mail, "Email to the onboarding inbox", mode)
     rid = new_request_id()
-    req = pipeline.run(rid, SCENARIOS[key]["fallback"], "Key values from the sample (Claude not configured).", mail=mail, channel="Email to the onboarding inbox")
+    req = pipeline.run(rid, SCENARIOS[key]["fallback"], "Key values from the sample (Claude not configured).", mail=mail, channel="Email to the onboarding inbox", mode=mode)
     req["llm"] = False
     store.save_request(req)
     return req
@@ -224,9 +224,9 @@ def upload_file(uid: str, name: str):
 
 
 @app.post("/api/uploads/{uid}/submit")
-def submit_upload(uid: str):
+def submit_upload(uid: str, mode: str = "auto"):
     meta = load_upload(uid)
-    req = run_from_mail(meta, "Uploaded email")
+    req = run_from_mail(meta, "Uploaded email", mode)
     req["uploadId"] = uid
     store.save_request(req)
     return req
@@ -247,17 +247,29 @@ async def upload_request(files: list[UploadFile] = File(...)):
 
 class TextRequest(BaseModel):
     text: str
+    mode: str = "auto"
 
 
 @app.post("/api/requests/text")
 def text_request(body: TextRequest):
-    return run_from_mail({"subject": "", "from": "", "date": "", "body": body.text, "attachments": []}, "Pasted text")
+    return run_from_mail({"subject": "", "from": "", "date": "", "body": body.text, "attachments": []}, "Pasted text", body.mode)
+
+
+@app.post("/api/requests/{rid}/next")
+def next_agent(rid: str):
+    r = store.requests().get(rid)
+    if not r:
+        raise HTTPException(404, "No such request")
+    try:
+        return pipeline.advance(r)
+    except pipeline.StepBlocked as e:
+        raise HTTPException(409, str(e))
 
 
 @app.get("/api/requests")
 def list_requests():
     reqs = sorted(store.requests().values(), key=lambda r: int(r["id"].split("-")[1]), reverse=True)
-    return [{k: r.get(k) for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision", "channel")} for r in reqs]
+    return [{k: r.get(k) for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision", "channel", "mode")} for r in reqs]
 
 
 @app.delete("/api/requests/{rid}")
@@ -309,7 +321,7 @@ def approve(rid: str, key: str, body: Approval):
 def queue():
     out = []
     for r in store.requests().values():
-        for s in r["stages"]:
+        for s in r["stages"][: r.get("revealed", len(r["stages"]))]:
             if s["state"] == "waiting":
                 out.append({"requestId": r["id"], "legalName": r["legalName"], "stage": s["key"], "stageName": s["name"],
                             "waitingFor": s["waitingFor"], "summary": s["summary"], "policies": s["policies"]})
@@ -341,7 +353,7 @@ def hierarchy():
 @app.get("/api/summary")
 def summary():
     reqs = list(store.requests().values())
-    waiting = sum(1 for r in reqs for s in r["stages"] if s["state"] == "waiting")
+    waiting = sum(1 for r in reqs for s in r["stages"][: r.get("revealed", len(r["stages"]))] if s["state"] == "waiting")
     return {"requests": len(reqs), "touchless": sum(1 for r in reqs if r.get("touchless")), "waiting": waiting,
             "records": len(store.records()), "policies": len(policies()), "agents": len(AGENTS), "llm": llm.available()}
 
@@ -355,3 +367,111 @@ def reset():
         if os.path.exists(p):
             os.remove(p)
     return {"ok": True}
+
+
+# ------------------------------------------------------------------ third-party data providers (workbench)
+from . import providers  # noqa: E402
+
+
+def provider_view(key, cfg):
+    cat = providers.CATALOG[key]
+    return {"key": key, "name": cat["name"], "purpose": cat["purpose"], "agent": cat["agent"], "fields": cat["fields"],
+            "config": cfg, "secrets": providers.masked_secrets(key)}
+
+
+@app.get("/api/providers")
+def list_providers():
+    cfgs = providers.configs()
+    return {"settings": providers.settings(), "providers": [provider_view(k, c) for k, c in cfgs.items()]}
+
+
+class ProviderUpdate(BaseModel):
+    config: dict = {}
+    secrets: dict = {}
+
+
+@app.put("/api/providers/{key}")
+def update_provider(key: str, body: ProviderUpdate):
+    if key not in providers.CATALOG:
+        raise HTTPException(404, "No such provider")
+    if body.config.get("mode") not in (None, "test", "live"):
+        raise HTTPException(400, "mode must be test or live")
+    providers.save_config(key, body.config)
+    allowed = {"apiKey", "token", "clientId", "clientSecret"}
+    providers.save_secrets(key, {k: v for k, v in body.secrets.items() if k in allowed})
+    return provider_view(key, providers.configs()[key])
+
+
+@app.post("/api/providers/{key}/test")
+def test_provider(key: str):
+    if key not in providers.CATALOG:
+        raise HTTPException(404, "No such provider")
+    return providers.test_connection(key)
+
+
+class ProviderSettings(BaseModel):
+    disclaimer: str
+
+
+@app.put("/api/provider-settings")
+def provider_settings(body: ProviderSettings):
+    return providers.save_settings(body.model_dump())
+
+
+# ------------------------------------------------------------------ hierarchy search
+@app.get("/api/hierarchies/search")
+def search_hierarchies(q: str = ""):
+    from .reference import name_sim
+    qn = q.strip().lower()
+    nodes = HIERARCHY["nodes"]
+    root = nodes[0]
+    out = []
+    for n in nodes:
+        if not qn or qn in n["name"].lower() or (n.get("duns") or "").replace("-", "").startswith(qn.replace("-", "")):
+            out.append({"id": n["id"], "name": n["name"], "kind": n["kind"], "family": root["name"], "familyId": "brazos", "city": n.get("city"), "status": n["status"]})
+    # standalone customers (no corporate family in the hub)
+    for r in store.records().values():
+        if r.get("hierarchyNode"):
+            continue
+        if not qn or qn in r["legalName"].lower():
+            out.append({"id": r["id"], "name": r["legalName"], "kind": r.get("type") or "Customer", "family": r.get("parent") or "No corporate family",
+                        "familyId": "record:" + r["id"], "city": None, "status": r["status"]})
+    out.sort(key=lambda x: (0 if x["name"].lower().startswith(qn) else 1, x["name"]))
+    return out[:50]
+
+
+@app.get("/api/hierarchies/{fid}")
+def get_family(fid: str):
+    if fid == "brazos":
+        return hierarchy()
+    if fid.startswith("record:"):
+        r = store.records().get(fid.split(":", 1)[1])
+        if not r:
+            raise HTTPException(404, "No such record")
+        nodes = []
+        if r.get("parent"):
+            nodes.append({"id": "P", "level": 0, "kind": "Parent (from D&B)", "name": r["parent"], "parent": None, "status": "Not in hub", "city": "", "state": ""})
+        nodes.append({"id": r["id"], "level": 1 if r.get("parent") else 0, "kind": r.get("type") or "Customer", "name": r["legalName"],
+                      "parent": "P" if r.get("parent") else None, "status": r["status"], "address": r["address"], "duns": r.get("duns"), "recordId": r["id"],
+                      "city": "", "state": ""})
+        return {"summary": {"legalEntities": len(nodes), "shipToAccounts": 0, "nodes": len(nodes)}, "nodes": nodes}
+    raise HTTPException(404, "No such hierarchy")
+
+
+# ------------------------------------------------------------------ agent activity
+STAGE_FOR = {"Intake": "intake", "Search before create": "search", "Match & merge": "match", "Enrichment": "enrich", "Validation": "validate",
+             "Legal": "legal", "Procurement": "procurement", "Credit": "credit", "Tax": "tax", "Orchestrator": "record"}
+
+
+@app.get("/api/agents/stats")
+def agent_stats():
+    reqs = list(store.requests().values())
+    out = {}
+    for name, key in STAGE_FOR.items():
+        st = [s for r in reqs for s in r["stages"] if s["key"] == key]
+        out[name] = {"runs": len(st), "auto": sum(1 for s in st if s["actor"] == "agent"), "people": sum(1 for s in st if s["actor"] == "human")}
+    cfgs = providers.configs()
+    uses = {}
+    for k, c in providers.CATALOG.items():
+        uses.setdefault(c["agent"], []).append({"key": k, "name": c["name"], "mode": cfgs[k]["mode"]})
+    return {"stats": out, "providers": uses}

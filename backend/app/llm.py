@@ -72,3 +72,13 @@ Return ONLY JSON: {"title": str, "folder": one of ["match-survivorship","busines
 
 def draft_policy(doc_text):
     return _json(complete(POLICY_SYSTEM, doc_text[:60000], max_tokens=2500))
+
+
+ADDRESS_SYSTEM = """You standardize US postal addresses to USPS Publication 28 style for a master data platform.
+You do not know whether an address is deliverable; only standardize and flag problems you can see in the text.
+Return ONLY JSON: {"standardized": "<STREET LINE, CITY ST ZIP or ZIP+4 in capitals>", "poBox": true|false,
+"issues": ["<short problem, e.g. missing suite number, ZIP does not match city, abbreviation corrected>"], "confidence": <0..1>}."""
+
+
+def standardize_address(address):
+    return _json(complete(ADDRESS_SYSTEM, address, max_tokens=400))

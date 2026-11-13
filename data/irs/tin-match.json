@@ -1,0 +1,89 @@
+{
+ "source": "IRS TIN matching (test data)",
+ "records": [
+  {
+   "ein": "15-3939212",
+   "name": "Lakeside Community Pharmacy, LLC"
+  },
+  {
+   "ein": "62-1415846",
+   "name": "Cedar Park Family Pharmacy LLC"
+  },
+  {
+   "ein": "44-3670896",
+   "name": "Westbrook Infusion Partners LP"
+  },
+  {
+   "ein": "62-5163555",
+   "name": "Westbrook Infusion Center LLC"
+  },
+  {
+   "ein": "47-3118618",
+   "name": "Lakeside Pharmacy #2 LLC"
+  },
+  {
+   "ein": "74-1445199",
+   "name": "Brazos Specialty Hospital Plano"
+  },
+  {
+   "ein": "58-2622631",
+   "name": "Brazos Senior Living \u2013 North Texas"
+  },
+  {
+   "ein": "18-1768805",
+   "name": "Brazos Surgical Center \u2013 North Texas"
+  },
+  {
+   "ein": "87-3871230",
+   "name": "Brazos Outpatient Pharmacy \u2013 North Texas"
+  },
+  {
+   "ein": "50-4567281",
+   "name": "Brazos Senior Living Tyler"
+  },
+  {
+   "ein": "38-3320821",
+   "name": "Brazos Surgical Center \u2013 East Texas"
+  },
+  {
+   "ein": "42-1192619",
+   "name": "Brazos Specialty Hospital \u2013 East Texas"
+  },
+  {
+   "ein": "32-9517485",
+   "name": "Brazos Outpatient Pharmacy \u2013 East Texas"
+  },
+  {
+   "ein": "20-2437026",
+   "name": "Brazos Surgical Center Houston"
+  },
+  {
+   "ein": "98-4374754",
+   "name": "Brazos Senior Living \u2013 Gulf Coast"
+  },
+  {
+   "ein": "85-4694634",
+   "name": "Brazos Medical Center \u2013 Gulf Coast"
+  },
+  {
+   "ein": "83-8930103",
+   "name": "Brazos Outpatient Pharmacy \u2013 Gulf Coast"
+  },
+  {
+   "ein": "67-3351868",
+   "name": "Brazos Outpatient Pharmacy Austin"
+  },
+  {
+   "ein": "72-9075854",
+   "name": "Brazos Infusion Center \u2013 Hill Country"
+  },
+  {
+   "ein": "47-4652414",
+   "name": "Brazos Surgical Center \u2013 Hill Country"
+  },
+  {
+   "ein": "18-2140194",
+   "name": "Brazos Specialty Hospital \u2013 Hill Country"
+  }
+ ]
+}
