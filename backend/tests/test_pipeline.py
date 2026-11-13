@@ -48,7 +48,7 @@ def test_policies_and_edit():
     p = c.get("/api/policies").json()
     assert len(p["policies"]) == 15
     e = c.put("/api/policies/BR-PT-001", json={"text": "Edited text"}).json()
-    assert e["status"] == "Draft" and e["text"] == "Edited text"
+    assert e["status"] == "Active" and e["text"] == "Edited text" and e["version"] == 2
 
 
 def test_upload_needs_key():
@@ -106,3 +106,34 @@ def test_provider_secrets_are_masked():
     p = c.put("/api/providers/lexisnexis", json={"config": {"baseUrl": "https://example.invalid"}, "secrets": {"apiKey": "super-secret-key-1234"}}).json()
     assert p["secrets"]["apiKey"] == "••••1234"
     assert "super-secret" not in str(c.get("/api/providers").json())
+
+
+
+def _credit(r):
+    return next(s for s in r["stages"] if s["key"] == "credit")
+
+
+def test_policy_edits_change_agent_decisions_at_runtime():
+    c.post("/api/reset")
+    assert _credit(c.post("/api/scenarios/new-customer/run").json())["actor"] == "human"   # $80,000 above $50,000
+    p = c.get("/api/policies/BR-CR-001").json()
+    params = [dict(x, value=100000) if x["key"] == "agent_limit" else x for x in p["params"]]
+    c.put("/api/policies/BR-CR-001", json={"params": params})
+    c.post("/api/reset-requests")
+    r = c.post("/api/scenarios/new-customer/run").json()
+    assert _credit(r)["actor"] == "agent" and _credit(r)["policyVersions"]["BR-CR-001"] == 2
+
+
+def test_unassigned_policy_routes_to_a_person():
+    c.post("/api/reset")
+    c.put("/api/policies/MM-002", json={"appliesTo": ["Search before create"]})
+    r = c.post("/api/scenarios/existing-customer/run").json()
+    m = next(s for s in r["stages"] if s["key"] == "match")
+    assert m["actor"] == "human" and m["status"] == "No policy assigned"
+
+
+def test_autonomy_level_h_forces_a_person():
+    c.post("/api/reset")
+    c.put("/api/policies/BR-PR-001", json={"level": "H"})
+    r = c.post("/api/scenarios/existing-customer/run").json()
+    assert next(s for s in r["stages"] if s["key"] == "procurement")["actor"] == "human"

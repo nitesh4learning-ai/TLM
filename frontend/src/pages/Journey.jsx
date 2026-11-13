@@ -64,7 +64,7 @@ export default function Journey({ arg }) {
 
   return (
     <>
-      <Title eyebrow="Records / Request journey" title="Request journey">
+      <Title eyebrow="Agent console" title="Request journey">
         Each request runs through the master data processes, then the MDM operations agents. Double-click an agent to see what it did; hover a rule to see the policy behind it.
       </Title>
       <Err error={list.error || req.error} />

@@ -11,7 +11,7 @@ export function usePolicies() {
 
 function PolicyTip({ p, id }) {
   if (!p) return <span>{id}</span>;
-  return (<><strong>{id} · {p.title}</strong><br />{p.text}<br /><span className="lv">Autonomy {p.level} · {p.levelName}</span>&nbsp; Agent: {p.agent}</>);
+  return (<><strong>{id} · {p.title}</strong> <span style={{ opacity: .7 }}>v{p.version}</span><br />{p.text}<br /><span className="lv">Autonomy {p.level} · {p.levelName}</span><br /><span style={{ opacity: .8 }}>Applies to: {(p.appliesTo || [p.agent]).join(', ')}</span></>);
 }
 
 /** Hover or focus anywhere on the wrapped element shows a tooltip that always stays inside the window. */

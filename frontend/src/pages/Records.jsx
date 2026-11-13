@@ -59,7 +59,7 @@ export default function Records({ arg }) {
   const rec = useLoad(() => (id ? api.get('/records/' + id) : Promise.resolve(null)), [id]);
   return (
     <>
-      <Title eyebrow="Records / Business ready records" title="Business ready records">
+      <Title eyebrow="Records · read-only" title="Business ready records">
         Key details first. Use … to open the source records behind each record, the value that won for each attribute and the policy that decided it.
       </Title>
       <Err error={list.error || rec.error} />

@@ -39,7 +39,7 @@ export default function Providers() {
 
   return (
     <>
-      <Title eyebrow="Platform / Third-party data" title="Third-party data">
+      <Title eyebrow="Agent console" title="Third-party data">
         Configure the providers the agents call. Each provider runs on test data until you switch it to its live API, so you can replace them one at a time.
       </Title>
       <Err error={d.error} />

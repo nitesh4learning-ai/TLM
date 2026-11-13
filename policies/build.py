@@ -54,7 +54,7 @@ P = [
             ("No D&B score, or score class 5", "Prepay terms; limit set by Credit", "Credit manager")],
       exceptions="A limit reset after an ownership change always goes to Credit (MM-007a).", cites=["MM-007a"]),
  dict(id="BR-TX-001", title="Tax status and resale certificates", folder="business-rules", stage="Business rules", agent="Tax",
-      level="A", owner="Tax",
+      level="B", owner="Tax",
       text="A customer buying for resale is tax-exempt only with a valid resale certificate for the ship-to state. Without one, the customer is taxable and a person is asked to collect the certificate.",
       rows=[("Resale certificate present, state matches ship-to, not expired", "Exempt for resale", "Agent"),
             ("Certificate missing or expired", "Taxable; request certificate", "Tax specialist"),

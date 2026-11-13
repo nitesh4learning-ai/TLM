@@ -4,14 +4,14 @@ title: Tax status and resale certificates
 folder: business-rules
 stage: Business rules
 agent: Tax
-autonomy: A
+autonomy: B
 owner: Tax
 status: Published
 version: 1.0
 ---
 # BR-TX-001 Tax status and resale certificates
 
-**Autonomy:** A – Agent decides · **Agent:** Tax · **Owner:** Tax
+**Autonomy:** B – Agent decides, human approves above limit · **Agent:** Tax · **Owner:** Tax
 
 ## In plain English
 

@@ -6,11 +6,12 @@ export default function ControlTower() {
   const s = useLoad(() => api.get('/summary'), []);
   const r = useLoad(() => api.get('/requests'), []);
   const d = s.data || {};
-  const reset = async () => { if (window.confirm('Clear all requests and reset records to the starting data?')) { await api.post('/reset'); s.reload(); r.reload(); } };
+  const clearRuns = async () => { if (window.confirm('Clear all test runs and put records back to the starting data? Policies, providers and agent settings are kept.')) { await api.post('/reset-requests'); s.reload(); r.reload(); } };
+  const reset = async () => { if (window.confirm('Reset everything, including policy edits, to the starting data?')) { await api.post('/reset'); s.reload(); r.reload(); } };
   return (
     <>
-      <Title eyebrow="Overview" title="Control tower" right={<button type="button" className="btn" onClick={reset}>Reset data</button>}>
-        Requests flow through the core MDM agents, then Legal, Procurement, Credit and Tax. Start one from Intake.
+      <Title eyebrow="Overview" title="Control tower" right={<div className="row" style={{ gap: 8 }}><button type="button" className="btn" onClick={clearRuns}>Clear test runs</button><button type="button" className="btn" onClick={reset}>Reset everything</button></div>}>
+        Four applications share this platform: Work for people, the Agent console for agents, the Policy studio for governance, and Records for the hub. Start a request in Work › Intake.
       </Title>
       <Err error={s.error} />
       <div className="kpis">

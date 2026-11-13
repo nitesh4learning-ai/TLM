@@ -25,7 +25,7 @@ export default function Agents() {
 
   return (
     <>
-      <Title eyebrow="Platform / Agents" title="Agents">
+      <Title eyebrow="Agent console" title="Agents">
         {agents.length} agents. Master data processes build the record; the MDM operations agents decide from documented policy; when no policy applies, the request goes to a person.
       </Title>
       <Err error={a.error} />
@@ -74,7 +74,9 @@ export default function Agents() {
               <div><div className="small muted">Stops for a person</div>{cur.stops}</div>
               {(prov[cur.name] || []).length > 0 && <div><div className="small muted">Data providers</div><div className="row" style={{ gap: 6, marginTop: 4 }}>{prov[cur.name].map((p) => <span key={p.key} className={'pmode ' + p.mode}>{p.name} · {p.mode === 'live' ? 'Live' : 'Test data'}</span>)}</div>
                 <a className="small" href="#/providers">Configure in Third-party data →</a></div>}
-              {cur.policies.length > 0 && <div className="row" style={{ gap: 6 }}><span className="small muted" style={{ flexBasis: '100%' }}>Policies it runs</span>{cur.policies.map((p) => <PolicyChip key={p} id={p} />)}</div>}
+              <div className="row" style={{ gap: 6 }}><span className="small muted" style={{ flexBasis: '100%' }}>Policies assigned to it</span>{cur.policies.length ? cur.policies.map((p) => <PolicyChip key={p} id={p} />) : <span className="small muted">None</span>}</div>
+              <div className="row" style={{ gap: 6 }}><span className="small muted" style={{ flexBasis: '100%' }}>Universal policies it also reads</span>{(cur.universal || []).map((p) => <PolicyChip key={p} id={p} />)}</div>
+              <a className="small" href="#/policies">Assign policies in the Policy studio →</a>
               {cur.pendingChange && <div className="notice info small">Pending: {cur.pendingChange.model} · {cur.pendingChange.stops} · {cur.pendingChange.status}</div>}
               <button type="button" className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setEdit({ model: cur.model, stops: cur.stops })}>Edit settings</button>
             </>)}

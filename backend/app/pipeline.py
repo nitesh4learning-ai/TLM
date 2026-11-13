@@ -6,11 +6,10 @@ and status "waiting" until someone approves them in the steward queue.
 import datetime
 import re
 
-from . import llm, providers, store
+from . import llm, policystore, providers, store
 from .reference import SAP, LEGACY, sim, name_sim, addr_sim, norm, street_of
 from .llm import FIELDS
 
-AUTO_LIMIT = 50000
 MAP = dict(FIELDS)
 
 
@@ -86,6 +85,10 @@ def score(req, item):
 # ------------------------------------------------------------------ the run
 def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="auto"):
     t_start = datetime.datetime.now()
+    P = policystore.Runtime()
+    link_at, review_from = P.param("MM-002", "link_at", 0.95), P.param("MM-002", "review_from", 0.80)
+    i_auto, i_low = P.param("AG-002", "intake_auto", 0.95), P.param("AG-002", "intake_steward_below", 0.75)
+    AUTO_LIMIT = P.param("BR-CR-001", "agent_limit", 50000)
     now = datetime.datetime.now().strftime("%b %d, %Y %I:%M %p")
     legal = v(fields, "legal_name") or "(no legal name)"
     address = v(fields, "address") or ""
@@ -104,8 +107,8 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
         conf = float((fields.get(f) or {}).get("confidence", 0.9) or 0.9)
         shown = mask(val) if f == "tax_id" else val
         cell = {"v": f"{conf:.2f}"}
-        if conf < 0.95:
-            cell = {"v": f"{conf:.2f} · " + ("requester confirms" if conf >= 0.75 else "steward review"), "policy": "AG-002"}
+        if conf < i_auto:
+            cell = {"v": f"{conf:.2f} · " + ("requester confirms" if conf >= i_low else "steward review"), "policy": "AG-002"}
             low.append((f, conf))
         rows.append([f.replace("_", " ").capitalize(), shown, cell, target, (fields.get(f) or {}).get("source", "")])
     came = [("Channel", channel, ""), ("Received", now, "")]
@@ -114,14 +117,14 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
                  ("Attachments", " · ".join(a["name"] for a in mail.get("attachments", [])) or "None", f"{len(mail.get('attachments', []))} documents")]
         if mail.get("to"):
             came.insert(3, ("To", mail["to"], ""))
-    very_low = [f for f, c in low if c < 0.75]
+    very_low = [f for f, c in low if c < i_low]
     sections = [kv(came, "What came in"),
                 table(["Extracted field", "Value", "Confidence", "Maps to"], [r[:4] for r in rows[:8]], "Key values", meta=f"{min(8, len(rows))} of {len(rows)} shown"),
                 table(["Extracted field", "Value", "Confidence", "Maps to", "Found in"], rows, "All key values", level=2)]
     if mail:
         sections.append({"title": "Email and attachments", "kind": "text", "level": 3, "meta": "",
                          "text": (mail.get("body") or "")[:4000] + "".join(f"\n\n[{a['name']}]\n{(a.get('text') or '')[:800]}" for a in mail.get("attachments", []))})
-    stages.append(stage("intake", "Intake", "human" if very_low else "agent",
+    stages.append(stage("intake", "Intake", "human" if P.gate("AG-002", very_low) else "agent",
                         f"{len(rows)} fields" + (f" · {len(very_low)} need a steward" if very_low else ""),
                         intake_summary or f"Extracted {len(rows)} key values and mapped them to the customer data model.", ["AG-002"], sections,
                         waiting_for="Data steward" if very_low else None))
@@ -142,11 +145,11 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     for i, h in enumerate(top):
         status = "Business ready record" if h["system"] == "Business ready record" else (f"Cross-reference of {h['brr']}" if h["brr"] else "Source record")
         result_rows.append([str(i + 1), h["name"], f"{h['system']} {h['id']}" if h["system"] != "Business ready record" else h["id"],
-                            {"v": f"{h['score']:.2f}", "win": i == 0 and h["score"] >= 0.95}, h["why"], status])
+                            {"v": f"{h['score']:.2f}", "win": i == 0 and h["score"] >= link_at}, h["why"], status])
     bs = best["score"] if best else 0
     stages.append(stage("search", "Search before create", "agent", f"{len(top)} candidates · best {bs:.2f}",
-                        "Existing customer found." if bs >= 0.95 else ("Near match found; match & merge decides." if bs >= 0.80 else "No candidate reached 0.80, so no existing customer matches."),
-                        ["MM-002"], [table(["#", "Record", "System ID", "Confidence", "Why", "Status"], result_rows, "Matching records", meta="Link at 0.95 · review from 0.80"),
+                        "Existing customer found." if bs >= link_at else ("Near match found; match & merge decides." if bs >= review_from else f"No candidate reached {review_from:.2f}, so no existing customer matches."),
+                        ["MM-002"], [table(["#", "Record", "System ID", "Confidence", "Why", "Status"], result_rows, "Matching records", meta=f"Link at {link_at:.2f} · review from {review_from:.2f}"),
                                      kv([("Records compared", str(len(hits)), "after blocking"), ("Matched on", "Name, street address, tax ID", "")], "How the search ran", level=2)]))
 
     # ---- Enrichment lookup (used by match & merge for ownership changes)
@@ -158,30 +161,30 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
 
     # ---- Match & merge
     decision, link_to, successor_of = "new", None, None
-    if best and bs >= 0.95:
+    if best and bs >= link_at:
         decision, link_to = "link", best_brr or best["id"]
-    elif best and bs >= 0.80:
+    elif best and bs >= review_from:
         own = dnb and dnb.get("ownershipChangeDate")
-        recent = own and (datetime.date.today() - datetime.date.fromisoformat(own)).days <= 365
+        recent = own and (datetime.date.today() - datetime.date.fromisoformat(own)).days <= P.param("MM-007a", "ownership_window_days", 365)
         if best["same_site"] and best["tax_diff"] and recent:
             decision, successor_of = "successor", best_brr
         else:
             decision = "review"
     if decision == "link":
         stages.append(stage("match", "Match & merge", "agent", f"Linked to {link_to}", f"Request linked to {link_to}; no new customer created.", ["MM-002", "SV-001"],
-                            [kv([("Decision", f"Link to {link_to}", f"{bs:.2f} is at or above 0.95", "MM-002"),
+                            [kv([("Decision", f"Link to {link_to}", f"{bs:.2f} is at or above {link_at:.2f}", "MM-002"),
                                  ("Change", f"Add sales area {sales_area}" if req_type == "Add sales area" else "Refresh existing record", "")], "Outcome")]))
     elif decision == "successor":
         stages.append(stage("match", "Match & merge", "agent", "Successor created", f"Same site, different tax ID and a recent ownership change: new customer linked as successor of {successor_of}.",
-                            ["MM-007a"], [checks([("Match 0.80 or above, address exact, tax ID differs", True, f"{bs:.2f}", "MM-007a"),
-                                                  ("Ownership change within 365 days", True, f"D&B: {dnb['ownershipChangeDate']}", "MM-007a"),
+                            ["MM-007a"], [checks([(f"Match {review_from:.2f} or above, address exact, tax ID differs", True, f"{bs:.2f}", "MM-007a"),
+                                                  (f"Ownership change within {P.param('MM-007a', 'ownership_window_days', 365)} days", True, f"D&B: {dnb['ownershipChangeDate']}", "MM-007a"),
                                                   ("Carry over ship-to and delivery instructions", True, "", "MM-007a"),
                                                   ("Reset credit limit and payment terms", True, "Sent to Credit", "MM-007a")], "Rules applied")]))
     elif decision == "review":
-        stages.append(stage("match", "Match & merge", "human", "Steward decides", f"Score {bs:.2f} is in the review band; a data steward compares the candidates.", ["MM-002"],
+        stages.append(stage("match", "Match & merge", "human" if P.gate("MM-002", True) else "agent", "Steward decides", f"Score {bs:.2f} is in the review band; a data steward compares the candidates.", ["MM-002"],
                             [kv([("Best candidate", f"{best['name']} ({best['system']} {best['id']})", f"{bs:.2f}", "MM-002")], "Person needed")], waiting_for="Data steward"))
     else:
-        stages.append(stage("match", "Match & merge", "agent", "No merge", "No candidate at or above 0.80. Each attribute of the new record takes its value from the most trusted source.",
+        stages.append(stage("match", "Match & merge", "agent", "No merge", f"No candidate at or above {review_from:.2f}. Each attribute of the new record takes its value from the most trusted source.",
                             ["MM-002", "SV-001"], [table(["Attribute", "Value", "Winning source", "Policy"], [
                                 ["Legal name", (dnb or {}).get("primaryName") or legal, "D&B" if dnb else "Intake", {"v": "", "policy": "SV-001"}],
                                 ["Address", address, "Intake (validated in the next stages)", {"v": "", "policy": "SV-001"}],
@@ -191,7 +194,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     lx, lx_m = providers.lookup("lexisnexis", q); sources.append(lx_m)
     if dnb:
         code = int(dnb.get("confidenceCode") or 0)
-        e_actor = "agent" if code >= 8 else "human"
+        e_actor = "human" if P.gate("AG-002", code < P.param("AG-002", "dnb_accept", 8)) else "agent"
         rows = [("DUNS", dnb.get("duns") or "—", f"Confidence code {code}", "AG-002"), ("Legal name", dnb.get("primaryName") or "—", "D&B"),
                 ("Parent", dnb.get("parent") or "None (independent)", "D&B family tree"), ("NAICS", dnb.get("naics") or "—", ""),
                 ("Started", str(dnb.get("startDate") or "—"), ""), ("Employees", str(dnb.get("employees") or "—"), ""),
@@ -267,7 +270,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
         pass  # counted above
     passed = sum(1 for c in calls if c[0] != "Address standardization") - len([i for i in issues if not i.startswith("address (") and not i.startswith("PO box")])
     total = sum(1 for c in calls if c[0] != "Address standardization")
-    stages.append(stage("validate", "Validation", "human" if issues else "agent", f"{passed} of {total} checks passed",
+    stages.append(stage("validate", "Validation", "human" if P.gate("AG-002", issues) else "agent", f"{passed} of {total} checks passed",
                         "All validation checks passed." if not issues else "Needs a person: " + ", ".join(issues) + ".",
                         ["RG-CS-001", "AG-002", "BR-PM-001"], [table(["Service", "Check", "Result", "Source", "Time"], calls, "Validation calls",
                                                                       meta="Times are measured")],
@@ -280,7 +283,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     if wants_cs:
         rows.append(("DEA active for requested schedules", True if dea.get("status") == "Active" else "human",
                      f"{dea.get('number', 'Not found')} · controlled ordering {'on' if dea.get('status') == 'Active' else 'off'}", "RG-CS-001"))
-    legal_human = any(r[1] == "human" for r in rows)
+    legal_human = P.gate("BR-LG-001", edited) or P.gate("RG-CS-001", any(r[1] == "human" for r in rows[1:]))
     stages.append(stage("legal", "Legal", "human" if legal_human else "agent", f"{sum(r[1] is True for r in rows)} of {len(rows)} rules",
                         "Agreements and licensure checked.", ["BR-LG-001", "RG-CS-001"], [checks(rows, "Rules applied")],
                         waiting_for="Legal counsel" if legal_human else None))
@@ -320,23 +323,24 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
         limit_row = (f"Proposed limit ${limit:,.0f} within agent authority (${AUTO_LIMIT:,})", True if limit <= AUTO_LIMIT else "human",
                      "Approved by the agent" if limit <= AUTO_LIMIT else "Above authority; a credit manager approves", "BR-CR-001")
     req_terms = v(fields, "requested_terms")
-    terms = "Net 30"
+    terms = P.param("BR-PT-001", "default_terms", "Net 30")
+    tier_a_terms = P.param("BR-PT-001", "tier_a_terms", "Net 45")
     rows = []
     if decision == "successor":
         rows.append(("Limit reset after ownership change", True, "Prior limit not carried", "MM-007a"))
     rows.append(limit_row)
     if req_terms and req_terms.replace(" ", "").lower() not in ("net30", "n30"):
-        ok = tier == "A" and limit <= AUTO_LIMIT and "45" in req_terms
-        rows.append((f"Requested {req_terms}", True if ok else False, f"Credit tier {tier}" + ("" if ok else "; Net 30 applied"), "BR-PT-001"))
-        if ok: terms = "Net 45"
-    rows.append((f"Payment terms {terms}", True, "Default" if terms == "Net 30" else "Tier A", "BR-PT-001"))
+        ok = tier == "A" and limit <= P.param("BR-PT-001", "tier_a_max_limit", 50000) and req_terms.replace(" ", "").lower() == tier_a_terms.replace(" ", "").lower()
+        rows.append((f"Requested {req_terms}", True if ok else False, f"Credit tier {tier}" + ("" if ok else f"; {terms} applied"), "BR-PT-001"))
+        if ok: terms = tier_a_terms
+    rows.append((f"Payment terms {terms}", True, "Default" if terms != tier_a_terms else "Tier A", "BR-PT-001"))
     if acct and acct.get("code") == "GREEN":
         method = "ACH"; rows.append(("Account validation GREEN", True, "Payment method ACH", "BR-PM-001"))
     elif acct:
         method = "ACH after steward confirms"; rows.append(("Account validation AMBER", "human", "Steward confirms account holder", "BR-PM-001"))
     else:
         method = "Check"; rows.append(("No validated bank account", True, "Payment method check", "BR-PM-001"))
-    credit_human = any(r[1] == "human" for r in rows)
+    credit_human = P.gate("BR-CR-001", limit_row[1] == "human") or P.gate("BR-PM-001", any(r[1] == "human" and r[3] == "BR-PM-001" for r in rows))
     stages.append(stage("credit", "Credit", "human" if credit_human else "agent", "Credit manager needed" if credit_human else "Within authority",
                         f"Limit ${limit:,.0f}, {terms}, {method}.", ["BR-CR-001", "BR-PT-001", "BR-PM-001"], [checks(rows, "Rules applied")],
                         waiting_for="Credit manager" if credit_human else None))
@@ -348,12 +352,12 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
         rows = [("Resale certificate on file is valid", True, "From the existing record", "BR-TX-001")]; tax_class = "Exempt for resale"
     elif not cert:
         rows = [("Resale certificate present", "human", "Missing; taxable until collected", "BR-TX-001")]; tax_class = "Taxable"
-    elif holder and name_sim(holder, legal) < 0.9:
+    elif holder and name_sim(holder, legal) < P.param("BR-TX-001", "certificate_name_match", 0.9):
         rows = [("Certificate in the customer's own name", False, f"Names {holder}", "BR-TX-001"),
                 ("Collect a new certificate", "human", "Tax specialist", "BR-TX-001")]; tax_class = "Taxable"
     else:
         rows = [("Resale certificate present, state matches ship-to, not expired", True, cert, "BR-TX-001")]; tax_class = "Exempt for resale"
-    tax_human = any(r[1] == "human" for r in rows)
+    tax_human = P.gate("BR-TX-001", any(r[1] == "human" for r in rows))
     stages.append(stage("tax", "Tax", "human" if tax_human else "agent", tax_class, f"Tax class: {tax_class}.", ["BR-TX-001"], [checks(rows, "Rules applied")],
                         waiting_for="Tax specialist" if tax_human else None))
 
@@ -388,6 +392,30 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     stages.append(stage("record", "Business ready record", "agent", rid, summary, ["AG-003"] + (["MM-007a"] if successor_of else []),
                         [kv([("Record", rid, rec["status"]), ("Legal name", rec["legalName"], "", "SV-001"), ("Payment terms", terms, "", "BR-PT-001"),
                              ("Credit limit", f"${limit:,.0f}", "", "BR-CR-001"), ("Tax class", tax_class, "", "BR-TX-001")], "Key attributes")]))
+
+    # ---- policy enforcement: every agent may use only policies assigned to it (or to all agents)
+    STAGE_AGENT = {"intake": "Intake", "search": "Search before create", "match": "Match & merge", "enrich": "Enrichment", "validate": "Validation",
+                   "legal": "Legal", "procurement": "Procurement", "credit": "Credit", "tax": "Tax", "record": "Orchestrator"}
+    for s_ in stages:
+        agent = STAGE_AGENT[s_["key"]]
+        s_["agent"] = agent
+        s_["policyVersions"] = {pid: P.version(pid) for pid in s_["policies"]}
+        missing = [pid for pid in s_["policies"] if not P.assigned(agent, pid)]
+        if missing:
+            s_["actor"], s_["state"] = "human", "waiting"
+            s_["waitingFor"] = s_.get("waitingFor") or "Data steward"
+            s_["status"] = "No policy assigned"
+            s_["summary"] = (f"{', '.join(missing)} {'is' if len(missing) == 1 else 'are'} not assigned to the {agent} agent, so it has no rule to decide by. "
+                             "The request goes to a person (AG-001). ") + s_["summary"]
+            s_["sections"].insert(0, kv([(pid, (P.pols.get(pid) or {}).get("title", "Not active"), "Not assigned to " + agent, "AG-001") for pid in missing], "No policy assigned"))
+        h = [pid for pid in s_["policies"] if P.assigned(agent, pid) and P.level(pid) == "H"]
+        if h and s_["actor"] != "human":
+            s_["actor"], s_["state"] = "human", "waiting"
+            s_["waitingFor"] = (P.roles(h[0]) or ["Data steward"])[0]
+            s_["status"] = "A person decides"
+            s_["summary"] = f"{h[0]} is set to autonomy H, so a person decides. " + s_["summary"]
+        if s_["actor"] == "human" and s_["state"] == "waiting" and not s_.get("waitingFor"):
+            s_["waitingFor"] = "Data steward"
 
     # ---- explanations from Claude (optional)
     if llm.available():

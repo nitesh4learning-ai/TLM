@@ -239,7 +239,7 @@
    "folder": "business-rules",
    "stage": "Business rules",
    "agent": "Tax",
-   "level": "A",
+   "level": "B",
    "owner": "Tax",
    "text": "A customer buying for resale is tax-exempt only with a valid resale certificate for the ship-to state. Without one, the customer is taxable and a person is asked to collect the certificate.",
    "rows": [

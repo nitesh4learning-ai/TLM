@@ -33,46 +33,68 @@ def health():
     return {"ok": True, "llm": llm.available(), "model": llm.MODEL if llm.available() else None}
 
 
-# ------------------------------------------------------------------ policies
+# ------------------------------------------------------------------ policies (runtime store)
+from . import policystore  # noqa: E402
+
+
+def view(p):
+    q = {k: v for k, v in p.items()}
+    q["levelName"] = policystore.levels().get(q.get("level"), "")
+    q["folderName"] = FOLDERS.get(q.get("folder"), q.get("folder"))
+    return q
+
+
 def policies():
-    base = load_policies()
-    drafts = store.read("policy_drafts", {})
-    out = []
-    for p in base["policies"] + [d for d in drafts.values() if d.get("new")]:
-        d = drafts.get(p["id"], {})
-        q = dict(p, **{k: v for k, v in d.items() if k != "new"})
-        q["status"] = "Draft" if d else "Published"
-        q["version"] = d.get("version", "1.0")
-        q["levelName"] = base["levels"][q["level"]]
-        q["folderName"] = FOLDERS.get(q["folder"], q["folder"])
-        out.append(q)
-    return out
+    return [view(p) for p in policystore.all_policies().values()]
 
 
 @app.get("/api/policies")
 def list_policies():
-    return {"folders": [{"key": k, "name": v} for k, v in FOLDERS.items()], "levels": load_policies()["levels"], "policies": policies()}
+    return {"folders": [{"key": k, "name": v} for k, v in FOLDERS.items()], "levels": policystore.levels(), "policies": policies(),
+            "agents": [policystore.ALL] + policystore.AGENT_NAMES}
+
+
+@app.get("/api/policies/{pid}")
+def get_policy(pid: str):
+    p = policystore.all_policies().get(pid)
+    if not p:
+        raise HTTPException(404, "No such policy")
+    return view(p)
 
 
 class PolicyEdit(BaseModel):
-    text: str | None = None
+    title: str | None = None
+    folder: str | None = None
+    stage: str | None = None
     level: str | None = None
+    owner: str | None = None
+    text: str | None = None
     rows: list | None = None
     exceptions: str | None = None
+    cites: list | None = None
+    appliesTo: list | None = None
+    roles: list | None = None
+    params: list | None = None
+    effective: str | None = None
+    status: str | None = None
+    publish: bool | None = None
 
 
 @app.put("/api/policies/{pid}")
 def edit_policy(pid: str, body: PolicyEdit):
-    if not any(p["id"] == pid for p in policies()):
+    if body.level and body.level not in ("A", "B", "H"):
+        raise HTTPException(400, "Autonomy level must be A, B or H")
+    if body.appliesTo is not None and not body.appliesTo:
+        raise HTTPException(400, "Assign the policy to at least one agent, or to All agents")
+    try:
+        return view(policystore.save(pid, body.model_dump()))
+    except KeyError:
         raise HTTPException(404, "No such policy")
-    drafts = store.read("policy_drafts", {})
-    d = drafts.get(pid, {})
-    d.update({k: v for k, v in body.model_dump().items() if v is not None})
-    d["version"] = "1.1"
-    d["editedAt"] = datetime.datetime.now().isoformat(timespec="minutes")
-    drafts[pid] = d
-    store.write("policy_drafts", drafts)
-    return next(p for p in policies() if p["id"] == pid)
+
+
+@app.post("/api/policies")
+def new_policy(body: PolicyEdit):
+    return view(policystore.create({k: v for k, v in body.model_dump().items() if v is not None}))
 
 
 @app.post("/api/policies/upload")
@@ -83,15 +105,12 @@ async def upload_policy(file: UploadFile = File(...)):
         raise HTTPException(400, "Could not read text from the file. Upload a .pdf, .docx, .md or .txt.")
     if not llm.available():
         raise HTTPException(503, "Set ANTHROPIC_API_KEY in backend/.env so the policy agent can draft rules from the document.")
-    draft = llm.draft_policy(text)
-    drafts = store.read("policy_drafts", {})
-    n = len([k for k in drafts if k.startswith("UP-")]) + 1
-    pid = f"UP-{n:03d}"
-    draft.update({"id": pid, "new": True, "cites": [], "version": "0.1", "source": file.filename})
-    draft["rows"] = [list(r)[:3] for r in draft.get("rows", [])]
-    drafts[pid] = draft
-    store.write("policy_drafts", drafts)
-    return next(p for p in policies() if p["id"] == pid)
+    d = llm.draft_policy(text)
+    agent = d.get("agent") or "Orchestrator"
+    p = policystore.create({"prefix": "UP", "title": d.get("title"), "folder": d.get("folder"), "stage": d.get("stage"), "level": d.get("level") or "B",
+                            "owner": d.get("owner"), "text": d.get("text"), "rows": [list(r)[:3] for r in d.get("rows", [])], "exceptions": d.get("exceptions"),
+                            "appliesTo": [agent], "status": "Draft", "source": file.filename})
+    return view(p)
 
 
 # ------------------------------------------------------------------ agents
@@ -102,7 +121,9 @@ def list_agents():
     out = []
     for a in AGENTS:
         c = changes.get(a["name"])
-        out.append(dict(a, policies=[p["id"] for p in pol if p["agent"] == a["name"]], pendingChange=c))
+        mine = policystore.for_agent(a["name"])
+        out.append(dict(a, policies=[p["id"] for p in mine if policystore.ALL not in p.get("appliesTo", [])],
+                        universal=[p["id"] for p in mine if policystore.ALL in p.get("appliesTo", [])], pendingChange=c))
     return out
 
 
@@ -359,11 +380,23 @@ def summary():
             "records": len(store.records()), "policies": len(policies()), "agents": len(AGENTS), "llm": llm.available()}
 
 
+@app.post("/api/reset-requests")
+def reset_requests():
+    """Clears requests and records but keeps policies, providers and agent settings."""
+    import shutil
+    shutil.rmtree(UPLOADS, ignore_errors=True)
+    for name in ("requests", "records"):
+        p = store._path(name)
+        if os.path.exists(p):
+            os.remove(p)
+    return {"ok": True}
+
+
 @app.post("/api/reset")
 def reset():
     import shutil
     shutil.rmtree(UPLOADS, ignore_errors=True)
-    for name in ("requests", "records", "policy_drafts", "agent_changes"):
+    for name in ("requests", "records", "policy_drafts", "policy_store", "agent_changes"):
         p = store._path(name)
         if os.path.exists(p):
             os.remove(p)

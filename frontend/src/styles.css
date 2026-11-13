@@ -203,3 +203,14 @@ pre.code { margin: 0; padding: 12px; border-radius: 10px; background: #0F1720; c
 .toggle input:focus-visible + .tr { outline: 2px solid #1D47B8; outline-offset: 2px; }
 .form { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 16px; }
 .form .f { display: flex; flex-direction: column; gap: 4px; }
+
+/* ---------- app switcher ---------- */
+.apps { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 12px; background: #F1F3F6; }
+.appsw { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border-radius: 9px; text-decoration: none; color: #4B5563; font-size: 13px; font-weight: 600; }
+.appsw .dot, .appname .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
+.appsw.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(15,23,32,.12); }
+.nav .appname { display: flex; align-items: center; gap: 8px; padding: 4px 12px 2px; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); }
+.nav a.on { color: var(--acc, var(--blue)); background: color-mix(in srgb, var(--acc, #1D47B8) 10%, white); }
+.agentpick { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; border-radius: 9px; border: 1px solid var(--line2); font-size: 13px; cursor: pointer; background: #fff; }
+.agentpick.on { border-color: var(--blue); background: #F5F8FF; color: var(--blue); font-weight: 600; }
+.agentpick input { width: 16px; height: 16px; }

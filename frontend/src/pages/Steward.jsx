@@ -6,7 +6,7 @@ export default function Steward() {
   const q = useLoad(() => api.get('/queue'), []);
   return (
     <>
-      <Title eyebrow="Work / Steward queue" title="Steward queue">Stages where a policy says a person decides, or no policy applies. Open one to see the detail and approve it.</Title>
+      <Title eyebrow="Work" title="Steward queue">Stages where a policy says a person decides, or no policy applies. Open one to see the detail and approve it.</Title>
       <Err error={q.error} />
       <section className="card">
         {q.data && q.data.length === 0 && <p className="muted">Nothing waiting.</p>}
