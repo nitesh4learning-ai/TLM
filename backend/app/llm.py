@@ -20,8 +20,8 @@ def _json(text):
     return json.loads(m.group(0)) if m else {}
 
 
-def complete(system, prompt, max_tokens=2000):
-    msg = _client().messages.create(model=MODEL, max_tokens=max_tokens, system=system,
+def complete(system, prompt, max_tokens=2000, model=None):
+    msg = _client().messages.create(model=model or MODEL, max_tokens=max_tokens, system=system,
                                     messages=[{"role": "user", "content": prompt}])
     return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
 
@@ -34,7 +34,7 @@ FIELDS = [
     ("expected_monthly_volume", "Requested.Volume"), ("controlled_substances", "Requested.ControlledSchedules"),
     ("resale_certificate", "Tax.ResaleCertificate"), ("resale_certificate_name", "Tax.ResaleCertificateHolder"),
     ("bank_routing", "Bank.Routing"), ("bank_account_last4", "Bank.Account"), ("gpo", "Customer.GPO"),
-    ("edited_terms", "Legal.EditedTerms"),
+    ("edited_terms", "Legal.EditedTerms"), ("w9_provided", "Tax.W9Received"),
 ]
 
 INTAKE_SYSTEM = """You are the Intake agent in a customer master data management platform for a pharmaceutical distributor.
@@ -43,7 +43,7 @@ Return ONLY a JSON object: {"fields": {"<field>": {"value": <string or null>, "c
 Use exactly these field names: """ + ", ".join(f for f, _ in FIELDS) + """.
 Rules: request_type is one of "New customer", "Add sales area", "Change". sales_area is like "Pharma · US01" or "Specialty · US02".
 customer_type is like "Independent retail pharmacy", "Hospital", "Infusion center". expected_monthly_volume is a number in USD (no symbols).
-controlled_substances is "yes" or "no". edited_terms is "yes" only if the customer changed the standard terms of sale.
+controlled_substances is "yes" or "no". w9_provided is "yes" only if a signed IRS Form W-9 is attached or its contents are given. edited_terms is "yes" only if the customer changed the standard terms of sale.
 Use null for anything not stated. Confidence reflects how clearly the value is stated. Never invent values."""
 
 
@@ -95,3 +95,21 @@ Return ONLY JSON: {"standardized": "<STREET LINE, CITY ST ZIP or ZIP+4 in capita
 
 def standardize_address(address):
     return _json(complete(ADDRESS_SYSTEM, address, max_tokens=400))
+
+
+ASSISTANT_SYSTEM = """You are the assistant inside Touchless MDM, a master data platform where AI agents process customer and supplier requests under governance policies.
+Answer the user's question using ONLY the context below (the screen they are on, the request's decision trace, records, policies and thresholds).
+Rules: answer first, in two or three sentences at most. Cite policy IDs in square brackets, e.g. [MM-002]. Quote numbers (scores, thresholds, limits) exactly as they appear.
+If the context does not contain the answer, say "The trace doesn't show that." and suggest where to look. You are read-only: you explain and point to screens; you never approve, edit, reject or publish anything, and never claim to."""
+
+
+def assistant(question, context, model=None):
+    return complete(ASSISTANT_SYSTEM, f"CONTEXT:\n{context[:50000]}\n\nQUESTION: {question}", max_tokens=400, model=model).strip()
+
+
+EMAIL_SYSTEM = """You draft a short, polite email from a pharmaceutical distributor's customer onboarding team to a requester, asking them to resend their onboarding request with specific missing information.
+Plain text. Under 140 words. Name exactly what is missing and why it is needed. No marketing. Sign as "Customer Onboarding". Return ONLY JSON: {"subject": str, "body": str}."""
+
+
+def draft_reject_email(to, legal, missing, reason):
+    return _json(complete(EMAIL_SYSTEM, json.dumps({"to": to, "company": legal, "missing": missing, "reason": reason}), max_tokens=500))

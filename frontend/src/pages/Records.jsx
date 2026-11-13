@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { api, go } from '../api.js';
-import { Title, Sections, useLoad, Err } from '../components.jsx';
+import { api, go, setAssist } from '../api.js';
+import { Title, Sections, useLoad, Err, PolicyChip, HoverTip } from '../components.jsx';
 
 const money = (n) => (n || n === 0 ? '$' + Number(n).toLocaleString() : '—');
 const W = (rec, attr) => (rec.winners || {})[attr] || [];
 
 function build(rec) {
-  const x = rec.crossReferences || [];
+  const x = rec.xrefs || rec.crossReferences || [];
   const sys = {};
   x.forEach((c) => { sys[c.system] = (sys[c.system] || 0) + 1; });
   const sysText = Object.entries(sys).map(([k, v]) => `${v} ${k}`).join(', ');
@@ -53,12 +53,44 @@ function build(rec) {
   return sections;
 }
 
+function Xref({ rec, onChange }) {
+  const x = rec.xref || { attributes: [], rows: [], survivors: [] };
+  const [other, setOther] = useState('');
+  const [msg, setMsg] = useState(null);
+  const unmerge = async (row) => {
+    if (!window.confirm(`Unmerge ${row.system} ${row.sourceKey} from ${rec.id}? It becomes its own Business ready record ("not related").`)) return;
+    try { const r = await api.post(`/records/${rec.id}/unmerge`, { xid: row.xid }); setMsg(`Unmerged into ${r.newRecord}.`); onChange(r.newRecord); } catch (e) { setMsg(e.message); }
+  };
+  const merge = async () => { try { await api.post(`/records/${rec.id}/merge`, { other: other.trim() }); setMsg(`Merged ${other} into ${rec.id}.`); setOther(''); onChange(); } catch (e) { setMsg(e.message); } };
+  const KIND = { source: 'Source system', enrichment: 'Enrichment', intake: 'Intake form', agent: 'Agent write' };
+  return (
+    <section className="card" aria-label="Cross-reference">
+      <div className="row" style={{ justifyContent: 'space-between', alignItems: 'baseline' }}><h3>Cross-reference (XREF)</h3><span className="small muted">{x.rows.length} source rows · highlighted cells survived · survivorship rules in <a href="#/policies">SV-001</a></span></div>
+      <div className="scroll"><table><thead><tr><th>Source</th><th>Key</th><th>Loaded</th>{x.attributes.map((a) => <th key={a.key}>{a.label}</th>)}<th /></tr></thead>
+        <tbody>{x.rows.map((r) => (
+          <tr key={r.xid}><td><strong>{r.system}</strong><div className="small muted">{KIND[r.kind] || r.kind}{r.policy ? ' · ' : ''}{r.policy && <PolicyChip id={r.policy} />}</div></td>
+            <td className="mono">{r.sourceKey}</td><td className="small">{r.loadDate}</td>
+            {r.cells.map((c) => <td key={c.attr} className={c.win ? 'win' : ''}>{c.v === undefined || c.v === null ? <span className="muted">—</span> : String(c.attr === 'creditLimit' ? '$' + Number(c.v).toLocaleString() : c.attr === 'taxId' ? '••-•••' + String(c.v).replace(/\D/g, '').slice(-4) : c.v)}</td>)}
+            <td>{x.rows.length > 1 && r.kind !== 'agent' && <button type="button" className="btn" style={{ height: 32 }} onClick={() => unmerge(r)}>Unmerge</button>}</td></tr>
+        ))}
+        <tr><td colSpan={3}><strong>Why it won</strong></td>{x.attributes.map((a) => { const w = x.survivors.find((s) => s.key === a.key); return <td key={a.key} className="small">{w ? <HoverTip content={<><strong>{a.label}</strong><br />{w.reason}<br />Policy {w.policy}</>}>{w.system}</HoverTip> : '—'}{w && w.policy && <div><PolicyChip id={w.policy} /></div>}</td>; })}<td /></tr>
+        </tbody></table></div>
+      <div className="row" style={{ alignItems: 'flex-end', gap: 8 }}>
+        <div className="f"><label className="lbl" htmlFor="mo">Merge another record into this one</label><input id="mo" type="text" value={other} onChange={(e) => setOther(e.target.value)} placeholder="e.g. BRR-0000428" /></div>
+        <button type="button" className="btn" disabled={!other.trim()} onClick={merge}>Merge</button>
+        {msg && <span className="small">{msg}</span>}
+      </div>
+    </section>
+  );
+}
+
 export default function Records({ arg }) {
   const list = useLoad(() => api.get('/records'), []);
   const [q, setQ] = useState('');
   const shown = (list.data || []).filter((r) => !q || `${r.id} ${r.legalName} ${r.address || ''} ${r.duns || ''} ${r.type || ''}`.toLowerCase().includes(q.toLowerCase()));
   const id = arg || (list.data && list.data[0] && list.data[0].id);
   const rec = useLoad(() => (id ? api.get('/records/' + id) : Promise.resolve(null)), [id]);
+  React.useEffect(() => { if (rec.data) setAssist({ page: 'Business ready record', recordId: rec.data.id, label: `${rec.data.id} · ${rec.data.legalName}` }); }, [rec.data && rec.data.id]); // eslint-disable-line
   return (
     <>
       <Title eyebrow="Business ready record · read-only" title="Business ready records">
@@ -85,7 +117,8 @@ export default function Records({ arg }) {
             <div className="card"><div className="row" style={{ alignItems: 'center', gap: 10 }}><span className="mono muted">{rec.data.id}</span><h2>{rec.data.legalName}</h2>
               <span className={'tag ' + (rec.data.status === 'Active' ? 'ok' : 'human')}>{rec.data.status}</span>
               <a className="btn dark" style={{ marginLeft: 'auto' }} href={'#/hierarchy/' + (rec.data.hierarchyNode ? 'brazos~' + rec.data.hierarchyNode : encodeURIComponent('record:' + rec.data.id) + '~' + rec.data.id)}>Hierarchy</a></div></div>
-            <Sections sections={build(rec.data)} resetKey={rec.data.id} />
+            <Sections sections={build(rec.data).filter((x) => !['Cross-references', 'Winning values', 'Full comparison'].includes(x.title))} resetKey={rec.data.id} />
+            <Xref rec={rec.data} onChange={(nid) => { rec.reload(); list.reload(); }} />
           </div>
         )}
       </div>

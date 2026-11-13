@@ -6,7 +6,7 @@ and status "waiting" until someone approves them in the steward queue.
 import datetime
 import re
 
-from . import llm, policystore, providers, rules, store
+from . import llm, policystore, providers, rules, store, xref
 from .reference import SAP, LEGACY, sim, name_sim, addr_sim, norm, street_of
 from .llm import FIELDS
 
@@ -38,6 +38,17 @@ def v(fields, k):
     f = fields.get(k) or {}
     val = f.get("value") if isinstance(f, dict) else f
     return None if val in ("", None, "null") else str(val)
+
+
+LABEL = {"legal_name": "Legal name", "address": "Address", "tax_id": "Tax ID (EIN)", "w9_provided": "W-9 form", "dea": "DEA registration",
+         "state_license": "State license", "resale_certificate": "Resale certificate"}
+
+
+def _lite(mail):
+    if not mail:
+        return None
+    return {k: mail.get(k, "") for k in ("subject", "from", "to", "date", "body")} | {
+        "attachments": [{"name": a["name"], "bytes": a.get("bytes", 0), "text": a.get("text", "")} for a in mail.get("attachments", [])]}
 
 
 def mask(tax):
@@ -128,6 +139,28 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
                         f"{len(rows)} fields" + (f" · {len(very_low)} need a steward" if very_low else ""),
                         intake_summary or f"Extracted {len(rows)} key values and mapped them to the customer data model.", ["AG-002"], sections,
                         waiting_for="Data steward" if very_low else None))
+
+    # ---- mandatory fields (DQ-INT-001): block the request until the requester supplies them
+    required = [x.strip() for x in str(P.param("DQ-INT-001", "required_fields", "legal_name, address, tax_id, w9_provided")).split(",") if x.strip()]
+    def present(f):
+        val = v(fields, f)
+        return bool(val) and not (f.endswith("_provided") and not val.lower().startswith("y"))
+    missing_req = [f for f in required if not present(f)] if P.assigned("Intake", "DQ-INT-001") else []
+    if missing_req and P.gate("DQ-INT-001", True):
+        it = stages[0]
+        it.update(actor="human", state="waiting", waitingFor="Requester", status="Blocked: " + ", ".join(LABEL.get(f, f) for f in missing_req) + " missing",
+                  summary=f"The request is blocked because DQ-INT-001 requires {', '.join(LABEL.get(f, f) for f in missing_req)}. "
+                          "Edit the request to supply it, or reject it and ask the requester to send it.")
+        it["policies"] = ["DQ-INT-001"] + [x for x in it["policies"] if x != "DQ-INT-001"]
+        it["sections"].insert(0, checks([(LABEL.get(f, f), present(f), "Provided" if present(f) else "Missing", "DQ-INT-001") for f in required], "Required fields"))
+        it["agent"], it["policyVersions"] = "Intake", {pid: P.version(pid) for pid in it["policies"]}
+        req = {"id": request_id, "created": now, "legalName": legal, "requestType": req_type, "recordId": None, "decision": "blocked",
+               "effects": {}, "channel": channel, "stages": stages, "mode": mode, "revealed": 1, "blocked": missing_req,
+               "sources": [], "testData": False, "elapsedMs": round((datetime.datetime.now() - t_start).total_seconds() * 1000),
+               "fields": fields, "intakeSummary": intake_summary, "mail": _lite(mail)}
+        refresh(req)
+        store.save_request(req)
+        return req
 
     # ---- Search before create
     q = {"name": legal, "address": address, "tax": tax}
@@ -306,41 +339,68 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
            "certificate_holder_match": (not holder) or name_sim(holder, legal) >= P.param("BR-TX-001", "certificate_name_match", 0.9),
            "edited_terms": edited, "license_status": lic.get("status") or "Not found", "dea_status": dea.get("status") or "Not found", "wants_controlled": wants_cs}
 
-    def apply(pid, label):
+    # the record the agents are changing: the existing record's sales area (link), the predecessor (successor) or nothing (new)
+    if existing:
+        base = next((sa for sa in existing.get("salesAreas", []) if sa.get("area") == sales_area), {})
+    elif decision == "successor":
+        base = ((recs.get(successor_of) or {}).get("salesAreas") or [{}])[0]
+    else:
+        base = {}
+    changes = []
+    OUT = {"terms": ("Payment terms", "paymentTerms"), "payment_method": ("Payment method", "paymentMethod"), "tax_class": ("Tax class", "taxClass"),
+           "pricing_group": ("Pricing group", "pricingGroup"), "partners": ("Partner functions", "partners"), "ordering": ("Controlled ordering", "controlled"),
+           "terms_of_sale": ("Terms of sale", "termsOfSale")}
+
+    def change(stage_key, label, key, new, pid):
+        old = base.get(key)
+        changes.append({"stage": stage_key, "key": key, "raw": new, "attribute": label, "old": "—" if old in (None, "") else (f"${old:,.0f}" if key == "creditLimit" else str(old)),
+                        "new": f"${new:,.0f}" if key == "creditLimit" else str(new), "policy": pid, "changed": str(old) != str(new)})
+
+    def changes_section(stage_key):
+        rows = [[c["attribute"], c["old"], {"v": c["new"], "win": c["changed"]}, {"v": "", "policy": c["policy"]}] for c in changes if c["stage"] == stage_key]
+        return table(["Attribute", "Old value", "New value", "Authorised by"], rows, "Changes to the Business ready record",
+                     meta=f"Sales area {sales_area}") if rows else None
+
+    def apply(pid, label, stage_key=None):
         """Runs one policy through the rules engine; returns (check row, outcome, needs a person, who)."""
         pol = P.pols.get(pid)
         r = rules.evaluate(pol, ctx) if pol else {"matched": False, "outcome": {}, "decidedBy": "Data steward", "condition": "Policy not active", "note": ""}
         person = r["decidedBy"] != "Agent"
         needs = P.gate(pid, person)
         shown = ", ".join(f"{k.replace('_', ' ')}: {val}" for k, val in r["outcome"].items()) or "No rule matched; a person decides (AG-001)"
+        if stage_key:
+            for k, val in r["outcome"].items():
+                if k in OUT:
+                    change(stage_key, OUT[k][0], OUT[k][1], val, pid)
         note = f"Rule: {r['condition']}" + (f" · {r['note']}" if r.get("note") else "") + (f" · decided by {r['decidedBy']}" if person else "")
         return (f"{label} → {shown}", "human" if needs else True, note, pid), r["outcome"], needs, r["decidedBy"]
 
     # ---- Legal
-    row1, lg, lg_h, lg_who = apply("BR-LG-001", "Terms of sale")
-    row2, cs, cs_h, cs_who = apply("RG-CS-001", "Licensure and controlled substances")
+    row1, lg, lg_h, lg_who = apply("BR-LG-001", "Terms of sale", "legal")
+    row2, cs, cs_h, cs_who = apply("RG-CS-001", "Licensure and controlled substances", "legal")
     rows = [row1, row2]
     legal_human = lg_h or cs_h
     stages.append(stage("legal", "Legal", "human" if legal_human else "agent", f"{sum(r[1] is True for r in rows)} of {len(rows)} rules",
-                        "Agreements and licensure checked by the rules engine.", ["BR-LG-001", "RG-CS-001"], [checks(rows, "Rules applied")],
+                        "Agreements and licensure checked by the rules engine.", ["BR-LG-001", "RG-CS-001"], [x for x in [changes_section("legal")] if x] + [checks(rows, "Rules applied")],
                         waiting_for=(lg_who if lg_h else cs_who) if legal_human else None))
 
     # ---- Procurement
-    row1, pr, pr_h, pr_who = apply("BR-PR-001", "Pricing group")
-    row2, pf, pf_h, pf_who = apply("BR-PF-001", "Partner functions")
+    row1, pr, pr_h, pr_who = apply("BR-PR-001", "Pricing group", "procurement")
+    row2, pf, pf_h, pf_who = apply("BR-PF-001", "Partner functions", "procurement")
     pricing = pr.get("pricing_group") or "Not set"
     proc_human = pr_h or pf_h
     stages.append(stage("procurement", "Procurement", "human" if proc_human else "agent", f"{sum(r[1] is True for r in (row1, row2))} of 2 rules",
-                        f"Pricing group {pricing}; partner functions set.", ["BR-PR-001", "BR-PF-001"], [checks([row1, row2], "Rules applied")],
+                        f"Pricing group {pricing}; partner functions set.", ["BR-PR-001", "BR-PF-001"], [x for x in [changes_section("procurement")] if x] + [checks([row1, row2], "Rules applied")],
                         waiting_for=(pr_who if pr_h else pf_who) if proc_human else None))
 
     # ---- Credit
     rows = []
     if decision == "successor":
         rows.append(("Limit reset after ownership change", True, "Prior limit not carried", "MM-007a"))
+    change("credit", "Credit limit", "creditLimit", limit, "BR-CR-001")
     row_l, cl, cl_h, cl_who = apply("BR-CR-001", f"Credit limit ${limit:,.0f}" + (" (shared with the existing account)" if existing else ""))
-    row_t, pt, pt_h, pt_who = apply("BR-PT-001", "Payment terms")
-    row_m, pm, pm_h, pm_who = apply("BR-PM-001", "Payment method")
+    row_t, pt, pt_h, pt_who = apply("BR-PT-001", "Payment terms", "credit")
+    row_m, pm, pm_h, pm_who = apply("BR-PM-001", "Payment method", "credit")
     terms = pt.get("terms") or P.param("BR-PT-001", "default_terms", "Net 30")
     method = pm.get("payment_method") or "Check"
     rows += [row_l, row_t]
@@ -350,14 +410,14 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     credit_human = cl_h or pt_h or pm_h
     who = cl_who if cl_h else pt_who if pt_h else pm_who
     stages.append(stage("credit", "Credit", "human" if credit_human else "agent", f"{who} needed" if credit_human else "Within authority",
-                        f"Limit ${limit:,.0f}, {terms}, {method}.", ["BR-CR-001", "BR-PT-001", "BR-PM-001"], [checks(rows, "Rules applied")],
+                        f"Limit ${limit:,.0f}, {terms}, {method}.", ["BR-CR-001", "BR-PT-001", "BR-PM-001"], [x for x in [changes_section("credit")] if x] + [checks(rows, "Rules applied")],
                         waiting_for=who if credit_human else None))
 
     # ---- Tax
-    row_x, tx, tax_human, tx_who = apply("BR-TX-001", "Tax class")
+    row_x, tx, tax_human, tx_who = apply("BR-TX-001", "Tax class", "tax")
     tax_class = tx.get("tax_class") or "Taxable"
     stages.append(stage("tax", "Tax", "human" if tax_human else "agent", tax_class, f"Tax class: {tax_class}." + (f" Certificate names {holder}." if holder and not ctx["certificate_holder_match"] else ""),
-                        ["BR-TX-001"], [checks([row_x], "Rules applied")], waiting_for=tx_who if tax_human else None))
+                        ["BR-TX-001"], [x for x in [changes_section("tax")] if x] + [checks([row_x], "Rules applied")], waiting_for=tx_who if tax_human else None))
 
     # ---- Business ready record
     effects = {}
@@ -385,11 +445,33 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
                "history": [{"when": now, "change": f"Created from {request_id}", "by": "Orchestrator"}]}
         effects = {"createdRecord": rid}
         summary = f"New Business ready record {rid}" + (f", successor of {successor_of}" if successor_of else "") + "."
+    # ---- XREF: the request, the enrichment sources and every agent write become source rows; survivorship picks the values
+    rec = xref.seed(rec)
+    rec["xrefs"].append(xref.row("Intake", request_id, {"legalName": legal, "dba": v(fields, "dba"), "address": address, "taxId": tax,
+                                                       "paymentTerms": req_terms}, kind="intake"))
+    if not existing:
+        if dnb:
+            rec["xrefs"].append(xref.row("D&B", dnb.get("duns") or request_id, {"legalName": dnb.get("primaryName"), "duns": dnb.get("duns"), "parent": dnb.get("parent")},
+                                         kind="enrichment") | {"sourceKey": request_id, "xid": f"D&B:{dnb.get('duns')}:{request_id}"})
+        if addr and addr.get("standardized"):
+            rec["xrefs"].append(xref.row("Address validation", request_id, {"address": addr["standardized"]}, kind="enrichment"))
+    AGENT_OF = {"legal": "Legal agent", "procurement": "Procurement agent", "credit": "Credit agent", "tax": "Tax agent"}
+    for c in [c for c in changes if c["key"] in xref.LABEL]:
+        rec["xrefs"].append(xref.row(AGENT_OF.get(c["stage"], "Agent"), request_id, {c["key"]: c["raw"]}, kind="agent", policy=c["policy"], by=AGENT_OF.get(c["stage"]))
+                            | {"xid": f"{AGENT_OF.get(c['stage'])}:{request_id}:{c['key']}"})
+    xref.survive(rec, P.pols.get("SV-001"))
+    if changes:
+        rec.setdefault("history", []).insert(0, {"when": now, "change": f"Extended attributes for {sales_area} set by agents: " +
+                                                 "; ".join(f"{c['attribute']} {c['old']} → {c['new']} ({c['policy']})" for c in changes if c["changed"]) + f" ({request_id})",
+                                                 "by": "MDM operations agents"})
     if mode != "step":
         store.save_record(rec)
     stages.append(stage("record", "Business ready record", "agent", rid, summary, ["AG-003"] + (["MM-007a"] if successor_of else []),
                         [kv([("Record", rid, rec["status"]), ("Legal name", rec["legalName"], "", "SV-001"), ("Payment terms", terms, "", "BR-PT-001"),
-                             ("Credit limit", f"${limit:,.0f}", "", "BR-CR-001"), ("Tax class", tax_class, "", "BR-TX-001")], "Key attributes")]))
+                             ("Credit limit", f"${limit:,.0f}", "", "BR-CR-001"), ("Tax class", tax_class, "", "BR-TX-001")], "Key attributes"),
+                         table(["Attribute", "Old value", "New value", "Authorised by"],
+                               [[c["attribute"], c["old"], {"v": c["new"], "win": c["changed"]}, {"v": "", "policy": c["policy"]}] for c in changes],
+                               "All changes the agents made", meta=f"{sum(c['changed'] for c in changes)} changed")]))
 
     # ---- policy enforcement: every agent may use only policies assigned to it (or to all agents)
     STAGE_AGENT = {"intake": "Intake", "search": "Search before create", "match": "Match & merge", "enrich": "Enrichment", "validate": "Validation",
@@ -432,7 +514,8 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     req = {"id": request_id, "created": now, "legalName": legal, "requestType": req_type, "recordId": rid, "decision": decision,
            "effects": effects, "channel": channel, "stages": stages, "mode": mode, "revealed": len(stages),
            "sources": list(uniq.values()), "testData": any(m_["mode"] == "test" for m_ in sources),
-           "elapsedMs": round((datetime.datetime.now() - t_start).total_seconds() * 1000)}
+           "elapsedMs": round((datetime.datetime.now() - t_start).total_seconds() * 1000),
+           "fields": fields, "intakeSummary": intake_summary, "mail": _lite(mail), "changes": changes}
     if mode == "step":
         req.update({"revealed": 1, "pendingRecord": rec, "pendingEffects": effects, "effects": {}})
     refresh(req)
@@ -441,6 +524,14 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
 
 
 def refresh(req):
+    if req.get("rejected"):
+        req["status"] = "Rejected · " + ("email to requester recorded" if req["rejected"].get("action") == "email" else "closed")
+        req["touchless"] = False
+        return
+    if req.get("blocked"):
+        req["status"] = "Blocked at intake: " + ", ".join(LABEL.get(f, f) for f in req["blocked"]) + " missing"
+        req["touchless"] = False
+        return
     shown = req["stages"][: req.get("revealed", len(req["stages"]))]
     waiting = [s for s in shown if s["state"] == "waiting"]
     done = len(shown) == len(req["stages"])
@@ -470,6 +561,63 @@ def approve(req, key, who, note):
     return req
 
 
+def undo(req):
+    """Undoes what a request did to the Business ready records (keeps the request)."""
+    eff = req.get("effects") or {}
+    recs = store.records()
+    if eff.get("createdRecord") in recs:
+        del recs[eff["createdRecord"]]
+    rid = eff.get("updatedRecord")
+    if rid in recs:
+        rec = recs[rid]
+        rec["salesAreas"] = [sa for sa in rec.get("salesAreas", []) if sa.get("addedBy") != req["id"]]
+        rec["history"] = [h for h in rec.get("history", []) if f"({req['id']})" not in h.get("change", "")]
+        xref.remove_request_rows(rec, req["id"])
+        xref.survive(rec, policystore.all_policies().get("SV-001"))
+    store.write("records", recs)
+    req["effects"] = {}
+
+
+def rerun(req, changed_fields=None, by="Data steward", note="", action="Edited and resubmitted"):
+    """Applies corrected key values and runs every agent again on the same request."""
+    undo(req)
+    fields = dict(req.get("fields") or {})
+    changed = []
+    for k, val in (changed_fields or {}).items():
+        old = (fields.get(k) or {}).get("value") if isinstance(fields.get(k), dict) else fields.get(k)
+        if str(old or "") != str(val or ""):
+            fields[k] = {"value": val, "confidence": 1.0, "source": f"Edited by {by}"}
+            changed.append(f"{LABEL.get(k, k.replace('_', ' '))}: {old or '—'} → {val or '—'}")
+    history = list(req.get("history") or [])
+    history.append({"when": datetime.datetime.now().strftime("%b %d, %Y %I:%M %p"), "by": by, "action": action,
+                    "note": note, "changes": changed})
+    new = run(req["id"], fields, req.get("intakeSummary", ""), mail=req.get("mail"), channel=req.get("channel", "Email"), mode=req.get("mode", "auto"))
+    for k in ("uploadId", "llm"):
+        if k in req:
+            new[k] = req[k]
+    new["history"] = history
+    store.save_request(new)
+    return new
+
+
+def reject(req, reason, action, missing, message, by="Data steward"):
+    """Closes the request. action = 'restart' runs it again from intake; 'email' asks the requester to redo intake."""
+    if action == "restart":
+        return rerun(req, {}, by=by, note=reason, action="Rejected and restarted")
+    undo(req)
+    for s_ in req["stages"]:
+        if s_["state"] == "waiting":
+            s_["state"] = "rejected"
+            s_["status"] = "Rejected"
+    req["rejected"] = {"reason": reason, "action": action, "missing": missing, "by": by,
+                       "at": datetime.datetime.now().strftime("%b %d, %Y %I:%M %p"), "email": message}
+    req.setdefault("history", []).append({"when": req["rejected"]["at"], "by": by, "action": "Rejected" + (" · email to requester" if action == "email" else ""),
+                                          "note": reason, "changes": [f"Missing: {', '.join(missing)}"] if missing else []})
+    refresh(req)
+    store.save_request(req)
+    return req
+
+
 def delete(req):
     """Removes a request and undoes what it did to the Business ready records."""
     eff = req.get("effects") or {}
@@ -481,6 +629,8 @@ def delete(req):
         rec = recs[rid]
         rec["salesAreas"] = [sa for sa in rec.get("salesAreas", []) if sa.get("addedBy") != req["id"]]
         rec["history"] = [h for h in rec.get("history", []) if f"({req['id']})" not in h.get("change", "")]
+        xref.remove_request_rows(rec, req["id"])
+        xref.survive(rec, policystore.all_policies().get("SV-001"))
     store.write("records", recs)
     reqs = store.requests()
     reqs.pop(req["id"], None)

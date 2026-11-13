@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { api, go } from '../api.js';
+import { api, go, setAssist } from '../api.js';
 import { Title, Sections, PolicyChip, useLoad, Err, EmailPreview, AGENT_ICON } from '../components.jsx';
 
 const GROUPS = [
@@ -11,9 +11,9 @@ const GROUPS = [
 
 function stateOf(s, idx, shown, running) {
   if (idx >= shown) return idx === shown && running ? 'running' : 'pending';
-  return s.state === 'waiting' ? 'waiting' : s.state === 'approved' ? 'approved' : 'done';
+  return s.state === 'waiting' ? 'waiting' : s.state === 'approved' ? 'approved' : s.state === 'rejected' ? 'rejected' : 'done';
 }
-const STATE_LABEL = { done: 'Done', waiting: 'Waiting for a person', approved: 'Approved', pending: 'Not started', running: 'Working' };
+const STATE_LABEL = { rejected: 'Rejected', done: 'Done', waiting: 'Waiting for a person', approved: 'Approved', pending: 'Not started', running: 'Working' };
 
 export default function Journey({ arg }) {
   const [rid, flag] = (arg || '').split('~');
@@ -59,6 +59,7 @@ export default function Journey({ arg }) {
   const policies = new Set(visibleStages.flatMap((s) => s.policies)).size;
   const finished = r && shown >= r.stages.length;
   const disclaimer = settings.data && settings.data.settings.disclaimer;
+  useEffect(() => { if (r && st) setAssist({ page: 'AI agents › Request journey', requestId: r.id, stageKey: st.key, label: `${r.id} · ${st.name}` }); }, [r && r.id, st && st.key, r && r.status]); // eslint-disable-line
   const nextStage = r && r.mode === 'step' && (r.revealed < r.stages.length) ? r.stages[r.revealed] : null;
   const lastShown = r && r.stages[(r.revealed || 1) - 1];
 
@@ -111,6 +112,16 @@ export default function Journey({ arg }) {
 
             {r.testData && disclaimer && <div className="disclaimer" role="note"><strong>Note</strong><span>{disclaimer} Test-data providers on this run: {(r.sources || []).filter((s) => s.mode === 'test').map((s) => s.source.replace(' · test data', '')).join(', ')}.</span></div>}
             {r.llm === false && <div className="notice warn">Claude is not configured, so Intake used the sample's key values.</div>}
+            {r.rejected && (
+              <div className="card" style={{ borderColor: '#F5B5B5', background: '#FFF7F7' }}>
+                <strong>Rejected by {r.rejected.by} · {r.rejected.at}</strong>
+                <span className="small">Reason: {r.rejected.reason}{r.rejected.missing && r.rejected.missing.length ? ` · Missing: ${r.rejected.missing.join(', ')}` : ''}</span>
+                {r.rejected.email && <div className="mailbody" style={{ maxHeight: 260 }}><strong>To:</strong> {r.rejected.email.to}{'\n'}<strong>Subject:</strong> {r.rejected.email.subject}{'\n\n'}{r.rejected.email.body}</div>}
+                <span className="small muted">The email is recorded on the request. This app does not send email; copy it into your mail client or connect a mail service.</span>
+              </div>
+            )}
+            {!r.rejected && <RequestActions r={r} onDone={(x) => { req.reload(); list.reload(); if (x && x.id !== r.id) go('journey/' + x.id); }} />}
+            {(r.history || []).length > 0 && <div className="card"><h3>Request history</h3><ol className="trail">{r.history.map((h, i) => <li key={i}><strong>{h.action}</strong> · {h.when} · {h.by}{h.note ? ` · ${h.note}` : ''}{(h.changes || []).length ? <span className="muted"> · {h.changes.join('; ')}</span> : null}</li>)}</ol></div>}
 
             <div className="chevrons" aria-label="Stages">
               {GROUPS.map((g) => {
@@ -222,4 +233,95 @@ function UploadedEmail({ uid }) {
   const u = useLoad(() => api.get('/uploads/' + uid), [uid]);
   if (!u.data) return null;
   return (<div className="stack"><h3>Email and attachments as received</h3><EmailPreview mail={u.data} /></div>);
+}
+
+/** Edit in place (correct or supply key values, then every agent runs again) and Reject (restart, or email the requester). */
+function RequestActions({ r, onDone }) {
+  const [mode, setMode] = useState(null);
+  const meta = useLoad(() => api.get('/meta/fields'), []);
+  const val = (k) => { const f = (r.fields || {})[k]; return f && typeof f === 'object' ? f.value ?? '' : f ?? ''; };
+  const [vals, setVals] = useState({});
+  const [who, setWho] = useState('Data steward');
+  const [note, setNote] = useState('');
+  const [reason, setReason] = useState('');
+  const [action, setAction] = useState('email');
+  const [missing, setMissing] = useState('');
+  const [mail, setMail] = useState(null);
+  const [err, setErr] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const waiting = r.stages.filter((s) => s.state === 'waiting');
+  useEffect(() => {
+    setMode(null); setMail(null); setErr(null);
+    setVals(Object.fromEntries(((meta.data) || []).map((f) => [f.key, val(f.key)])));
+    setMissing((r.blocked || []).map((k) => ((meta.data || []).find((f) => f.key === k) || { label: k }).label).join(', '));
+  }, [r.id, r.status, meta.data]); // eslint-disable-line
+  const fields = meta.data || [];
+  const important = new Set([...(r.blocked || []), ...Object.keys(r.fields || {})]);
+  const shown = fields.filter((f) => important.has(f.key));
+  const others = fields.filter((f) => !important.has(f.key));
+  const resubmit = async () => {
+    setBusy(true); setErr(null);
+    const changed = Object.fromEntries(Object.entries(vals).filter(([k, v]) => String(v ?? '') !== String(val(k) ?? '')));
+    try { onDone(await api.post(`/requests/${r.id}/resubmit`, { fields: changed, who, note })); } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  };
+  const draft = async () => {
+    setBusy(true); setErr(null);
+    try { setMail(await api.post(`/requests/${r.id}/reject-draft`, { reason, action, missing: missing.split(',').map((x) => x.trim()).filter(Boolean) })); } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  };
+  const doReject = async () => {
+    setBusy(true); setErr(null);
+    try { onDone(await api.post(`/requests/${r.id}/reject`, { reason, action, who, missing: missing.split(',').map((x) => x.trim()).filter(Boolean), subject: mail && mail.subject, body: mail && mail.body })); }
+    catch (e) { setErr(e.message); } finally { setBusy(false); }
+  };
+  return (
+    <div className="card">
+      <div className="row" style={{ alignItems: 'center', gap: 8 }}>
+        <strong style={{ flex: '1 1 260px' }}>{r.blocked ? 'This request is blocked at intake.' : waiting.length ? `${waiting.length} stage${waiting.length > 1 ? 's' : ''} waiting for a person.` : 'Actions'}</strong>
+        <button type="button" className={'btn' + (mode === 'edit' ? ' dark' : '')} onClick={() => setMode(mode === 'edit' ? null : 'edit')}>Edit request</button>
+        <button type="button" className={'btn' + (mode === 'reject' ? ' dark' : '')} onClick={() => setMode(mode === 'reject' ? null : 'reject')}>Reject</button>
+      </div>
+      {err && <div className="notice err small">{err}</div>}
+      {mode === 'edit' && (
+        <div className="stack">
+          <p className="small muted">Correct or supply the key values. Every agent then runs again on this request, and the change is recorded in its history.</p>
+          <div className="form">
+            {shown.map((f) => (
+              <div key={f.key} className={'f' + ((r.blocked || []).includes(f.key) ? ' needs' : '')}>
+                <label className="lbl" htmlFor={'ef-' + f.key}>{f.label}{(r.blocked || []).includes(f.key) ? ' · required, missing' : ''}</label>
+                {f.key.endsWith('_provided') ? (
+                  <select id={'ef-' + f.key} value={vals[f.key] || ''} onChange={(e) => setVals({ ...vals, [f.key]: e.target.value })}><option value="">Not provided</option><option value="yes">Yes, provided</option></select>
+                ) : <input id={'ef-' + f.key} type="text" value={vals[f.key] ?? ''} onChange={(e) => setVals({ ...vals, [f.key]: e.target.value })} />}
+              </div>
+            ))}
+          </div>
+          {others.length > 0 && <details><summary className="small" style={{ cursor: 'pointer', minHeight: 32 }}>More fields ({others.length})</summary><div className="form" style={{ marginTop: 8 }}>
+            {others.map((f) => <div key={f.key} className="f"><label className="lbl" htmlFor={'ef-' + f.key}>{f.label}</label><input id={'ef-' + f.key} type="text" value={vals[f.key] ?? ''} onChange={(e) => setVals({ ...vals, [f.key]: e.target.value })} /></div>)}
+          </div></details>}
+          <div className="form">
+            <div className="f"><label className="lbl" htmlFor="ew">Edited by</label><input id="ew" type="text" value={who} onChange={(e) => setWho(e.target.value)} /></div>
+            <div className="f"><label className="lbl" htmlFor="en">Note</label><input id="en" type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder="e.g. W-9 received by phone" /></div>
+          </div>
+          <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={busy} onClick={resubmit}>{busy ? 'Running the agents…' : 'Resubmit to agents'}</button>
+        </div>
+      )}
+      {mode === 'reject' && (
+        <div className="stack">
+          <div className="seg" role="radiogroup" aria-label="Reject action" style={{ alignSelf: 'flex-start' }}>
+            <button type="button" role="radio" aria-checked={action === 'email'} className={action === 'email' ? 'on' : ''} onClick={() => setAction('email')}>Email the requester to redo intake</button>
+            <button type="button" role="radio" aria-checked={action === 'restart'} className={action === 'restart' ? 'on' : ''} onClick={() => setAction('restart')}>Restart the request</button>
+          </div>
+          <div className="f"><label className="lbl" htmlFor="rr">Reason (recorded)</label><textarea id="rr" rows={2} value={reason} onChange={(e) => setReason(e.target.value)} /></div>
+          {action === 'email' && <div className="f"><label className="lbl" htmlFor="rm">Missing information (comma-separated)</label><input id="rm" type="text" value={missing} onChange={(e) => setMissing(e.target.value)} /></div>}
+          {action === 'email' && !mail && <button type="button" className="btn" style={{ alignSelf: 'flex-start' }} disabled={!reason.trim() || busy} onClick={draft}>{busy ? 'Drafting…' : 'Draft the email'}</button>}
+          {action === 'email' && mail && (<>
+            <div className="f"><label className="lbl" htmlFor="ms">To {mail.to} · Subject</label><input id="ms" type="text" value={mail.subject} onChange={(e) => setMail({ ...mail, subject: e.target.value })} /></div>
+            <div className="f"><label className="lbl" htmlFor="mb">Message</label><textarea id="mb" rows={9} value={mail.body} onChange={(e) => setMail({ ...mail, body: e.target.value })} /></div>
+          </>)}
+          <div className="f"><label className="lbl" htmlFor="rw">Rejected by</label><input id="rw" type="text" value={who} onChange={(e) => setWho(e.target.value)} /></div>
+          <button type="button" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={!reason.trim() || busy || (action === 'email' && !mail)} onClick={doReject}>
+            {action === 'email' ? 'Reject and record the email' : 'Reject and restart'}</button>
+        </div>
+      )}
+    </div>
+  );
 }

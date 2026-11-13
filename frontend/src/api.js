@@ -35,3 +35,10 @@ export async function policyMap() {
 export function clearPolicyCache() { policyCache = null; }
 
 export const go = (path) => { window.location.hash = '#/' + path; };
+
+// what the user is looking at, for the assistant panel
+let assistCtx = {};
+const listeners = new Set();
+export function setAssist(ctx) { assistCtx = ctx || {}; listeners.forEach((f) => f(assistCtx)); }
+export function onAssist(f) { listeners.add(f); return () => listeners.delete(f); }
+export function getAssist() { return assistCtx; }

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
-import { api } from './api.js';
+import { api, setAssist } from './api.js';
+import Assistant from './Assistant.jsx';
 import ControlTower from './pages/ControlTower.jsx';
 import Intake from './pages/Intake.jsx';
 import Journey from './pages/Journey.jsx';
@@ -49,6 +50,7 @@ function App() {
   }, []);
   const app = APPS.find((a) => a.pages.some(([k]) => k === page)) || APPS[0];
   const P = PAGES[page] || ControlTower;
+  useMemo(() => { setAssist({ page: `${app.name} › ${(app.pages.find(([k]) => k === page) || ['', page])[1]}`, label: (app.pages.find(([k]) => k === page) || ['', page])[1] }); }, [page, arg]);
   return (
     <div className="shell">
       <header className="top">
@@ -78,6 +80,7 @@ function App() {
         )}
         <main><P arg={arg} /></main>
       </div>
+      <Assistant />
     </div>
   );
 }

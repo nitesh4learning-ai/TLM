@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { api, clearPolicyCache } from '../api.js';
+import { api, clearPolicyCache, setAssist } from '../api.js';
 import { Title, PolicyChip, useLoad, Err } from '../components.jsx';
 import PolicyForm from './PolicyForm.jsx';
 
@@ -20,6 +20,7 @@ export default function Policies() {
     && (!q || `${p.id} ${p.title} ${p.text} ${(p.appliesTo || []).join(' ')}`.toLowerCase().includes(q.toLowerCase())));
   const cur = pols.find((p) => p.id === sel) || list[0];
   useEffect(() => setEditing(false), [sel]);
+  useEffect(() => { if (cur) setAssist({ page: 'Master data policies', policyId: cur.id, label: `${cur.id} · ${cur.title}` }); }, [cur && cur.id]); // eslint-disable-line
 
   const upload = async (e) => {
     const f = e.target.files[0]; if (!f) return;
@@ -86,6 +87,11 @@ export default function Policies() {
                 <tbody>{cur.rules.map((r, i) => <tr key={i}><td>{i + 1}</td><td className="small">{(r.when || []).length ? r.when.map((c) => `${c.attr} ${c.op}${['exists', 'not exists'].includes(c.op) ? '' : ' ' + c.value}`).join(' and ') : 'Otherwise'}</td>
                   <td className="small">{Object.entries(r.then || {}).map(([k, v]) => `${k} = ${v}`).join(', ')}{r.note ? <span className="muted"> · {r.note}</span> : null}</td>
                   <td><span className={'tag ' + (r.decidedBy === 'Agent' ? 'agent' : 'human')}>{r.decidedBy}</span></td></tr>)}</tbody></table></div>
+            </>)}
+            {(cur.survivorship || []).length > 0 && (<>
+              <h3>Survivorship rules (run by the Match &amp; merge agent)</h3>
+              <div className="scroll"><table><thead><tr><th>Attribute</th><th>Method</th><th>Source order</th></tr></thead>
+                <tbody>{cur.survivorship.map((r) => <tr key={r.attribute}><td className="mono">{r.attribute}</td><td>{r.method}</td><td className="small">{(r.order || []).join(' › ')}</td></tr>)}</tbody></table></div>
             </>)}
             {(cur.inputs || []).length > 0 && <div className="row" style={{ gap: 6, alignItems: 'center' }}><span className="small muted">Reads</span>{cur.inputs.map((x) => <span key={x.attribute} className="chip2" style={{ cursor: 'default' }}>{x.attribute} · {x.source}</span>)}</div>}
             <div className="row small muted" style={{ gap: 18 }}><span>Approver: {cur.approverRole || '—'}</span><span>Response time: {cur.slaHours ? cur.slaHours + ' h' : '—'}</span><span>Priority {cur.priority}{cur.complianceFloor ? ' · compliance floor' : ''}</span><span>Record types: {(cur.recordTypes || []).join(', ')}</span><span>Runs on: {(cur.triggers || []).join(', ')}</span></div>

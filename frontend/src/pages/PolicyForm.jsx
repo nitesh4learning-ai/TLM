@@ -47,7 +47,7 @@ export default function PolicyForm({ p, meta, onSaved, onCancel }) {
     appliesTo: f.appliesTo, roles: list(txt.roles), recordTypes: f.recordTypes, regions: list(txt.regions), triggers: f.triggers,
     inputs: f.inputs, rules: f.rules, params: f.params, rows: f.rows, level: f.level, approverRole: f.approverRole, escalation: f.escalation,
     slaHours: Number(f.slaHours) || 0, priority: Number(f.priority) || 0, complianceFloor: !!f.complianceFloor, citationRequired: !!f.citationRequired,
-    text: f.text, exceptions: f.exceptions, source: f.source, testCases: f.testCases,
+    text: f.text, exceptions: f.exceptions, source: f.source, testCases: f.testCases, survivorship: f.survivorship,
   });
   const save = async (status) => {
     setErr(null);
@@ -166,6 +166,19 @@ export default function PolicyForm({ p, meta, onSaved, onCancel }) {
           {(f.rows || []).length > 0 && <span className="small muted" style={{ alignSelf: 'center' }}>{f.rows.length} descriptive condition row{f.rows.length > 1 ? 's' : ''} kept from the original policy text.</span>}
         </div>
       </Section>
+
+      {(f.survivorship || []).length > 0 && (
+        <Section n="5b" title="Survivorship" sub="How the Match &amp; merge agent picks each attribute's value from the cross-reference rows">
+          {f.survivorship.map((r, i) => (
+            <div key={i} className="row" style={{ gap: 8, alignItems: 'flex-end' }}>
+              <div className="f" style={{ flex: '0 1 160px' }}><label className="lbl" htmlFor={'sa' + i}>Attribute</label><input id={'sa' + i} type="text" value={r.attribute} onChange={(e) => upd('survivorship', i, { attribute: e.target.value })} /></div>
+              <div className="f" style={{ flex: '0 1 180px' }}><label className="lbl" htmlFor={'sm' + i}>Method</label><select id={'sm' + i} value={r.method} onChange={(e) => upd('survivorship', i, { method: e.target.value })}>{['source priority', 'most recent', 'highest trust', 'agent decision'].map((m) => <option key={m}>{m}</option>)}</select></div>
+              <div className="f" style={{ flex: '2 1 300px' }}><label className="lbl" htmlFor={'so' + i}>Source order (comma-separated, first wins)</label><input id={'so' + i} type="text" value={(r.order || []).join(', ')} onChange={(e) => upd('survivorship', i, { order: e.target.value.split(',').map((x) => x.trim()).filter(Boolean) })} /></div>
+            </div>
+          ))}
+          <span className="small muted">"Highest trust" uses the trust scores in Values. "Agent decision" lets the latest agent write win, then falls back to the source order.</span>
+        </Section>
+      )}
 
       <Section n="6" title="Values" sub="Thresholds and limits the rules and agents use, written ${name} in rules">
         {(f.params || []).map((x, i) => (

@@ -52,7 +52,7 @@ We'd like to open an account for Lakeside Community Pharmacy in Tyler. W-9, lice
                      "expected_monthly_volume": F("80000", 0.88), "controlled_substances": F("yes", 0.97),
                      "resale_certificate": F("TX 01-728-4410", 0.94, "TX_Resale_Certificate.txt"),
                      "resale_certificate_name": F("Lakeside Community Pharmacy, LLC", 0.95, "TX_Resale_Certificate.txt"),
-                     "bank_routing": F("111000025", 0.99), "bank_account_last4": F("7302", 0.99)},
+                     "bank_routing": F("111000025", 0.99), "bank_account_last4": F("7302", 0.99), "w9_provided": F("yes", 0.99, "W-9.txt")},
     },
     "existing-customer": {
         "title": "Customer already exists", "party": "Cedar Park Family Pharmacy",
@@ -74,7 +74,7 @@ We will order specialty oncology drugs through our GPO, Keystone Purchasing Alli
                         "TX_Pharmacy_License.txt": "Texas State Board of Pharmacy. Class A Pharmacy License TX-PH-337905. Expires 03/31/2027."},
         "fallback": {"legal_name": F("Cedar Park Family Pharmacy LLC", 0.99), "address": F("1200 E Whitestone Blvd, Cedar Park, TX 78613", 0.98),
                      "tax_id": F("62-1415846", 0.98, "W-9.txt"), "request_type": F("Add sales area", 0.96), "sales_area": F("Specialty · US02", 0.97),
-                     "customer_type": F("Independent retail pharmacy", 0.95), "gpo": F("Keystone Purchasing Alliance", 0.93), "controlled_substances": F("yes", 0.9)},
+                     "customer_type": F("Independent retail pharmacy", 0.95), "gpo": F("Keystone Purchasing Alliance", 0.93), "controlled_substances": F("yes", 0.9), "w9_provided": F("yes", 0.99, "W-9.txt")},
     },
     "new-owner": {
         "title": "Existing site, new owner", "party": "Westbrook Infusion Partners",
@@ -89,13 +89,14 @@ We expect about $120,000 a month. Bank routing 111000614, account ending 9051.
 Our resale certificate is attached.
 
 Priya Raman, Finance"""},
-        "attachments": {"TX_Resale_Certificate.txt": "Texas Sales and Use Tax Resale Certificate. Purchaser: Westbrook Infusion Center LLC. Texas taxpayer number 01-552-9071. Issued 2024-04-15."},
+        "attachments": {"W-9.txt": "Form W-9. Name: Westbrook Infusion Partners LP. Federal tax classification: Partnership. Address: 4500 W Park Blvd, Ste 120, Plano, TX 75093. EIN: 44-3670896.",
+                        "TX_Resale_Certificate.txt": "Texas Sales and Use Tax Resale Certificate. Purchaser: Westbrook Infusion Center LLC. Texas taxpayer number 01-552-9071. Issued 2024-04-15."},
         "fallback": {"legal_name": F("Westbrook Infusion Partners LP", 0.99), "address": F("4500 W Park Blvd Ste 120, Plano, TX 75093", 0.99),
                      "tax_id": F("44-3670896", 0.98), "request_type": F("New customer", 0.99), "sales_area": F("Specialty · US02", 0.9),
                      "customer_type": F("Infusion center", 0.95), "expected_monthly_volume": F("120000", 0.93), "controlled_substances": F("yes", 0.85),
                      "resale_certificate": F("TX 01-552-9071", 0.94, "TX_Resale_Certificate.txt"),
                      "resale_certificate_name": F("Westbrook Infusion Center LLC", 0.96, "TX_Resale_Certificate.txt"),
-                     "bank_routing": F("111000614", 0.99), "bank_account_last4": F("9051", 0.99)},
+                     "bank_routing": F("111000614", 0.99), "bank_account_last4": F("9051", 0.99), "w9_provided": F("yes", 0.99, "W-9.txt")},
     },
 }
 

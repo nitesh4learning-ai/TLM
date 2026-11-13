@@ -46,7 +46,7 @@ def test_new_owner_successor_and_approvals():
 
 def test_policies_and_edit():
     p = c.get("/api/policies").json()
-    assert len(p["policies"]) == 15
+    assert len(p["policies"]) == 20 and sum(x["status"] == "Draft" for x in p["policies"]) == 4
     e = c.put("/api/policies/BR-PT-001", json={"text": "Edited text"}).json()
     assert e["status"] == "Active" and e["text"] == "Edited text" and e["version"] == 2
 
@@ -158,3 +158,60 @@ def test_uploaded_document_fills_the_form(monkeypatch):
     assert c.put(f"/api/policies/{p['id']}", json={"status": "Active"}).status_code == 400   # incomplete
     ok = c.put(f"/api/policies/{p['id']}", json={"owner": "Treasury", "appliesTo": ["Credit"], "effective": "2026-12-01", "status": "Active"}).json()
     assert ok["status"] == "Active" and ok["completeness"]["score"] == 100
+
+
+
+def test_missing_w9_blocks_then_edit_resubmits():
+    c.post("/api/reset")
+    from app import samples
+    import copy
+    f = copy.deepcopy(samples.SCENARIOS["new-customer"]["fallback"]); f.pop("w9_provided")
+    samples.SCENARIOS["blocked-test"] = dict(samples.SCENARIOS["new-customer"], fallback=f)
+    r = c.post("/api/scenarios/blocked-test/run").json()
+    assert r["decision"] == "blocked" and r["status"].startswith("Blocked at intake") and len(r["stages"]) == 1
+    r = c.post(f"/api/requests/{r['id']}/resubmit", json={"fields": {"w9_provided": "yes"}, "who": "J. Ortiz"}).json()
+    assert r["decision"] == "new" and len(r["stages"]) == 10 and r["history"][-1]["action"] == "Edited and resubmitted"
+    del samples.SCENARIOS["blocked-test"]
+
+
+def test_reject_with_email_undoes_the_record():
+    c.post("/api/reset")
+    r = c.post("/api/scenarios/new-customer/run").json()
+    d = c.post(f"/api/requests/{r['id']}/reject-draft", json={"reason": "Bank letter unreadable", "missing": ["Bank letter"]}).json()
+    assert "Bank letter" in d["body"]
+    x = c.post(f"/api/requests/{r['id']}/reject", json={"reason": "Bank letter unreadable", "action": "email", "missing": ["Bank letter"], "subject": d["subject"], "body": d["body"]}).json()
+    assert x["status"].startswith("Rejected") and x["rejected"]["email"]["body"]
+    assert c.get(f"/api/records/{r['recordId']}").status_code == 404
+    assert not [q for q in c.get("/api/queue").json() if q["requestId"] == r["id"]]
+
+
+def test_agents_record_old_and_new_values():
+    c.post("/api/reset")
+    r = c.post("/api/scenarios/new-owner/run").json()
+    ch = {x["attribute"]: x for x in r["changes"]}
+    assert ch["Credit limit"]["old"] == "$120,000" and ch["Tax class"]["new"] == "Taxable" and ch["Tax class"]["policy"] == "BR-TX-001"
+
+
+def test_xref_survivorship_merge_unmerge():
+    c.post("/api/reset")
+    rec = c.get("/api/records/BRR-0004417").json()
+    x = rec["xref"]
+    assert len(x["rows"]) == 7                     # 3 SAP, Oracle EBS, AS/400, D&B, address validation
+    sv = {s["key"]: s for s in x["survivors"]}
+    assert sv["legalName"]["system"] == "D&B" and sv["address"]["system"] == "Address validation" and sv["paymentTerms"]["value"] == "Net 30"
+    r = c.post("/api/scenarios/existing-customer/run").json()
+    rows = c.get("/api/records/BRR-0004417").json()["xref"]["rows"]
+    assert any(row["kind"] == "intake" and row["sourceKey"] == r["id"] for row in rows)
+    assert any(row["kind"] == "agent" and row["policy"] == "BR-PR-001" for row in rows)
+    u = c.post("/api/records/BRR-0004417/unmerge", json={"xid": "AS/400 Order Entry:AS4-30771"}).json()
+    new = u["newRecord"]
+    assert c.get(f"/api/records/{new}").json()["xref"]["rows"][0]["system"] == "AS/400 Order Entry"
+    m = c.post("/api/records/BRR-0004417/merge", json={"other": new}).json()
+    assert any(row["system"] == "AS/400 Order Entry" for row in m["xref"]["rows"])
+    # survivorship rules are editable policy: make the most recent source win the legal name
+    p = c.get("/api/policies/SV-001").json()
+    rules = [dict(x, method="most recent") if x["attribute"] == "legalName" else x for x in p["survivorship"]]
+    c.put("/api/policies/SV-001", json={"survivorship": rules})
+    c.post("/api/records/BRR-0004417/unmerge", json={"xid": "AS/400 Order Entry:AS4-30771"})   # any write re-runs survivorship
+    sv = {s["key"]: s for s in c.get("/api/records/BRR-0004417").json()["xref"]["survivors"]}
+    assert sv["legalName"]["reason"].startswith("Most recent")

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { api } from '../api.js';
+import { api, setAssist } from '../api.js';
 import { Title, PolicyChip, useLoad, Err, AGENT_ICON } from '../components.jsx';
 
 const GROUPS = [
@@ -20,6 +20,7 @@ export default function Agents() {
   const stats = (st.data && st.data.stats) || {};
   const prov = (st.data && st.data.providers) || {};
   const cur = agents.find((x) => x.name === sel);
+  React.useEffect(() => { setAssist({ page: 'AI agents › Agents', agent: sel, label: `${sel} agent` }); }, [sel]);
   const submit = async () => { await api.patch('/agents/' + encodeURIComponent(sel), edit); setEdit(null); a.reload(); };
   const auto = (n) => { const s = stats[n]; return s && s.runs ? Math.round((100 * s.auto) / s.runs) : null; };
 

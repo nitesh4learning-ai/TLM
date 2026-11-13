@@ -24,8 +24,13 @@ from .samples import SCENARIOS, mail_for  # noqa: E402
 app = FastAPI(title="TLM · Agentic MDM API", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], allow_methods=["*"], allow_headers=["*"])
 
-FOLDERS = {"match-survivorship": "Match & survivorship", "business-rules": "Business rules · extended attributes",
+FOLDERS = {"data-quality": "Data quality", "match-survivorship": "Match & survivorship", "business-rules": "Business rules · extended attributes",
            "regulatory": "Regulatory", "bpo-playbooks": "BPO playbooks", "agent-policies": "Agent policies"}
+
+
+@app.get("/api/meta/fields")
+def meta_fields():
+    return [{"key": k, "label": pipeline.LABEL.get(k, k.replace("_", " ").capitalize()), "mapsTo": m} for k, m in llm.FIELDS]
 
 
 @app.get("/api/health")
@@ -96,6 +101,7 @@ class PolicyEdit(BaseModel):
     citationRequired: bool | None = None
     testCases: list | None = None
     source: str | None = None
+    survivorship: list | None = None
 
 
 @app.put("/api/policies/{pid}")
@@ -370,6 +376,61 @@ def get_request(rid: str):
     return r
 
 
+class Resubmit(BaseModel):
+    fields: dict = {}
+    who: str = "Data steward"
+    note: str = ""
+
+
+@app.post("/api/requests/{rid}/resubmit")
+def resubmit(rid: str, body: Resubmit):
+    """Edit in place: correct or supply key values, then every agent runs again on the same request."""
+    r = store.requests().get(rid)
+    if not r:
+        raise HTTPException(404, "No such request")
+    return pipeline.rerun(r, body.fields, by=body.who, note=body.note)
+
+
+class Reject(BaseModel):
+    reason: str
+    action: str = "email"          # "email" or "restart"
+    missing: list[str] = []
+    who: str = "Data steward"
+    subject: str | None = None
+    body: str | None = None
+
+
+@app.post("/api/requests/{rid}/reject-draft")
+def reject_draft(rid: str, body: Reject):
+    """Drafts the email asking the requester to redo intake; nothing is sent."""
+    r = store.requests().get(rid)
+    if not r:
+        raise HTTPException(404, "No such request")
+    to = ((r.get("mail") or {}).get("from")) or (r.get("fields", {}).get("contact_email") or {}).get("value") or "the requester"
+    missing = body.missing or [pipeline.LABEL.get(f, f) for f in (r.get("blocked") or [])]
+    if llm.available():
+        try:
+            d = llm.draft_reject_email(to, r["legalName"], missing, body.reason)
+            return {"to": to, "subject": d.get("subject", ""), "body": d.get("body", ""), "missing": missing}
+        except Exception:  # noqa: BLE001
+            pass
+    lines = "\n".join(f"- {m}" for m in missing) or "- (see reason below)"
+    return {"to": to, "missing": missing, "subject": f"Action needed: your account request for {r['legalName']}",
+            "body": f"Hello,\n\nThank you for your request to open an account for {r['legalName']}. We can't continue yet because the following is missing:\n{lines}\n\n"
+                    f"Reason: {body.reason}\n\nPlease reply to this email with the missing information and we will restart your request.\n\nCustomer Onboarding"}
+
+
+@app.post("/api/requests/{rid}/reject")
+def reject(rid: str, body: Reject):
+    r = store.requests().get(rid)
+    if not r:
+        raise HTTPException(404, "No such request")
+    if body.action not in ("email", "restart"):
+        raise HTTPException(400, "action must be email or restart")
+    msg = {"to": ((r.get("mail") or {}).get("from")) or "the requester", "subject": body.subject or "", "body": body.body or ""} if body.action == "email" else None
+    return pipeline.reject(r, body.reason, body.action, body.missing, msg, by=body.who)
+
+
 class Approval(BaseModel):
     who: str = "Data steward"
     note: str = ""
@@ -387,6 +448,8 @@ def approve(rid: str, key: str, body: Approval):
 def queue():
     out = []
     for r in store.requests().values():
+        if r.get("rejected"):
+            continue
         for s in r["stages"][: r.get("revealed", len(r["stages"]))]:
             if s["state"] == "waiting":
                 out.append({"requestId": r["id"], "legalName": r["legalName"], "stage": s["key"], "stageName": s["name"],
@@ -398,16 +461,76 @@ def queue():
 @app.get("/api/records")
 def list_records():
     recs = store.records().values()
-    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type", "duns", "hierarchyNode", "parent")} | {"sources": len(r.get("crossReferences", []))}
+    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type", "duns", "hierarchyNode", "parent")} | {"sources": len(r.get("xrefs") or r.get("crossReferences") or [])}
             for r in sorted(recs, key=lambda r: (-len(r.get("crossReferences", [])), r["id"]))]
 
 
 @app.get("/api/records/{rid}")
 def get_record(rid: str):
+    from . import xref
     r = store.records().get(rid)
     if not r:
         raise HTTPException(404, "No such record")
-    return r
+    return dict(r, xref=xref.table(r))
+
+
+class Unmerge(BaseModel):
+    xid: str
+    who: str = "Data steward"
+    reason: str = "Not related"
+
+
+@app.post("/api/records/{rid}/unmerge")
+def unmerge(rid: str, body: Unmerge):
+    """Splits one XREF row out into its own Business ready record (the steward decision "not related")."""
+    from . import xref
+    recs = store.records()
+    rec = recs.get(rid)
+    if not rec:
+        raise HTTPException(404, "No such record")
+    if len(rec.get("xrefs", [])) < 2:
+        raise HTTPException(400, "A record needs at least one source row; nothing to unmerge.")
+    row = xref.split(rec, body.xid)
+    if not row:
+        raise HTTPException(404, "No such XREF row")
+    nid = store.next_id("BRR", recs.keys(), 51206)
+    now = datetime.datetime.now().strftime("%b %d, %Y %I:%M %p")
+    new = {"id": nid, "status": "Active", "legalName": row["attrs"].get("legalName") or row["sourceKey"], "type": rec.get("type"), "address": row["attrs"].get("address"),
+           "taxId": row["attrs"].get("taxId"), "duns": None, "parent": None, "salesAreas": [], "crossReferences": [], "xrefs": [row],
+           "history": [{"when": now, "change": f"Unmerged from {rid}: {row['system']} {row['sourceKey']} ({body.reason})", "by": body.who}]}
+    sv = policystore.all_policies().get("SV-001")
+    xref.survive(new, sv)
+    xref.survive(rec, sv)
+    rec.setdefault("history", []).insert(0, {"when": now, "change": f"Unmerged {row['system']} {row['sourceKey']} into {nid} ({body.reason})", "by": body.who})
+    recs[nid] = new
+    store.write("records", recs)
+    return {"record": dict(rec, xref=xref.table(rec)), "newRecord": nid}
+
+
+class Merge(BaseModel):
+    other: str
+    who: str = "Data steward"
+
+
+@app.post("/api/records/{rid}/merge")
+def merge(rid: str, body: Merge):
+    """Merges another record into this one: its XREF rows move here and survivorship runs again."""
+    from . import xref
+    recs = store.records()
+    rec, other = recs.get(rid), recs.get(body.other)
+    if not rec or not other:
+        raise HTTPException(404, "No such record")
+    if rid == body.other:
+        raise HTTPException(400, "Pick a different record to merge")
+    now = datetime.datetime.now().strftime("%b %d, %Y %I:%M %p")
+    rec["xrefs"] = rec.get("xrefs", []) + other.get("xrefs", [])
+    other["xrefs"] = []
+    other["status"] = f"Merged into {rid}"
+    other.setdefault("history", []).insert(0, {"when": now, "change": f"Merged into {rid}", "by": body.who})
+    rec.setdefault("history", []).insert(0, {"when": now, "change": f"Merged {body.other} ({other['legalName']}) into this record", "by": body.who})
+    xref.survive(rec, policystore.all_policies().get("SV-001"))
+    store.write("records", recs)
+    return dict(rec, xref=xref.table(rec))
 
 
 @app.get("/api/hierarchy")
@@ -553,3 +676,83 @@ def agent_stats():
     for k, c in providers.CATALOG.items():
         uses.setdefault(c["agent"], []).append({"key": k, "name": c["name"], "mode": cfgs[k]["mode"]})
     return {"stats": out, "providers": uses}
+
+
+
+# ------------------------------------------------------------------ assistant (read-only, grounded)
+class Ask(BaseModel):
+    question: str
+    page: str = ""
+    requestId: str | None = None
+    stageKey: str | None = None
+    recordId: str | None = None
+    policyId: str | None = None
+    agent: str | None = None
+    model: str | None = None
+
+
+def _trace(r, focus=None):
+    out = [f"REQUEST {r['id']} · {r['legalName']} · {r.get('requestType')} · status: {r.get('status')} · decision: {r.get('decision')} · record: {r.get('recordId')}"]
+    if r.get("rejected"):
+        out.append(f"REJECTED by {r['rejected']['by']}: {r['rejected']['reason']}")
+    for h in r.get("history") or []:
+        out.append(f"HISTORY {h['when']} {h['by']}: {h['action']} {h.get('note','')} {'; '.join(h.get('changes') or [])}")
+    for s in r["stages"][: r.get("revealed", len(r["stages"]))]:
+        mark = " <== THE USER IS LOOKING AT THIS STAGE" if focus and s["key"] == focus else ""
+        out.append(f"\nSTAGE {s['name']}{mark}: actor={s['actor']} state={s['state']} status={s['status']} waitingFor={s.get('waitingFor')}")
+        out.append(f"  summary: {s['summary']}")
+        out.append(f"  policies used (id:version): {s.get('policyVersions') or s['policies']}")
+        for sec in s["sections"]:
+            if sec["kind"] == "text":
+                continue
+            out.append(f"  [{sec['title']}]")
+            for row in sec["rows"][:12]:
+                if sec["kind"] == "table":
+                    out.append("   - " + " | ".join(str(c.get("v")) + (f" ({c.get('policy')})" if c.get("policy") else "") for c in row["cells"]))
+                elif sec["kind"] == "checks":
+                    out.append(f"   - {row['k']} -> {row['pass']} · {row['note']} ({row.get('policy')})")
+                else:
+                    out.append(f"   - {row['k']}: {row['v']} {row.get('note','')} {row.get('policy','')}")
+    for c in r.get("changes") or []:
+        out.append(f"CHANGE {c['attribute']}: {c['old']} -> {c['new']} authorised by {c['policy']}")
+    return "\n".join(out)
+
+
+def _policy_text(p):
+    return (f"POLICY {p['id']} v{p.get('version')} · {p['title']} · level {p['level']} · applies to {p.get('appliesTo')} · status {p.get('status')}\n"
+            f"  text: {p.get('text')}\n  values: {[(x['key'], x['value']) for x in p.get('params', [])]}\n"
+            f"  rules: {[(r.get('when'), r.get('then'), r.get('decidedBy')) for r in p.get('rules', [])]}\n"
+            f"  survivorship: {p.get('survivorship')}")
+
+
+@app.post("/api/assistant")
+def ask(body: Ask):
+    if not llm.available():
+        raise HTTPException(503, "The assistant needs ANTHROPIC_API_KEY in backend/.env.")
+    parts = [f"SCREEN: {body.page}"]
+    pols = policystore.all_policies()
+    cited = set()
+    if body.requestId and store.requests().get(body.requestId):
+        r = store.requests()[body.requestId]
+        parts.append(_trace(r, body.stageKey))
+        cited |= {pid for s in r["stages"] for pid in s["policies"]}
+    if body.recordId and store.records().get(body.recordId):
+        rec = store.records()[body.recordId]
+        parts.append("RECORD " + json.dumps({k: rec.get(k) for k in ("id", "legalName", "status", "address", "taxId", "duns", "salesAreas", "winners", "history", "successorOf")}, default=str))
+        for x in rec.get("xrefs", []):
+            parts.append("XREF " + json.dumps(x, default=str))
+        cited.add("SV-001")
+    if body.policyId and pols.get(body.policyId):
+        cited.add(body.policyId)
+    if body.agent:
+        parts.append(f"AGENT {body.agent}: policies it reads: {[p['id'] for p in policystore.for_agent(body.agent)]}")
+        cited |= {p["id"] for p in policystore.for_agent(body.agent)}
+    for pid in sorted(cited):
+        if pid in pols:
+            parts.append(_policy_text(pols[pid]))
+    try:
+        answer = llm.assistant(body.question, "\n".join(parts), model=body.model)
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(502, f"The assistant could not reach Claude: {str(e)[:200]}")
+    ids = sorted(set(re.findall(r"\[([A-Z]{2,4}-[0-9]{3}[a-z]?)\]", answer)) & set(pols))
+    return {"answer": answer, "policies": ids, "model": body.model or llm.MODEL}

@@ -54,6 +54,8 @@ def seed():
         q["version"] = 1
         q["history"] = [{"version": 1, "at": "2026-11-01 09:00", "by": "Data governance", "changes": "Published"}]
         out[p["id"]] = upgrade(q)
+    for x in EXTRA:
+        out[x["id"]] = upgrade(copy.deepcopy(x))
     return out
 
 
@@ -62,7 +64,11 @@ def all_policies():
     if pols is None:
         pols = seed()
         store.write("policy_store", pols)
-    elif any(p.get("schema") != 2 for p in pols.values()):
+    if any(x["id"] not in pols for x in EXTRA):
+        for x in EXTRA:
+            pols.setdefault(x["id"], upgrade(copy.deepcopy(x)))
+        store.write("policy_store", pols)
+    if any(p.get("schema") != 3 for p in pols.values()):
         pols = {k: upgrade(p) for k, p in pols.items()}
         store.write("policy_store", pols)
     return pols
@@ -74,7 +80,7 @@ def levels():
 
 EDITABLE = ["title", "folder", "stage", "level", "owner", "text", "rows", "exceptions", "cites", "appliesTo", "roles", "params", "effective", "status", "agent",
             "steward", "effectiveTo", "recordTypes", "regions", "triggers", "inputs", "rules", "approverRole", "escalation", "slaHours", "priority",
-            "complianceFloor", "citationRequired", "testCases", "fieldSources", "source", "engine"]
+            "complianceFloor", "citationRequired", "testCases", "fieldSources", "source", "engine", "survivorship"]
 
 
 def save(pid, values, by="You"):
@@ -243,7 +249,7 @@ INPUTS = {
 REQUIRED = ["title", "owner", "appliesTo", "level", "text", "effective"]
 FORM_DEFAULTS = {"steward": "", "effectiveTo": "", "recordTypes": ["Customer"], "regions": ["US"], "triggers": ["Create", "Change"],
                  "inputs": [], "rules": [], "approverRole": "", "escalation": "", "slaHours": 24, "priority": 50,
-                 "complianceFloor": False, "citationRequired": True, "testCases": [], "fieldSources": {}, "schema": 2, "engine": False}
+                 "complianceFloor": False, "citationRequired": True, "testCases": [], "fieldSources": {}, "schema": 3, "engine": False}
 
 
 def upgrade(p):
@@ -261,12 +267,18 @@ def upgrade(p):
         p["inputs"] = [{"attribute": a, "source": s} for a, s in INPUTS[pid]]
     if not p.get("approverRole"):
         p["approverRole"] = (p.get("roles") or [""])[0]
+    if pid == "SV-001":
+        from . import xref
+        if not p.get("survivorship"):
+            p["survivorship"] = copy.deepcopy(xref.DEFAULT_SURVIVORSHIP)
+        have = {x["key"] for x in p.get("params", [])}
+        p["params"] = p.get("params", []) + [{"key": k, "value": v, "help": h} for k, v, h in xref.DEFAULT_TRUST if k not in have]
     if pid in ("RG-CS-001", "AG-001"):
         p["complianceFloor"] = True
         p["priority"] = 10
     if pid.startswith("BPO"):
         p["recordTypes"] = ["Supplier"]
-    p["schema"] = 2
+    p["schema"] = 3
     return p
 
 
@@ -277,3 +289,40 @@ def completeness(p):
     needs = [k for k, v in (p.get("fieldSources") or {}).items() if v.get("from") == "governance"]
     total = len(REQUIRED) + 1
     return {"score": round(100 * (total - len(missing)) / total), "missing": missing, "needsGovernance": needs}
+
+
+# ------------------------------------------------------------------ policies added after the first release
+def _extra(pid, title, folder, agent, level, text, rules=None, rows=None, params=None, status="Active", owner="", effective="", stage="Business rules", tests=None):
+    p = {"id": pid, "title": title, "folder": folder, "stage": stage, "agent": agent, "level": level, "owner": owner, "text": text,
+         "rows": rows or [], "exceptions": "", "cites": [], "appliesTo": [agent], "roles": [], "params": params or [], "effective": effective,
+         "status": status, "version": 1, "rules": rules or [], "engine": bool(rules), "testCases": tests or [],
+         "history": [{"version": 1, "at": "2026-11-12 21:40", "by": "Data governance", "changes": "Created" + (" as a draft" if status == "Draft" else "")}]}
+    if status == "Draft":
+        p["fieldSources"] = {"owner": {"from": "governance"}, "effective": {"from": "governance"}, "rules": {"from": "governance"} if not rules else {"from": "seed"}}
+    return p
+
+
+EXTRA = [
+    _extra("DQ-INT-001", "Required fields at intake", "data-quality", "Intake", "B",
+           "A request cannot move past intake until it has a legal name, an address, a tax ID and a signed W-9. If any is missing, the request is blocked and the requester is asked to supply it.",
+           rows=[["Legal name, address, tax ID and W-9 all present", "Continue to search before create", "Agent"],
+                 ["Any required field missing", "Block; requester supplies it (edit in place, or reject and email)", "Requester"]],
+           params=[{"key": "required_fields", "value": "legal_name, address, tax_id, w9_provided", "help": "Fields that must be present before the request continues"}],
+           owner="Data governance", effective="2026-11-12", stage="Intake"),
+    _extra("BR-SC-001", "Shipping conditions", "business-rules", "Procurement", "B",
+           "Shipping conditions follow what the customer orders: sites that order cold-chain products get next-day refrigerated delivery; others get standard ground.",
+           rules=[{"when": [{"attr": "customer_type", "op": "contains", "value": "infusion"}], "then": {"shipping": "Cold chain, next day"}, "decidedBy": "Agent", "note": "Infusion sites order refrigerated products"},
+                  {"when": [], "then": {"shipping": "Standard ground"}, "decidedBy": "Agent", "note": "Default"}], status="Draft"),
+    _extra("BR-DN-001", "Dunning procedure", "business-rules", "Credit", "B",
+           "Customers in credit tier C get a shorter dunning cycle. Everyone else gets the standard cycle.",
+           rules=[{"when": [{"attr": "credit_tier", "op": "=", "value": "C"}], "then": {"dunning": "Level 2, reminders every 15 days"}, "decidedBy": "Agent", "note": "Higher risk"},
+                  {"when": [], "then": {"dunning": "Standard, reminders every 30 days"}, "decidedBy": "Agent", "note": "Default"}], status="Draft"),
+    _extra("BR-CG-001", "Customer group", "business-rules", "Procurement", "A",
+           "The customer group follows the customer type and drives reporting and contract eligibility.",
+           rules=[{"when": [{"attr": "customer_type", "op": "contains", "value": "hospital"}], "then": {"customer_group": "IDN / health system"}, "decidedBy": "Agent", "note": ""},
+                  {"when": [{"attr": "customer_type", "op": "contains", "value": "pharmacy"}], "then": {"customer_group": "Retail pharmacy"}, "decidedBy": "Agent", "note": ""},
+                  {"when": [], "then": {"customer_group": "Other healthcare"}, "decidedBy": "Agent", "note": "Default"}], status="Draft"),
+    _extra("BR-RA-001", "Reconciliation account", "business-rules", "Credit", "A",
+           "Every customer posts to the trade receivables reconciliation account unless Finance names another.",
+           rules=[{"when": [], "then": {"reconciliation_account": "140000 Trade receivables"}, "decidedBy": "Agent", "note": "Default"}], status="Draft"),
+]

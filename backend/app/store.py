@@ -80,8 +80,13 @@ def seed_records():
 
 def records():
     recs = read("records", None)
-    if recs is None:
-        recs = seed_records()
+    if recs is None or any(r.get("xrefs") is None for r in recs.values()):
+        from . import policystore, xref
+        recs = recs or seed_records()
+        sv = policystore.all_policies().get("SV-001")
+        for r in recs.values():
+            if r.get("xrefs") is None:
+                xref.survive(xref.seed(r), sv)
         write("records", recs)
     return recs
 
