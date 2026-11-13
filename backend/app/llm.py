@@ -63,15 +63,28 @@ def explain(stages):
     return _json(complete(EXPLAIN_SYSTEM, json.dumps(payload), max_tokens=2500))
 
 
-POLICY_SYSTEM = """You turn a policy document into a structured policy for a master data platform's policy store.
-Return ONLY JSON: {"title": str, "folder": one of ["match-survivorship","business-rules","regulatory","bpo-playbooks","agent-policies"],
-"agent": one of ["Intake","Match & merge","Validation","Legal","Procurement","Credit","Tax","Orchestrator"], "level": one of ["A","B","H"],
-"owner": str, "stage": str, "text": "<plain-English statement, 2-4 sentences>", "rows": [["condition","action","decided by (Agent or a role)"]],
-"exceptions": str}. Level A = agent decides, B = agent decides and a person approves above a limit, H = a person decides."""
+POLICY_SYSTEM = """You fill in a master data policy form from a policy document, for the governance team to review.
+Fill a field ONLY when the document states it. Never invent values. For every field you fill, give the passage it came from.
+Return ONLY JSON:
+{"fields": {
+  "title": str, "folder": one of ["match-survivorship","business-rules","regulatory","bpo-playbooks","agent-policies"],
+  "owner": str, "steward": str, "effective": "YYYY-MM-DD", "effectiveTo": "YYYY-MM-DD",
+  "appliesTo": [agent names from: Intake, Search before create, Match & merge, Enrichment, Validation, Legal, Procurement, Credit, Tax, Orchestrator, or "All agents"],
+  "roles": [people's roles], "recordTypes": ["Customer"|"Supplier"], "regions": [str], "triggers": ["Create"|"Change"|"Periodic"],
+  "level": "A"|"B"|"H", "approverRole": str, "escalation": str, "slaHours": number,
+  "text": "plain-English statement, 2-4 sentences", "exceptions": str, "source": "regulation or document cited",
+  "params": [{"key": "snake_case", "value": number or str, "help": str}],
+  "rows": [["condition", "action", "decided by: Agent or a role"]],
+  "rules": [{"when": [{"attr": one of ATTRS, "op": one of ["=","!=","<","<=",">",">=","contains","in","exists","not exists"], "value": any}],
+             "then": {"<output attribute>": value}, "decidedBy": "Agent" or a role, "note": str}]
+ },
+ "sources": {"<field>": {"quote": "<short passage from the document>", "confidence": 0..1}}}
+Leave out any field the document does not state. Level A = agent decides, B = agent decides and a person approves above a limit, H = a person decides."""
 
 
-def draft_policy(doc_text):
-    return _json(complete(POLICY_SYSTEM, doc_text[:60000], max_tokens=2500))
+def draft_policy(doc_text, attrs):
+    out = _json(complete(POLICY_SYSTEM.replace("ATTRS", ", ".join(attrs)), doc_text[:60000], max_tokens=4000))
+    return out.get("fields", {}), out.get("sources", {})
 
 
 ADDRESS_SYSTEM = """You standardize US postal addresses to USPS Publication 28 style for a master data platform.

@@ -39,6 +39,7 @@ from . import policystore  # noqa: E402
 
 def view(p):
     q = {k: v for k, v in p.items()}
+    q["completeness"] = policystore.completeness(p)
     q["levelName"] = policystore.levels().get(q.get("level"), "")
     q["folderName"] = FOLDERS.get(q.get("folder"), q.get("folder"))
     return q
@@ -50,8 +51,10 @@ def policies():
 
 @app.get("/api/policies")
 def list_policies():
+    from . import rules
     return {"folders": [{"key": k, "name": v} for k, v in FOLDERS.items()], "levels": policystore.levels(), "policies": policies(),
-            "agents": [policystore.ALL] + policystore.AGENT_NAMES}
+            "agents": [policystore.ALL] + policystore.AGENT_NAMES, "attributes": rules.ATTRIBUTES, "ops": rules.OPS,
+            "required": policystore.REQUIRED}
 
 
 @app.get("/api/policies/{pid}")
@@ -78,6 +81,21 @@ class PolicyEdit(BaseModel):
     effective: str | None = None
     status: str | None = None
     publish: bool | None = None
+    steward: str | None = None
+    effectiveTo: str | None = None
+    recordTypes: list | None = None
+    regions: list | None = None
+    triggers: list | None = None
+    inputs: list | None = None
+    rules: list | None = None
+    approverRole: str | None = None
+    escalation: str | None = None
+    slaHours: float | None = None
+    priority: int | None = None
+    complianceFloor: bool | None = None
+    citationRequired: bool | None = None
+    testCases: list | None = None
+    source: str | None = None
 
 
 @app.put("/api/policies/{pid}")
@@ -90,6 +108,21 @@ def edit_policy(pid: str, body: PolicyEdit):
         return view(policystore.save(pid, body.model_dump()))
     except KeyError:
         raise HTTPException(404, "No such policy")
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.post("/api/policies/{pid}/test")
+def test_policy(pid: str, body: PolicyEdit | None = None):
+    """Runs the policy's test cases through the rules engine; pass a draft in the body to test unsaved edits."""
+    from . import rules
+    p = policystore.all_policies().get(pid)
+    if not p:
+        raise HTTPException(404, "No such policy")
+    draft = dict(p)
+    if body:
+        draft.update({k: v for k, v in body.model_dump().items() if v is not None})
+    return {"results": rules.run_tests(draft)}
 
 
 @app.post("/api/policies")
@@ -105,11 +138,22 @@ async def upload_policy(file: UploadFile = File(...)):
         raise HTTPException(400, "Could not read text from the file. Upload a .pdf, .docx, .md or .txt.")
     if not llm.available():
         raise HTTPException(503, "Set ANTHROPIC_API_KEY in backend/.env so the policy agent can draft rules from the document.")
-    d = llm.draft_policy(text)
-    agent = d.get("agent") or "Orchestrator"
-    p = policystore.create({"prefix": "UP", "title": d.get("title"), "folder": d.get("folder"), "stage": d.get("stage"), "level": d.get("level") or "B",
-                            "owner": d.get("owner"), "text": d.get("text"), "rows": [list(r)[:3] for r in d.get("rows", [])], "exceptions": d.get("exceptions"),
-                            "appliesTo": [agent], "status": "Draft", "source": file.filename})
+    from . import rules
+    fields, sources = llm.draft_policy(text, list(rules.ATTRIBUTES))
+    form = ["title", "folder", "owner", "steward", "effective", "effectiveTo", "appliesTo", "roles", "recordTypes", "regions", "triggers",
+            "level", "approverRole", "escalation", "slaHours", "text", "exceptions", "source", "params", "rows", "rules"]
+    fs = {}
+    for k in form:
+        if fields.get(k) not in (None, "", []):
+            fs[k] = {"from": "document", "quote": (sources.get(k) or {}).get("quote", ""), "confidence": (sources.get(k) or {}).get("confidence")}
+        else:
+            fs[k] = {"from": "governance"}
+    values = {k: fields[k] for k in form if fields.get(k) not in (None, "", [])}
+    values.update({"prefix": "UP", "status": "Draft", "fieldSources": fs, "source": fields.get("source") or file.filename,
+                   "engine": bool(fields.get("rules"))})
+    if "rows" in values:
+        values["rows"] = [list(r)[:3] for r in values["rows"]]
+    p = policystore.create(values)
     return view(p)
 
 

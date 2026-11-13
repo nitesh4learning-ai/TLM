@@ -137,3 +137,24 @@ def test_autonomy_level_h_forces_a_person():
     c.put("/api/policies/BR-PR-001", json={"level": "H"})
     r = c.post("/api/scenarios/existing-customer/run").json()
     assert next(s for s in r["stages"] if s["key"] == "procurement")["actor"] == "human"
+
+
+def test_rules_engine_test_cases_pass():
+    for pid in ["BR-CR-001", "BR-PT-001", "BR-PM-001", "BR-TX-001", "BR-PR-001", "RG-CS-001"]:
+        res = c.post(f"/api/policies/{pid}/test").json()["results"]
+        assert res and all(r["passed"] for r in res), (pid, res)
+
+
+def test_uploaded_document_fills_the_form(monkeypatch):
+    from app import llm
+    monkeypatch.setattr(llm, "available", lambda: True)
+    monkeypatch.setattr(llm, "draft_policy", lambda text, attrs: (
+        {"title": "Wire payments", "level": "B", "text": "Payments above $250,000 go by wire.", "params": [{"key": "wire_above", "value": 250000, "help": "USD"}],
+         "rules": [{"when": [{"attr": "proposed_limit", "op": ">", "value": "${wire_above}"}], "then": {"payment_method": "Wire"}, "decidedBy": "Treasury"}]},
+        {"title": {"quote": "Wire payments policy", "confidence": 0.9}}))
+    p = c.post("/api/policies/upload", files={"file": ("wire.txt", b"Wire payments policy. Payments above $250,000 go by wire.", "text/plain")}).json()
+    assert p["status"] == "Draft" and p["fieldSources"]["title"]["from"] == "document"
+    assert set(p["completeness"]["missing"]) >= {"owner", "appliesTo", "effective"}
+    assert c.put(f"/api/policies/{p['id']}", json={"status": "Active"}).status_code == 400   # incomplete
+    ok = c.put(f"/api/policies/{p['id']}", json={"owner": "Treasury", "appliesTo": ["Credit"], "effective": "2026-12-01", "status": "Active"}).json()
+    assert ok["status"] == "Active" and ok["completeness"]["score"] == 100

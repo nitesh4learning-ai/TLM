@@ -230,3 +230,16 @@ pre.code { margin: 0; padding: 12px; border-radius: 10px; background: #0F1720; c
 .mcell.on.A { background: #EAF0FE; color: #1D47B8; border: 1px solid #9DB3EE; }
 .mcell.on.B { background: #F1ECFB; color: #5B2DA8; border: 1px solid #C9B6EE; }
 .mcell.on.H { background: #FFF1DE; color: #7A3B00; border: 1px solid #F2B872; }
+
+.pform { gap: 14px; }
+.complete { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 12px; background: #F8FAFC; border: 1px solid var(--line); }
+.fsec { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); }
+.fsec-h { display: flex; gap: 12px; align-items: center; }
+.fnum { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #F1ECFB; color: #5B2DA8; font-weight: 700; font-size: 13px; flex: 0 0 auto; }
+.f.needs input, .f.needs textarea, .f.needs select { border-color: #F2B872; background: #FFFBF3; }
+.src { font-size: 10.5px; font-weight: 700; letter-spacing: .02em; padding: 1px 7px; border-radius: 99px; cursor: help; }
+.src.doc { background: #EAF0FE; color: #1D47B8; }
+.src.gov { background: #FFF1DE; color: #7A3B00; }
+.src.ed { background: #EEF7F1; color: #0E5A32; }
+.rulebox { display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 12px; background: #FBFCFD; border: 1px solid var(--line); }
+.f textarea, .f input[type=text], .f select { width: 100%; box-sizing: border-box; }

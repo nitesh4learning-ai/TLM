@@ -6,7 +6,7 @@ and status "waiting" until someone approves them in the steward queue.
 import datetime
 import re
 
-from . import llm, policystore, providers, store
+from . import llm, policystore, providers, rules, store
 from .reference import SAP, LEGACY, sim, name_sim, addr_sim, norm, street_of
 from .llm import FIELDS
 
@@ -276,32 +276,7 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
                                                                       meta="Times are measured")],
                         waiting_for="Data steward" if issues else None))
 
-    # ---- Legal
-    edited = (v(fields, "edited_terms") or "no").lower().startswith("y")
-    rows = [("Standard terms of sale accepted without edits", "human" if edited else True, "Customer edited the terms" if edited else "Accepted in the portal", "BR-LG-001"),
-            ("State pharmacy license active", True if lic.get("status") == "Active" else "human", lic.get("number", "Not found"), "RG-CS-001")]
-    if wants_cs:
-        rows.append(("DEA active for requested schedules", True if dea.get("status") == "Active" else "human",
-                     f"{dea.get('number', 'Not found')} · controlled ordering {'on' if dea.get('status') == 'Active' else 'off'}", "RG-CS-001"))
-    legal_human = P.gate("BR-LG-001", edited) or P.gate("RG-CS-001", any(r[1] == "human" for r in rows[1:]))
-    stages.append(stage("legal", "Legal", "human" if legal_human else "agent", f"{sum(r[1] is True for r in rows)} of {len(rows)} rules",
-                        "Agreements and licensure checked.", ["BR-LG-001", "RG-CS-001"], [checks(rows, "Rules applied")],
-                        waiting_for="Legal counsel" if legal_human else None))
-
-    # ---- Procurement
-    gpo = v(fields, "gpo")
-    if decision == "successor":
-        pricing, note = "Carried from the site contract", "Contract carried to the new owner"
-    elif gpo:
-        pricing, note = "GPO tier", f"GPO {gpo}"
-    elif "hospital" in ctype.lower() or "health" in ctype.lower():
-        pricing, note = "Group named in the IDN contract", "Hospital or health system"
-    else:
-        pricing, note = "Independent retail", "No contract"
-    stages.append(stage("procurement", "Procurement", "agent", "2 of 2 rules", f"Pricing group {pricing}; partner functions set.", ["BR-PR-001", "BR-PF-001"],
-                        [checks([(f"Pricing group: {pricing}", True, note, "BR-PR-001"), ("Sold-to = bill-to = payer; 1 ship-to", True, "Single site", "BR-PF-001")], "Rules applied")]))
-
-    # ---- Credit
+    # ---- shared context for the rules engine: every business-rule policy tests these attributes
     recs = store.records()
     existing = recs.get(link_to) if link_to else None
     vol = v(fields, "expected_monthly_volume")
@@ -312,54 +287,77 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     fsc = (dnb or {}).get("failureScoreClass", 5)
     tier = "A" if fsc <= 2 else ("B" if fsc == 3 else "C")
     if existing:
-        lim = (existing.get("salesAreas") or [{}])[0].get("creditLimit", 0) or 0
-        limit_row = (f"Shares existing limit ${lim:,.0f}", True, "Within agent authority", "BR-CR-001")
-        limit = lim
+        limit = (existing.get("salesAreas") or [{}])[0].get("creditLimit", 0) or 0
     else:
         limit = round(max(volume, 25000) / 5000) * 5000
         if decision == "successor":
-            prior = (recs.get(successor_of) or {}).get("salesAreas", [{}])[0].get("creditLimit", 0)
-            limit = prior or limit
-        limit_row = (f"Proposed limit ${limit:,.0f} within agent authority (${AUTO_LIMIT:,})", True if limit <= AUTO_LIMIT else "human",
-                     "Approved by the agent" if limit <= AUTO_LIMIT else "Above authority; a credit manager approves", "BR-CR-001")
+            limit = (recs.get(successor_of) or {}).get("salesAreas", [{}])[0].get("creditLimit", 0) or limit
+    try:
+        years = datetime.date.today().year - int(str((dnb or {}).get("startDate") or "")[:4])
+    except ValueError:
+        years = None
+    cert, holder = v(fields, "resale_certificate"), v(fields, "resale_certificate_name")
     req_terms = v(fields, "requested_terms")
-    terms = P.param("BR-PT-001", "default_terms", "Net 30")
-    tier_a_terms = P.param("BR-PT-001", "tier_a_terms", "Net 45")
+    edited = (v(fields, "edited_terms") or "no").lower().startswith("y")
+    ctx = {"record_type": "Customer", "customer_type": ctype, "decision": decision, "credit_tier": tier, "failure_class": fsc,
+           "proposed_limit": limit, "years_trading": years, "requested_terms": req_terms,
+           "account_validation": (acct or {}).get("code") or "none", "gpo": v(fields, "gpo"), "has_contract": False, "has_parent_billing": False,
+           "certificate_present": bool(cert), "existing_certificate": bool(existing and not cert),
+           "certificate_holder_match": (not holder) or name_sim(holder, legal) >= P.param("BR-TX-001", "certificate_name_match", 0.9),
+           "edited_terms": edited, "license_status": lic.get("status") or "Not found", "dea_status": dea.get("status") or "Not found", "wants_controlled": wants_cs}
+
+    def apply(pid, label):
+        """Runs one policy through the rules engine; returns (check row, outcome, needs a person, who)."""
+        pol = P.pols.get(pid)
+        r = rules.evaluate(pol, ctx) if pol else {"matched": False, "outcome": {}, "decidedBy": "Data steward", "condition": "Policy not active", "note": ""}
+        person = r["decidedBy"] != "Agent"
+        needs = P.gate(pid, person)
+        shown = ", ".join(f"{k.replace('_', ' ')}: {val}" for k, val in r["outcome"].items()) or "No rule matched; a person decides (AG-001)"
+        note = f"Rule: {r['condition']}" + (f" · {r['note']}" if r.get("note") else "") + (f" · decided by {r['decidedBy']}" if person else "")
+        return (f"{label} → {shown}", "human" if needs else True, note, pid), r["outcome"], needs, r["decidedBy"]
+
+    # ---- Legal
+    row1, lg, lg_h, lg_who = apply("BR-LG-001", "Terms of sale")
+    row2, cs, cs_h, cs_who = apply("RG-CS-001", "Licensure and controlled substances")
+    rows = [row1, row2]
+    legal_human = lg_h or cs_h
+    stages.append(stage("legal", "Legal", "human" if legal_human else "agent", f"{sum(r[1] is True for r in rows)} of {len(rows)} rules",
+                        "Agreements and licensure checked by the rules engine.", ["BR-LG-001", "RG-CS-001"], [checks(rows, "Rules applied")],
+                        waiting_for=(lg_who if lg_h else cs_who) if legal_human else None))
+
+    # ---- Procurement
+    row1, pr, pr_h, pr_who = apply("BR-PR-001", "Pricing group")
+    row2, pf, pf_h, pf_who = apply("BR-PF-001", "Partner functions")
+    pricing = pr.get("pricing_group") or "Not set"
+    proc_human = pr_h or pf_h
+    stages.append(stage("procurement", "Procurement", "human" if proc_human else "agent", f"{sum(r[1] is True for r in (row1, row2))} of 2 rules",
+                        f"Pricing group {pricing}; partner functions set.", ["BR-PR-001", "BR-PF-001"], [checks([row1, row2], "Rules applied")],
+                        waiting_for=(pr_who if pr_h else pf_who) if proc_human else None))
+
+    # ---- Credit
     rows = []
     if decision == "successor":
         rows.append(("Limit reset after ownership change", True, "Prior limit not carried", "MM-007a"))
-    rows.append(limit_row)
-    if req_terms and req_terms.replace(" ", "").lower() not in ("net30", "n30"):
-        ok = tier == "A" and limit <= P.param("BR-PT-001", "tier_a_max_limit", 50000) and req_terms.replace(" ", "").lower() == tier_a_terms.replace(" ", "").lower()
-        rows.append((f"Requested {req_terms}", True if ok else False, f"Credit tier {tier}" + ("" if ok else f"; {terms} applied"), "BR-PT-001"))
-        if ok: terms = tier_a_terms
-    rows.append((f"Payment terms {terms}", True, "Default" if terms != tier_a_terms else "Tier A", "BR-PT-001"))
-    if acct and acct.get("code") == "GREEN":
-        method = "ACH"; rows.append(("Account validation GREEN", True, "Payment method ACH", "BR-PM-001"))
-    elif acct:
-        method = "ACH after steward confirms"; rows.append(("Account validation AMBER", "human", "Steward confirms account holder", "BR-PM-001"))
-    else:
-        method = "Check"; rows.append(("No validated bank account", True, "Payment method check", "BR-PM-001"))
-    credit_human = P.gate("BR-CR-001", limit_row[1] == "human") or P.gate("BR-PM-001", any(r[1] == "human" and r[3] == "BR-PM-001" for r in rows))
-    stages.append(stage("credit", "Credit", "human" if credit_human else "agent", "Credit manager needed" if credit_human else "Within authority",
+    row_l, cl, cl_h, cl_who = apply("BR-CR-001", f"Credit limit ${limit:,.0f}" + (" (shared with the existing account)" if existing else ""))
+    row_t, pt, pt_h, pt_who = apply("BR-PT-001", "Payment terms")
+    row_m, pm, pm_h, pm_who = apply("BR-PM-001", "Payment method")
+    terms = pt.get("terms") or P.param("BR-PT-001", "default_terms", "Net 30")
+    method = pm.get("payment_method") or "Check"
+    rows += [row_l, row_t]
+    if req_terms and str(req_terms).replace(" ", "").lower() != str(terms).replace(" ", "").lower():
+        rows.append((f"Requested {req_terms}", False, f"Credit tier {tier}; {terms} applied", "BR-PT-001"))
+    rows.append(row_m)
+    credit_human = cl_h or pt_h or pm_h
+    who = cl_who if cl_h else pt_who if pt_h else pm_who
+    stages.append(stage("credit", "Credit", "human" if credit_human else "agent", f"{who} needed" if credit_human else "Within authority",
                         f"Limit ${limit:,.0f}, {terms}, {method}.", ["BR-CR-001", "BR-PT-001", "BR-PM-001"], [checks(rows, "Rules applied")],
-                        waiting_for="Credit manager" if credit_human else None))
+                        waiting_for=who if credit_human else None))
 
     # ---- Tax
-    cert = v(fields, "resale_certificate")
-    holder = v(fields, "resale_certificate_name")
-    if existing and not cert:
-        rows = [("Resale certificate on file is valid", True, "From the existing record", "BR-TX-001")]; tax_class = "Exempt for resale"
-    elif not cert:
-        rows = [("Resale certificate present", "human", "Missing; taxable until collected", "BR-TX-001")]; tax_class = "Taxable"
-    elif holder and name_sim(holder, legal) < P.param("BR-TX-001", "certificate_name_match", 0.9):
-        rows = [("Certificate in the customer's own name", False, f"Names {holder}", "BR-TX-001"),
-                ("Collect a new certificate", "human", "Tax specialist", "BR-TX-001")]; tax_class = "Taxable"
-    else:
-        rows = [("Resale certificate present, state matches ship-to, not expired", True, cert, "BR-TX-001")]; tax_class = "Exempt for resale"
-    tax_human = P.gate("BR-TX-001", any(r[1] == "human" for r in rows))
-    stages.append(stage("tax", "Tax", "human" if tax_human else "agent", tax_class, f"Tax class: {tax_class}.", ["BR-TX-001"], [checks(rows, "Rules applied")],
-                        waiting_for="Tax specialist" if tax_human else None))
+    row_x, tx, tax_human, tx_who = apply("BR-TX-001", "Tax class")
+    tax_class = tx.get("tax_class") or "Taxable"
+    stages.append(stage("tax", "Tax", "human" if tax_human else "agent", tax_class, f"Tax class: {tax_class}." + (f" Certificate names {holder}." if holder and not ctx["certificate_holder_match"] else ""),
+                        ["BR-TX-001"], [checks([row_x], "Rules applied")], waiting_for=tx_who if tax_human else None))
 
     # ---- Business ready record
     effects = {}
