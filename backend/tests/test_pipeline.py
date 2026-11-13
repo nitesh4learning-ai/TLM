@@ -215,3 +215,25 @@ def test_xref_survivorship_merge_unmerge():
     c.post("/api/records/BRR-0004417/unmerge", json={"xid": "AS/400 Order Entry:AS4-30771"})   # any write re-runs survivorship
     sv = {s["key"]: s for s in c.get("/api/records/BRR-0004417").json()["xref"]["survivors"]}
     assert sv["legalName"]["reason"].startswith("Most recent")
+
+
+def _actors(r):
+    return {s["key"]: s["actor"] for s in r["stages"]}
+
+
+def test_packages_4_to_8():
+    c.post("/api/reset")
+    r = c.post("/api/scenarios/missing-w9/run").json()
+    assert r["decision"] == "blocked"
+    r = c.post(f"/api/requests/{r['id']}/resubmit", json={"fields": {"w9_provided": "yes"}}).json()
+    assert r["status"] == "Complete" and r["touchless"]
+    r = c.post("/api/scenarios/expired-license/run").json()
+    assert _actors(r)["validate"] == "human" and _actors(r)["legal"] == "human" and _actors(r)["credit"] == "agent"
+    r = c.post("/api/scenarios/health-system-clinic/run").json()
+    proc = next(s for s in r["stages"] if s["key"] == "procurement")
+    assert "parent" in str(proc["sections"]) and next(s for s in r["stages"] if s["key"] == "credit")["waitingFor"] == "Credit manager and BU finance director"
+    r = c.post("/api/scenarios/near-duplicate/run").json()
+    assert r["decision"] == "review" and _actors(r)["match"] == "human"
+    r = c.post("/api/scenarios/new-business/run").json()
+    a = _actors(r)
+    assert a["validate"] == a["credit"] == a["tax"] == "human" and "Prepay" in next(s for s in r["stages"] if s["key"] == "credit")["summary"]

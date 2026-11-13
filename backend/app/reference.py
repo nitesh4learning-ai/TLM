@@ -21,6 +21,13 @@ def load_policies():
 SAP = load("sources/sap/customers.json")["records"]
 LEGACY = load("sources/legacy/customers.json")["records"]
 HIERARCHY = load("hierarchy/brazos-health-system.json")
+HIERARCHY.setdefault("key", "brazos")
+HIERARCHY.setdefault("name", HIERARCHY["nodes"][0]["name"])
+FAMILIES = {"brazos": HIERARCHY}
+for _f in sorted(os.listdir(os.path.join(DATA, "hierarchy"))):
+    if _f.endswith(".json") and _f != "brazos-health-system.json":
+        _h = load("hierarchy/" + _f)
+        FAMILIES[_h["key"]] = _h
 LEXIS = {r["entity"].lower(): r for r in load("lexisnexis/business-checks.json")["records"]}
 AVS_ACCT = {r["entity"].lower(): r for r in load("avs/account-validation.json")["records"]}
 AVS_ADDR = load("avs/address-validation.json")["records"]
@@ -38,10 +45,13 @@ DNB_EXTRA = {
                            "employees": 64, "failureScoreClass": 2, "confidenceCode": 9, "ownershipChangeDate": "2026-09-02",
                            "priorOwner": "Westbrook Infusion Center LLC"},
 }
-for node in HIERARCHY["nodes"]:
+if os.path.exists(os.path.join(DATA, "dnb", "scenario-companies.json")):
+    for _c in load("dnb/scenario-companies.json")["companies"]:
+        DNB_EXTRA.setdefault(_c["primaryName"].lower(), {k: v for k, v in _c.items() if k != "key"})
+for node in [n for fam in FAMILIES.values() for n in fam["nodes"]]:
     if node.get("duns"):
         DNB_EXTRA.setdefault(node["name"].lower(), {"duns": node["duns"], "primaryName": node["name"], "parent": None,
-                                                    "globalUltimate": HIERARCHY["nodes"][0]["name"], "naics": "622110 · General medical and surgical hospitals",
+                                                    "globalUltimate": next(f for f in FAMILIES.values() if node in f["nodes"])["nodes"][0]["name"], "naics": "622110 · General medical and surgical hospitals",
                                                     "startDate": "1998", "employees": 400, "failureScoreClass": 2, "confidenceCode": 9,
                                                     "ownershipChangeDate": None})
 

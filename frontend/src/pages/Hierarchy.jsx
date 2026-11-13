@@ -147,7 +147,7 @@ function Family({ fid, focus }) {
   ] : [];
   return (
     <>
-      <Title eyebrow={<><a href="#/records">Business ready records</a>{focus && !String(focus).startsWith('N-') ? <> / <a href={'#/records/' + focus}>{focus}</a></> : n && n.recordId ? <> / <a href={'#/records/' + n.recordId}>{n.recordId}</a></> : null} / Hierarchy</>} title={nodes[0] ? nodes[0].name : 'Hierarchy'}
+      <Title eyebrow={<><a href="#/records">Business ready records</a>{focus && String(focus).startsWith('BRR-') ? <> / <a href={'#/records/' + focus}>{focus}</a></> : n && n.recordId ? <> / <a href={'#/records/' + n.recordId}>{n.recordId}</a></> : null} / Hierarchy</>} title={nodes[0] ? nodes[0].name : 'Hierarchy'}
         right={<div className="seg" role="radiogroup" aria-label="View">
           <button type="button" role="radio" aria-checked={view === 'network'} className={view === 'network' ? 'on' : ''} onClick={() => setView('network')}>Network</button>
           <button type="button" role="radio" aria-checked={view === 'tree'} className={view === 'tree' ? 'on' : ''} onClick={() => setView('tree')}>Tree</button>

@@ -1,0 +1,70 @@
+{
+  "source": "D&B Direct+ identity resolution (test data)",
+  "companies": [
+    {
+      "key": "mesquite",
+      "duns": "05-772-1940",
+      "primaryName": "Mesquite Creek Pharmacy, LLC",
+      "parent": null,
+      "globalUltimate": null,
+      "naics": "456110 \u00b7 Pharmacies and drug retailers",
+      "startDate": "2015",
+      "employees": 14,
+      "failureScoreClass": 2,
+      "confidenceCode": 9,
+      "ownershipChangeDate": null
+    },
+    {
+      "key": "pinecrest",
+      "duns": "02-486-3317",
+      "primaryName": "Pinecrest Apothecary, Inc.",
+      "parent": null,
+      "globalUltimate": null,
+      "naics": "456110 \u00b7 Pharmacies and drug retailers",
+      "startDate": "2009",
+      "employees": 11,
+      "failureScoreClass": 3,
+      "confidenceCode": 9,
+      "ownershipChangeDate": null
+    },
+    {
+      "key": "brazos-cancer",
+      "duns": "08-930-5521",
+      "primaryName": "Brazos Cancer Center \u2013 Frisco",
+      "parent": "Brazos Health System \u2013 North Texas",
+      "globalUltimate": "Brazos Health System Holdings, Inc.",
+      "naics": "622310 \u00b7 Specialty hospitals",
+      "startDate": "2018",
+      "employees": 210,
+      "failureScoreClass": 1,
+      "confidenceCode": 10,
+      "ownershipChangeDate": null
+    },
+    {
+      "key": "paloduro",
+      "duns": "04-318-7765",
+      "primaryName": "Palo Duro Drugs LLC",
+      "parent": null,
+      "globalUltimate": null,
+      "naics": "456110 \u00b7 Pharmacies and drug retailers",
+      "startDate": "2004",
+      "employees": 9,
+      "failureScoreClass": 2,
+      "confidenceCode": 8,
+      "ownershipChangeDate": null
+    },
+    {
+      "key": "sunbelt",
+      "duns": "09-114-2208",
+      "primaryName": "Sunbelt Compounding Pharmacy LLC",
+      "parent": null,
+      "globalUltimate": null,
+      "naics": "456110 \u00b7 Pharmacies and drug retailers",
+      "startDate": "2026",
+      "employees": 4,
+      "failureScoreClass": 4,
+      "confidenceCode": 8,
+      "ownershipChangeDate": null
+    }
+  ]
+}

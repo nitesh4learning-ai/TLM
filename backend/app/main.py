@@ -18,7 +18,7 @@ from pydantic import BaseModel  # noqa: E402
 
 from . import emailparse, llm, pipeline, store  # noqa: E402
 from .agents import AGENTS  # noqa: E402
-from .reference import HIERARCHY, load_policies  # noqa: E402
+from .reference import HIERARCHY, FAMILIES, load_policies  # noqa: E402
 from .samples import SCENARIOS, mail_for  # noqa: E402
 
 app = FastAPI(title="TLM · Agentic MDM API", version="1.0")
@@ -213,8 +213,14 @@ def run_from_mail(mail, channel, mode="auto"):
 
 @app.get("/api/scenarios")
 def scenarios():
-    return [{"key": k, "title": s["title"], "party": s["party"], "subject": s["email"]["subject"],
-             "attachments": list(s["attachments"].keys())} for k, s in SCENARIOS.items()]
+    out = []
+    for k, s in SCENARIOS.items():
+        if s.get("package"):
+            m = mail_for(k)
+            out.append({"key": k, "title": s["title"], "party": s["party"], "subject": m["subject"], "attachments": [a["name"] for a in m["attachments"]]})
+        else:
+            out.append({"key": k, "title": s["title"], "party": s["party"], "subject": s["email"]["subject"], "attachments": list(s["attachments"].keys())})
+    return out
 
 
 @app.post("/api/scenarios/{key}/run")
@@ -461,7 +467,7 @@ def queue():
 @app.get("/api/records")
 def list_records():
     recs = store.records().values()
-    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type", "duns", "hierarchyNode", "parent")} | {"sources": len(r.get("xrefs") or r.get("crossReferences") or [])}
+    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type", "duns", "hierarchyNode", "hierarchyFamily", "parent")} | {"sources": len(r.get("xrefs") or r.get("crossReferences") or [])}
             for r in sorted(recs, key=lambda r: (-len(r.get("crossReferences", [])), r["id"]))]
 
 
@@ -536,7 +542,13 @@ def merge(rid: str, body: Merge):
 @app.get("/api/hierarchy")
 def hierarchy():
     recs = {r.get("hierarchyNode"): r["id"] for r in store.records().values() if r.get("hierarchyNode")}
-    return dict(HIERARCHY, nodes=[dict(n, recordId=recs.get(n["id"])) for n in HIERARCHY["nodes"]])
+    return family_view("brazos")
+
+
+def family_view(key):
+    fam = FAMILIES[key]
+    recs = {(r.get("hierarchyFamily") or "brazos", r.get("hierarchyNode")): r["id"] for r in store.records().values() if r.get("hierarchyNode")}
+    return dict(fam, nodes=[dict(n, recordId=recs.get((key, n["id"]))) for n in fam["nodes"]])
 
 
 @app.get("/api/summary")
@@ -624,12 +636,12 @@ def provider_settings(body: ProviderSettings):
 def search_hierarchies(q: str = ""):
     from .reference import name_sim
     qn = q.strip().lower()
-    nodes = HIERARCHY["nodes"]
-    root = nodes[0]
     out = []
-    for n in nodes:
-        if not qn or qn in n["name"].lower() or (n.get("duns") or "").replace("-", "").startswith(qn.replace("-", "")):
-            out.append({"id": n["id"], "name": n["name"], "kind": n["kind"], "family": root["name"], "familyId": "brazos", "city": n.get("city"), "status": n["status"]})
+    for key, fam in FAMILIES.items():
+        root = fam["nodes"][0]
+        for n in fam["nodes"]:
+            if not qn or qn in n["name"].lower() or (n.get("duns") or "").replace("-", "").startswith(qn.replace("-", "")):
+                out.append({"id": n["id"], "name": n["name"], "kind": n["kind"], "family": root["name"], "familyId": key, "city": n.get("city"), "status": n["status"]})
     # standalone customers (no corporate family in the hub)
     for r in store.records().values():
         if r.get("hierarchyNode"):
@@ -638,13 +650,13 @@ def search_hierarchies(q: str = ""):
             out.append({"id": r["id"], "name": r["legalName"], "kind": r.get("type") or "Customer", "family": r.get("parent") or "No corporate family",
                         "familyId": "record:" + r["id"], "city": None, "status": r["status"]})
     out.sort(key=lambda x: (0 if x["name"].lower().startswith(qn) else 1, x["name"]))
-    return out[:50]
+    return out[:80]
 
 
 @app.get("/api/hierarchies/{fid}")
 def get_family(fid: str):
-    if fid == "brazos":
-        return hierarchy()
+    if fid in FAMILIES:
+        return family_view(fid)
     if fid.startswith("record:"):
         r = store.records().get(fid.split(":", 1)[1])
         if not r:

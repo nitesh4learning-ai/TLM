@@ -34,6 +34,246 @@
         "ownerType": "business",
         "note": "Account holder shows prior owner name"
       }
+    },
+    {
+      "entity": "Lone Specialty Pharmacy North",
+      "routing": "111000025",
+      "accountLast4": "4736",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy Central",
+      "routing": "111000614",
+      "accountLast4": "4835",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Lone Clinic Pharmacy South",
+      "routing": "111000614",
+      "accountLast4": "5892",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy South",
+      "routing": "113000023",
+      "accountLast4": "6432",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Galveston",
+      "routing": "111900659",
+      "accountLast4": "4754",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Corpus Christi",
+      "routing": "111000614",
+      "accountLast4": "8073",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Gulf Memory Care Beaumont",
+      "routing": "111900659",
+      "accountLast4": "0091",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Bluebonnet Infusion Center Austin",
+      "routing": "111000025",
+      "accountLast4": "2217",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center Austin",
+      "routing": "111000025",
+      "accountLast4": "2263",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center Waco",
+      "routing": "111900659",
+      "accountLast4": "6578",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Bluebonnet Surgical Center Temple",
+      "routing": "111000614",
+      "accountLast4": "0410",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Pecos Infusion Center Midland",
+      "routing": "111000614",
+      "accountLast4": "6410",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy Midland",
+      "routing": "113000023",
+      "accountLast4": "9856",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy Lubbock",
+      "routing": "113000023",
+      "accountLast4": "2511",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Pecos Regional Hospital Lubbock",
+      "routing": "111000614",
+      "accountLast4": "1851",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Mesquite Creek Pharmacy, LLC",
+      "routing": "111000025",
+      "accountLast4": "4419",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Pinecrest Apothecary, Inc.",
+      "routing": "111000614",
+      "accountLast4": "6630",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Brazos Cancer Center \u2013 Frisco",
+      "routing": "111000025",
+      "accountLast4": "8810",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Palo Duro Drugs LLC",
+      "routing": "111900659",
+      "accountLast4": "2271",
+      "batch": 2,
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Sunbelt Compounding Pharmacy LLC",
+      "routing": "114000093",
+      "accountLast4": "0517",
+      "batch": 2,
+      "result": {
+        "code": "RED",
+        "accountStatus": "closed",
+        "nameMatch": "no match",
+        "ownerType": "business"
+      }
     }
   ]
 }

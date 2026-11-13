@@ -138,6 +138,636 @@
       "taxRef": "125521644",
       "paymentTerms": "N45",
       "notes": null
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80015",
+      "customerName": "Lone Star Pharmacy Group - North",
+      "addressLine": "5015 Mockingbird Ln, Austin TX",
+      "taxRef": "898056747",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80016",
+      "customerName": "Lone Pharmacy North",
+      "addressLine": "7998 Lakeview Dr, San Antonio TX",
+      "taxRef": "809420478",
+      "paymentTerms": "N45",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80017",
+      "customerName": "Lone Compounding Pharmacy Central",
+      "addressLine": "4465 Red River St, Arlington TX",
+      "taxRef": "108570388",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80018",
+      "customerName": "Lone Clinic Pharmacy Central",
+      "addressLine": "2723 Oak Hollow Blvd, Tyler TX",
+      "taxRef": "581237093",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80019",
+      "customerName": "Lone Star Pharmacy Group - South",
+      "addressLine": "2552 Heritage Pkwy, Denton TX",
+      "taxRef": "758986364",
+      "paymentTerms": "N45",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80020",
+      "customerName": "Lone Compounding Pharmacy South",
+      "addressLine": "4569 Westheimer Rd, Waco TX",
+      "taxRef": "438783206",
+      "paymentTerms": "N45",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80021",
+      "customerName": "Lone Star Pharmacy Group - West",
+      "addressLine": "1575 Heritage Pkwy, Denton TX",
+      "taxRef": "814632979",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80022",
+      "customerName": "Lone Pharmacy West",
+      "addressLine": "9321 Mockingbird Ln, Corpus Christi TX",
+      "taxRef": "232013781",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80023",
+      "customerName": "Lone Specialty Pharmacy West",
+      "addressLine": "6474 Trinity Mills Rd, Amarillo TX",
+      "taxRef": "487990000",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80024",
+      "customerName": "Gulf Memory Care Houston",
+      "addressLine": "7059 Oak Hollow Blvd, Houston TX",
+      "taxRef": "331476760",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80025",
+      "customerName": "Gulf Coast Senior Care - Galveston",
+      "addressLine": "4490 Cedar Springs Rd, Corpus Christi TX",
+      "taxRef": "433314594",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80026",
+      "customerName": "Gulf Senior Living Galveston",
+      "addressLine": "9481 Main St, Galveston TX",
+      "taxRef": "287529890",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80027",
+      "customerName": "Gulf Rehab Center Galveston",
+      "addressLine": "2757 Trinity Mills Rd, Galveston TX",
+      "taxRef": "879053266",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80028",
+      "customerName": "Gulf Memory Care Galveston",
+      "addressLine": "5255 Oak Hollow Blvd, Galveston TX",
+      "taxRef": "484627088",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80029",
+      "customerName": "Gulf Skilled Nursing Corpus Christi",
+      "addressLine": "3587 Oak Hollow Blvd, Corpus Christi TX",
+      "taxRef": "448456619",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80030",
+      "customerName": "Gulf Senior Living Corpus Christi",
+      "addressLine": "9296 Bluebonnet Ln, Corpus Christi TX",
+      "taxRef": "527872957",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80031",
+      "customerName": "Gulf Coast Senior Care - Beaumont",
+      "addressLine": "5107 University Blvd, Fort Worth TX",
+      "taxRef": "945507101",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80032",
+      "customerName": "Gulf Rehab Center Beaumont",
+      "addressLine": "5728 Ranch Rd 620, Beaumont TX",
+      "taxRef": "929220915",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80033",
+      "customerName": "Gulf Skilled Nursing Beaumont",
+      "addressLine": "3356 Ranch Rd 620, Beaumont TX",
+      "taxRef": "189538950",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80034",
+      "customerName": "Bluebonnet Surgical Center Austin",
+      "addressLine": "8952 Ranch Rd 620, Austin TX",
+      "taxRef": "929216512",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80035",
+      "customerName": "Bluebonnet Surgical Center San Antonio",
+      "addressLine": "3557 Heritage Pkwy, San Antonio TX",
+      "taxRef": "928274380",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80036",
+      "customerName": "Bluebonnet Medical Center Waco",
+      "addressLine": "4183 Cedar Springs Rd, Waco TX",
+      "taxRef": "771274296",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80037",
+      "customerName": "Bluebonnet Surgical Center Waco",
+      "addressLine": "4927 Lakeview Dr, Waco TX",
+      "taxRef": "763791061",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80038",
+      "customerName": "Bluebonnet Medical Center Temple",
+      "addressLine": "8545 Main St, Temple TX",
+      "taxRef": "361122521",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80039",
+      "customerName": "Bluebonnet Infusion Center Temple",
+      "addressLine": "1268 Cedar Springs Rd, Temple TX",
+      "taxRef": "554830162",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-80040",
+      "customerName": "Pecos Specialty Clinic El Paso",
+      "addressLine": "3999 Bluebonnet Ln, El Paso TX",
+      "taxRef": "781175918",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80041",
+      "customerName": "Pecos Regional Hospital Odessa",
+      "addressLine": "5362 Trinity Mills Rd, Odessa TX",
+      "taxRef": "922769648",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80042",
+      "customerName": "Pecos Valley Medical - Lubbock",
+      "addressLine": "8255 Medical Pkwy, Tyler TX",
+      "taxRef": "311183992",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-80043",
+      "customerName": "Pecos Outpatient Pharmacy Lubbock",
+      "addressLine": "4143 Legacy Dr, Lubbock TX",
+      "taxRef": "928118664",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90000",
+      "customerName": "Trinity Drug Llc",
+      "addressLine": "7296 Oak Hollow Blvd, Beaumont TX 77701",
+      "taxRef": "217247025",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90003",
+      "customerName": "Rio Grande Compounding Inc",
+      "addressLine": "2548 Cedar Springs Rd, Austin TX 78701",
+      "taxRef": "722523402",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90006",
+      "customerName": "Bluebonnet Family Pharmacy Llc",
+      "addressLine": "8835 Trinity Mills Rd, McKinney TX 75069",
+      "taxRef": "575814721",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90009",
+      "customerName": "Hill Country Medical Pharmacy Llc",
+      "addressLine": "1979 Pecan St, Dallas TX 75201",
+      "taxRef": "196563620",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90012",
+      "customerName": "Caprock Pharmacy Llc",
+      "addressLine": "8057 Lakeview Dr, Houston TX 77002",
+      "taxRef": "876556195",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90015",
+      "customerName": "Frontier Health Mart Llc",
+      "addressLine": "5394 Westheimer Rd, Fort Worth TX 76102",
+      "taxRef": "558337365",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90018",
+      "customerName": "Red River Apothecary Llc",
+      "addressLine": "4586 Alamo Pkwy, Austin TX 78701",
+      "taxRef": "692368350",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90021",
+      "customerName": "Big Thicket Apothecary Llc",
+      "addressLine": "1913 Main St, McKinney TX 75069",
+      "taxRef": "444161071",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90024",
+      "customerName": "Llano Pharmacy Inc",
+      "addressLine": "6306 Red River St, San Antonio TX 78205",
+      "taxRef": "967160735",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90027",
+      "customerName": "Llano Apothecary Llc",
+      "addressLine": "4366 Heritage Pkwy, Midland TX 79701",
+      "taxRef": "335384323",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90030",
+      "customerName": "Llano Compounding Llc",
+      "addressLine": "3603 Heritage Pkwy, Beaumont TX 77701",
+      "taxRef": "852466360",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90033",
+      "customerName": "Red River Medical Pharmacy Llc",
+      "addressLine": "6167 Oak Hollow Blvd, Midland TX 79701",
+      "taxRef": "694278311",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90036",
+      "customerName": "Llano Family Pharmacy Inc",
+      "addressLine": "7875 Trinity Mills Rd, El Paso TX 79901",
+      "taxRef": "754468772",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90039",
+      "customerName": "Rio Grande Discount Drug Inc",
+      "addressLine": "3003 Red River St, Waco TX 76701",
+      "taxRef": "896693367",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90042",
+      "customerName": "Trinity Family Pharmacy Llc",
+      "addressLine": "3467 Mockingbird Ln, Fort Worth TX 76102",
+      "taxRef": "596481046",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90045",
+      "customerName": "Trinity Health Mart Llc",
+      "addressLine": "4504 Trinity Mills Rd, San Antonio TX 78205",
+      "taxRef": "526223586",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90048",
+      "customerName": "Caddo Drug Inc",
+      "addressLine": "957 Pecan St, Beaumont TX 77701",
+      "taxRef": "629565106",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90051",
+      "customerName": "Rio Grande Medical Pharmacy Llc",
+      "addressLine": "4930 Lakeview Dr, Waco TX 76701",
+      "taxRef": "268063963",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90054",
+      "customerName": "Sabine Discount Drug Llc",
+      "addressLine": "8699 Ranch Rd 620, McKinney TX 75069",
+      "taxRef": "553586032",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90057",
+      "customerName": "Frontier Compounding Inc",
+      "addressLine": "7738 Alamo Pkwy, Midland TX 79701",
+      "taxRef": "678601202",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90060",
+      "customerName": "Brazos Valley Health Mart Inc",
+      "addressLine": "4739 Lakeview Dr, Amarillo TX 79101",
+      "taxRef": "738988116",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90063",
+      "customerName": "Brazos Valley Health Mart Llc",
+      "addressLine": "4395 Heritage Pkwy, Corpus Christi TX 78401",
+      "taxRef": "237964153",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90066",
+      "customerName": "Live Oak Discount Drug Inc",
+      "addressLine": "6483 Cedar Springs Rd, Midland TX 79701",
+      "taxRef": "162428178",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90069",
+      "customerName": "Sabine Medical Pharmacy Llc",
+      "addressLine": "836 Mockingbird Ln, El Paso TX 79901",
+      "taxRef": "583697558",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90072",
+      "customerName": "Big Thicket Pharmacy Llc",
+      "addressLine": "9837 Main St, Austin TX 78701",
+      "taxRef": "419974651",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90075",
+      "customerName": "Brazos Valley Medical Pharmacy Inc",
+      "addressLine": "9487 Oak Hollow Blvd, Houston TX 77002",
+      "taxRef": "138582936",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90078",
+      "customerName": "Live Oak Family Pharmacy Llc",
+      "addressLine": "3004 Medical Pkwy, Beaumont TX 77701",
+      "taxRef": "794227932",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90081",
+      "customerName": "Sabine Family Pharmacy Llc",
+      "addressLine": "2287 Main St, Corpus Christi TX 78401",
+      "taxRef": "191214746",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90084",
+      "customerName": "Frontier Family Pharmacy Llc",
+      "addressLine": "360 Main St, Arlington TX 76010",
+      "taxRef": "225408503",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90087",
+      "customerName": "Mesa Family Pharmacy Llc",
+      "addressLine": "2302 Mockingbird Ln, Midland TX 79701",
+      "taxRef": "568481728",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-90090",
+      "customerName": "Mesa Pharmacy Llc",
+      "addressLine": "4145 Bluebonnet Ln, Austin TX 78701",
+      "taxRef": "474110145",
+      "paymentTerms": "N30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90093",
+      "customerName": "Caprock Family Pharmacy Llc",
+      "addressLine": "5353 Westheimer Rd, Austin TX 78701",
+      "taxRef": "723349760",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90096",
+      "customerName": "Gulf Breeze Pharmacy Inc",
+      "addressLine": "9792 Legacy Dr, El Paso TX 79901",
+      "taxRef": "386064588",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-90099",
+      "customerName": "Llano Drug Llc",
+      "addressLine": "5197 Main St, Waco TX 76701",
+      "taxRef": "415941094",
+      "paymentTerms": "NET 30",
+      "notes": null,
+      "batch": 2
     }
   ]
 }

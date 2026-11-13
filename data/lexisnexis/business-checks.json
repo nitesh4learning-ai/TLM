@@ -654,6 +654,2751 @@
           ]
         }
       }
+    },
+    {
+      "entity": "Lone Specialty Pharmacy North",
+      "duns": "48-552-7281",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-473960",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL7075369",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Clinic Pharmacy North",
+      "duns": "28-909-7149",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-714169",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL4055768",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy North",
+      "duns": "66-366-9029",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-648632",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL7880936",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Pharmacy North",
+      "duns": "26-376-3417",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-602155",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL7848647",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Specialty Pharmacy Central",
+      "duns": "68-281-2958",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-574921",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL0457172",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy Central",
+      "duns": "59-677-8431",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-673141",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL3627013",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Pharmacy Central",
+      "duns": "99-721-4815",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-333756",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL2059978",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Clinic Pharmacy Central",
+      "duns": "88-655-5064",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-508260",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL8662834",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Clinic Pharmacy South",
+      "duns": "72-623-6849",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-727278",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL9229837",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Specialty Pharmacy South",
+      "duns": "16-071-5528",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-923560",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL0737025",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy South",
+      "duns": "81-539-5136",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-918149",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL1642520",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Pharmacy South",
+      "duns": "69-670-9061",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-576172",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL8841339",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Pharmacy West",
+      "duns": "99-967-1318",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-473558",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL2141620",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Clinic Pharmacy West",
+      "duns": "49-062-2105",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-160095",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL2441068",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Compounding Pharmacy West",
+      "duns": "85-320-0709",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-326110",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL5579909",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lone Specialty Pharmacy West",
+      "duns": "57-824-1800",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-714052",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BL6045416",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Memory Care Houston",
+      "duns": "57-777-6796",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-852108",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG6636320",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Rehab Center Houston",
+      "duns": "47-155-7038",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-139855",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG7645293",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Skilled Nursing Houston",
+      "duns": "73-155-4890",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-310742",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG3826534",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Houston",
+      "duns": "87-924-0884",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-528161",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG3262704",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Galveston",
+      "duns": "62-784-6156",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-674085",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG8828115",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Rehab Center Galveston",
+      "duns": "49-633-4008",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-472934",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG4526301",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Memory Care Galveston",
+      "duns": "32-003-3850",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-261717",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG1805158",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Skilled Nursing Galveston",
+      "duns": "24-414-1131",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-682581",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG6494152",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Memory Care Corpus Christi",
+      "duns": "77-950-6908",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-822637",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG5576523",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Skilled Nursing Corpus Christi",
+      "duns": "69-280-1829",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-252423",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG2645159",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Corpus Christi",
+      "duns": "45-958-2744",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-199621",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG9766087",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Rehab Center Corpus Christi",
+      "duns": "63-655-3452",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-916003",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG0484256",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Memory Care Beaumont",
+      "duns": "93-594-2485",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-585977",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG1838018",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Senior Living Beaumont",
+      "duns": "80-034-9199",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-869917",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG8210469",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Rehab Center Beaumont",
+      "duns": "52-656-8499",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-122831",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG7475406",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Gulf Skilled Nursing Beaumont",
+      "duns": "46-726-6408",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-658127",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BG6439067",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Infusion Center Austin",
+      "duns": "72-251-4483",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-851187",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB3688287",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Outpatient Pharmacy Austin",
+      "duns": "30-400-1269",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-927862",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB8222907",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Surgical Center Austin",
+      "duns": "27-178-4467",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-672596",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB2202264",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center Austin",
+      "duns": "82-846-1221",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-160994",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB7625289",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center San Antonio",
+      "duns": "40-152-4157",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-319342",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB3528669",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Surgical Center San Antonio",
+      "duns": "25-549-5071",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-548682",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB5921235",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Infusion Center San Antonio",
+      "duns": "63-459-1660",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-250986",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB7874577",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Outpatient Pharmacy San Antonio",
+      "duns": "99-928-7348",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-656071",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB5417755",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Outpatient Pharmacy Waco",
+      "duns": "92-321-5667",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-276344",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB8025202",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Infusion Center Waco",
+      "duns": "54-951-3222",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-989649",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB4735734",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center Waco",
+      "duns": "68-857-5503",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-329182",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB1979674",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Surgical Center Waco",
+      "duns": "79-974-3475",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-228101",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB4690598",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Outpatient Pharmacy Temple",
+      "duns": "32-682-4218",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-569128",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB4514205",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Medical Center Temple",
+      "duns": "35-501-8207",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-747754",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB0412142",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Infusion Center Temple",
+      "duns": "83-477-9958",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-512069",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB9837088",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Bluebonnet Surgical Center Temple",
+      "duns": "61-786-1988",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-893061",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BB1792236",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy El Paso",
+      "duns": "83-835-3681",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-473253",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP2061769",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Specialty Clinic El Paso",
+      "duns": "60-632-3403",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-459190",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP4999249",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Regional Hospital El Paso",
+      "duns": "31-359-1469",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-254804",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP8711207",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Infusion Center El Paso",
+      "duns": "61-155-5660",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-503917",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP7911351",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Specialty Clinic Midland",
+      "duns": "37-457-8723",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-730773",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP4635213",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Infusion Center Midland",
+      "duns": "45-387-2885",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-278083",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP7328405",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Regional Hospital Midland",
+      "duns": "92-119-2124",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-760013",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP0985842",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy Midland",
+      "duns": "11-811-8906",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-879188",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP8669535",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy Odessa",
+      "duns": "83-195-3281",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-640989",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP1136173",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Regional Hospital Odessa",
+      "duns": "10-461-6071",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-958125",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP1527615",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Infusion Center Odessa",
+      "duns": "26-725-4681",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-237301",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP5327716",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Specialty Clinic Odessa",
+      "duns": "69-296-3777",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-771397",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP0775102",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Infusion Center Lubbock",
+      "duns": "40-390-9735",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-744813",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP1619949",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Specialty Clinic Lubbock",
+      "duns": "84-560-4209",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-475203",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP4874649",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Outpatient Pharmacy Lubbock",
+      "duns": "36-586-9139",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-584198",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP9551563",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pecos Regional Hospital Lubbock",
+      "duns": "86-423-3996",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-533434",
+          "status": "Active",
+          "expires": "2027-05-31"
+        },
+        "dea": {
+          "number": "BP5056545",
+          "status": "Active",
+          "expires": "2027-05-31",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Mesquite Creek Pharmacy, LLC",
+      "duns": "05-772-1940",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2015-03-01"
+        },
+        "stateLicense": {
+          "number": "TX-PH-512877",
+          "status": "Active",
+          "expires": "2027-06-30"
+        },
+        "dea": {
+          "number": "FM3817542",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Pinecrest Apothecary, Inc.",
+      "duns": "02-486-3317",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2009-03-01"
+        },
+        "stateLicense": {
+          "number": "TX-PH-298140",
+          "status": "Expired",
+          "expires": "2026-09-30"
+        },
+        "dea": {
+          "number": "FP5528193",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Cancer Center \u2013 Frisco",
+      "duns": "08-930-5521",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2018-03-01"
+        },
+        "stateLicense": {
+          "number": "TX-PH-604412",
+          "status": "Active",
+          "expires": "2027-06-30"
+        },
+        "dea": {
+          "number": "BB4417706",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Palo Duro Drugs LLC",
+      "duns": "04-318-7765",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2004-03-01"
+        },
+        "stateLicense": {
+          "number": "TX-PH-177450",
+          "status": "Active",
+          "expires": "2027-06-30"
+        },
+        "dea": {
+          "number": "FP7712384",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Sunbelt Compounding Pharmacy LLC",
+      "duns": "09-114-2208",
+      "batch": 2,
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2026-03-01"
+        },
+        "stateLicense": {
+          "number": "TX-PH-655019",
+          "status": "Active",
+          "expires": "2027-06-30"
+        },
+        "dea": {
+          "number": "FS2209463",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
     }
   ]
 }

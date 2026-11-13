@@ -2,7 +2,7 @@
 import json
 import os
 import threading
-from .reference import SAP, LEGACY, HIERARCHY
+from .reference import SAP, LEGACY, HIERARCHY, FAMILIES
 
 STORE_DIR = os.environ.get("TLM_STORE_DIR", os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "store")))
 _lock = threading.Lock()
@@ -68,21 +68,37 @@ def seed_records():
              "parent": None, "salesAreas": [{"area": "Pharma · US01", "paymentTerms": "Net 30", "creditLimit": 50000}], "winners": {},
              "crossReferences": [xref_sap(_sap("0000042871"))], "history": []}
     recs = {r["id"]: r for r in (cedar, west, lake2)}
-    for i, n in enumerate(HIERARCHY["nodes"]):
+    by_name = {}
+    for r in SAP:
+        by_name.setdefault(r["NAME1"], r)
+    leg_by_name = {}
+    for r in LEGACY:
+        leg_by_name.setdefault(r["customerName"].upper(), r)
+    for fi, (fkey, fam) in enumerate(FAMILIES.items()):
+      for i, n in enumerate(fam["nodes"]):
         if n["level"] in (1, 2):
-            rid = f"BRR-{3000 + i:07d}"
+            rid = f"BRR-{3000 + fi * 1000 + i:07d}"
             recs[rid] = {"id": rid, "status": n["status"] if n["status"] != "Proposed" else "Proposed", "legalName": n["name"], "dba": None,
                          "duns": n["duns"], "address": n.get("address") or f"{n['city']}, {n['state']}", "taxId": n.get("tax_id"),
-                         "type": n["kind"], "parent": n["parent"], "hierarchyNode": n["id"], "salesAreas": [], "winners": {},
-                         "crossReferences": [], "history": []}
+                         "type": n["kind"], "parent": n["parent"], "hierarchyNode": n["id"], "hierarchyFamily": fkey, "salesAreas": [], "winners": {},
+                         "crossReferences": [xref_sap(x) for x in [by_name.get(n["name"].upper().replace("–", "-"))] if x] +
+                                            [xref_leg(x) for x in [leg_by_name.get(n["name"].replace("–", "-").upper())] if x], "history": []}
     return recs
 
 
 def records():
     recs = read("records", None)
+    if recs is not None and read("meta", {}).get("seed") != 2:
+        # data was expanded: add records for the new corporate families without touching existing ones
+        for k, r in seed_records().items():
+            if k not in recs:
+                recs[k] = r
+        write("meta", {"seed": 2})
+        write("records", recs)
     if recs is None or any(r.get("xrefs") is None for r in recs.values()):
         from . import policystore, xref
         recs = recs or seed_records()
+        write("meta", {"seed": 2})
         sv = policystore.all_policies().get("SV-001")
         for r in recs.values():
             if r.get("xrefs") is None:

@@ -34,7 +34,7 @@ FIELDS = [
     ("expected_monthly_volume", "Requested.Volume"), ("controlled_substances", "Requested.ControlledSchedules"),
     ("resale_certificate", "Tax.ResaleCertificate"), ("resale_certificate_name", "Tax.ResaleCertificateHolder"),
     ("bank_routing", "Bank.Routing"), ("bank_account_last4", "Bank.Account"), ("gpo", "Customer.GPO"),
-    ("edited_terms", "Legal.EditedTerms"), ("w9_provided", "Tax.W9Received"),
+    ("edited_terms", "Legal.EditedTerms"), ("w9_provided", "Tax.W9Received"), ("parent_billing", "Partner.BillToParent"),
 ]
 
 INTAKE_SYSTEM = """You are the Intake agent in a customer master data management platform for a pharmaceutical distributor.
@@ -43,7 +43,7 @@ Return ONLY a JSON object: {"fields": {"<field>": {"value": <string or null>, "c
 Use exactly these field names: """ + ", ".join(f for f, _ in FIELDS) + """.
 Rules: request_type is one of "New customer", "Add sales area", "Change". sales_area is like "Pharma · US01" or "Specialty · US02".
 customer_type is like "Independent retail pharmacy", "Hospital", "Infusion center". expected_monthly_volume is a number in USD (no symbols).
-controlled_substances is "yes" or "no". w9_provided is "yes" only if a signed IRS Form W-9 is attached or its contents are given. edited_terms is "yes" only if the customer changed the standard terms of sale.
+controlled_substances is "yes" or "no". parent_billing is "yes" only if a parent organization says it will be the bill-to or payer. w9_provided is "yes" only if a signed IRS Form W-9 is attached or its contents are given. edited_terms is "yes" only if the customer changed the standard terms of sale.
 Use null for anything not stated. Confidence reflects how clearly the value is stated. Never invent values."""
 
 

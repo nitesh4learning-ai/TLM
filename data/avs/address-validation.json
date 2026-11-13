@@ -24,6 +24,186 @@
       "deliverable": true,
       "poBox": false,
       "rdi": "Commercial"
+    },
+    {
+      "input": "1422 Bluebonnet Ln, Dallas, TX 75201",
+      "standardized": "1422 BLUEBONNET LN DALLAS TX 75201",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "4465 Red River St, Arlington, TX 76010",
+      "standardized": "4465 RED RIVER ST ARLINGTON TX 76010",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "2088 Red River St, McKinney, TX 75069",
+      "standardized": "2088 RED RIVER ST MCKINNEY TX 75069",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "4569 Westheimer Rd, Waco, TX 76701",
+      "standardized": "4569 WESTHEIMER RD WACO TX 76701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "9481 Main St, Galveston, TX 77550",
+      "standardized": "9481 MAIN ST GALVESTON TX 77550",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "9296 Bluebonnet Ln, Corpus Christi, TX 78401",
+      "standardized": "9296 BLUEBONNET LN CORPUS CHRISTI TX 78401",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "8536 Mockingbird Ln, Beaumont, TX 77701",
+      "standardized": "8536 MOCKINGBIRD LN BEAUMONT TX 77701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "3619 Legacy Dr, Austin, TX 78701",
+      "standardized": "3619 LEGACY DR AUSTIN TX 78701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "8530 Ranch Rd 620, Austin, TX 78701",
+      "standardized": "8530 RANCH RD 620 AUSTIN TX 78701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "4183 Cedar Springs Rd, Waco, TX 76701",
+      "standardized": "4183 CEDAR SPRINGS RD WACO TX 76701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "347 Westheimer Rd, Temple, TX 76501",
+      "standardized": "347 WESTHEIMER RD TEMPLE TX 76501",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "8995 University Blvd, Midland, TX 79701",
+      "standardized": "8995 UNIVERSITY BLVD MIDLAND TX 79701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "8713 Lakeview Dr, Midland, TX 79701",
+      "standardized": "8713 LAKEVIEW DR MIDLAND TX 79701",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "4143 Legacy Dr, Lubbock, TX 79401",
+      "standardized": "4143 LEGACY DR LUBBOCK TX 79401",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "7520 Pecan St, Lubbock, TX 79401",
+      "standardized": "7520 PECAN ST LUBBOCK TX 79401",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "2215 S 14th St, Abilene, TX 79605",
+      "standardized": "2215 S 14TH ST, ABILENE TX 79605-7257",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "708 Judson Rd, Longview, TX 75601",
+      "standardized": "708 JUDSON RD, LONGVIEW TX 75601-5682",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "5601 Warren Pkwy, Frisco, TX 75034",
+      "standardized": "5601 WARREN PKWY, FRISCO TX 75034-2628",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "880 Canyon Rd, Amarillo, TX 79101",
+      "standardized": "880 CANYON RD, AMARILLO TX 79101-6960",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "1902 Saunders St, Laredo, TX 78041",
+      "standardized": "1902 SAUNDERS ST, LAREDO TX 78041-3078",
+      "batch": 2,
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
     }
   ]
 }

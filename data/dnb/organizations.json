@@ -1008,6 +1008,4794 @@
       "matchQualityInformation": {
         "confidenceCode": 9
       }
+    },
+    {
+      "organization": {
+        "duns": "259880005",
+        "primaryName": "Lone Star Pharmacy Group Holdings, LLC",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2009",
+        "numberOfEmployees": [
+          {
+            "value": 2246,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "259880005",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "399687459",
+        "primaryName": "Lone Star Pharmacy Group \u2013 North",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1996",
+        "numberOfEmployees": [
+          {
+            "value": 1783,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "399687459",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "485527281",
+        "primaryName": "Lone Specialty Pharmacy North",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1422 Bluebonnet Ln"
+          }
+        },
+        "startDate": "1986",
+        "numberOfEmployees": [
+          {
+            "value": 218,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "485527281",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "289097149",
+        "primaryName": "Lone Clinic Pharmacy North",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4812 Alamo Pkwy"
+          }
+        },
+        "startDate": "1989",
+        "numberOfEmployees": [
+          {
+            "value": 492,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "289097149",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "663669029",
+        "primaryName": "Lone Compounding Pharmacy North",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8695 Mockingbird Ln"
+          }
+        },
+        "startDate": "1999",
+        "numberOfEmployees": [
+          {
+            "value": 165,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "663669029",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "263763417",
+        "primaryName": "Lone Pharmacy North",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "San Antonio"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7998 Lakeview Dr"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 2295,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "263763417",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "112451230",
+        "primaryName": "Lone Star Pharmacy Group \u2013 Central",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Amarillo"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2000",
+        "numberOfEmployees": [
+          {
+            "value": 2947,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "112451230",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "682812958",
+        "primaryName": "Lone Specialty Pharmacy Central",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Midland"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7745 Red River St"
+          }
+        },
+        "startDate": "1984",
+        "numberOfEmployees": [
+          {
+            "value": 3228,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "682812958",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "596778431",
+        "primaryName": "Lone Compounding Pharmacy Central",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Arlington"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4465 Red River St"
+          }
+        },
+        "startDate": "1992",
+        "numberOfEmployees": [
+          {
+            "value": 3047,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "596778431",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "997214815",
+        "primaryName": "Lone Pharmacy Central",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "831 Mockingbird Ln"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 1616,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "997214815",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "886555064",
+        "primaryName": "Lone Clinic Pharmacy Central",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2723 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "1987",
+        "numberOfEmployees": [
+          {
+            "value": 1408,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "886555064",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "134615070",
+        "primaryName": "Lone Star Pharmacy Group \u2013 South",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Denton"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2010",
+        "numberOfEmployees": [
+          {
+            "value": 1439,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "134615070",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "726236849",
+        "primaryName": "Lone Clinic Pharmacy South",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "McKinney"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2088 Red River St"
+          }
+        },
+        "startDate": "2016",
+        "numberOfEmployees": [
+          {
+            "value": 1943,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "726236849",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "160715528",
+        "primaryName": "Lone Specialty Pharmacy South",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Fort Worth"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3302 Cedar Springs Rd"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 569,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "160715528",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "815395136",
+        "primaryName": "Lone Compounding Pharmacy South",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4569 Westheimer Rd"
+          }
+        },
+        "startDate": "2005",
+        "numberOfEmployees": [
+          {
+            "value": 2616,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "815395136",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "696709061",
+        "primaryName": "Lone Pharmacy South",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "McKinney"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8608 Red River St"
+          }
+        },
+        "startDate": "2001",
+        "numberOfEmployees": [
+          {
+            "value": 309,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "696709061",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "310398535",
+        "primaryName": "Lone Star Pharmacy Group \u2013 West",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Denton"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1978",
+        "numberOfEmployees": [
+          {
+            "value": 293,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "310398535",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "999671318",
+        "primaryName": "Lone Pharmacy West",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9321 Mockingbird Ln"
+          }
+        },
+        "startDate": "1976",
+        "numberOfEmployees": [
+          {
+            "value": 2579,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "999671318",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "490622105",
+        "primaryName": "Lone Clinic Pharmacy West",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Amarillo"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9735 Medical Pkwy"
+          }
+        },
+        "startDate": "1997",
+        "numberOfEmployees": [
+          {
+            "value": 3463,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "490622105",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "853200709",
+        "primaryName": "Lone Compounding Pharmacy West",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2115 Bluebonnet Ln"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 841,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "853200709",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "578241800",
+        "primaryName": "Lone Specialty Pharmacy West",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Amarillo"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "6474 Trinity Mills Rd"
+          }
+        },
+        "startDate": "1976",
+        "numberOfEmployees": [
+          {
+            "value": 1790,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "456110",
+            "description": "Pharmacies and drug retailers",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "259880005",
+            "primaryName": "Lone Star Pharmacy Group Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "578241800",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "lonestar",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "852777360",
+        "primaryName": "Gulf Coast Senior Care Holdings, LLC",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1982",
+        "numberOfEmployees": [
+          {
+            "value": 2938,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "852777360",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "258756690",
+        "primaryName": "Gulf Coast Senior Care \u2013 Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1991",
+        "numberOfEmployees": [
+          {
+            "value": 497,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "258756690",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "577776796",
+        "primaryName": "Gulf Memory Care Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7059 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "2018",
+        "numberOfEmployees": [
+          {
+            "value": 51,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "577776796",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "471557038",
+        "primaryName": "Gulf Rehab Center Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "482 Legacy Dr"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 1250,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "471557038",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "731554890",
+        "primaryName": "Gulf Skilled Nursing Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "286 Lakeview Dr"
+          }
+        },
+        "startDate": "2010",
+        "numberOfEmployees": [
+          {
+            "value": 1786,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "731554890",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "879240884",
+        "primaryName": "Gulf Senior Living Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9091 Red River St"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 2361,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "879240884",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "600355458",
+        "primaryName": "Gulf Coast Senior Care \u2013 Galveston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1996",
+        "numberOfEmployees": [
+          {
+            "value": 2267,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "600355458",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "627846156",
+        "primaryName": "Gulf Senior Living Galveston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Galveston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9481 Main St"
+          }
+        },
+        "startDate": "2014",
+        "numberOfEmployees": [
+          {
+            "value": 1679,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "627846156",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "496334008",
+        "primaryName": "Gulf Rehab Center Galveston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Galveston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2757 Trinity Mills Rd"
+          }
+        },
+        "startDate": "1979",
+        "numberOfEmployees": [
+          {
+            "value": 3131,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "496334008",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "320033850",
+        "primaryName": "Gulf Memory Care Galveston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Galveston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5255 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "1978",
+        "numberOfEmployees": [
+          {
+            "value": 2151,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "320033850",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "244141131",
+        "primaryName": "Gulf Skilled Nursing Galveston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Galveston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5445 Red River St"
+          }
+        },
+        "startDate": "2018",
+        "numberOfEmployees": [
+          {
+            "value": 1175,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "244141131",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "210796021",
+        "primaryName": "Gulf Coast Senior Care \u2013 Corpus Christi",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Denton"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1979",
+        "numberOfEmployees": [
+          {
+            "value": 3155,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "210796021",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "779506908",
+        "primaryName": "Gulf Memory Care Corpus Christi",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5424 Westheimer Rd"
+          }
+        },
+        "startDate": "1980",
+        "numberOfEmployees": [
+          {
+            "value": 2546,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "779506908",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "692801829",
+        "primaryName": "Gulf Skilled Nursing Corpus Christi",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3587 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "1979",
+        "numberOfEmployees": [
+          {
+            "value": 239,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "692801829",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "459582744",
+        "primaryName": "Gulf Senior Living Corpus Christi",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9296 Bluebonnet Ln"
+          }
+        },
+        "startDate": "2012",
+        "numberOfEmployees": [
+          {
+            "value": 458,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "459582744",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "636553452",
+        "primaryName": "Gulf Rehab Center Corpus Christi",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Corpus Christi"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5514 Main St"
+          }
+        },
+        "startDate": "1987",
+        "numberOfEmployees": [
+          {
+            "value": 163,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "636553452",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "395106001",
+        "primaryName": "Gulf Coast Senior Care \u2013 Beaumont",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Fort Worth"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2000",
+        "numberOfEmployees": [
+          {
+            "value": 3511,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "395106001",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "935942485",
+        "primaryName": "Gulf Memory Care Beaumont",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Beaumont"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8536 Mockingbird Ln"
+          }
+        },
+        "startDate": "1976",
+        "numberOfEmployees": [
+          {
+            "value": 1019,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "935942485",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "800349199",
+        "primaryName": "Gulf Senior Living Beaumont",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Beaumont"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1480 Westheimer Rd"
+          }
+        },
+        "startDate": "1994",
+        "numberOfEmployees": [
+          {
+            "value": 697,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "800349199",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "526568499",
+        "primaryName": "Gulf Rehab Center Beaumont",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Beaumont"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5728 Ranch Rd 620"
+          }
+        },
+        "startDate": "1996",
+        "numberOfEmployees": [
+          {
+            "value": 3735,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "526568499",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "467266408",
+        "primaryName": "Gulf Skilled Nursing Beaumont",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Beaumont"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3356 Ranch Rd 620"
+          }
+        },
+        "startDate": "2003",
+        "numberOfEmployees": [
+          {
+            "value": 188,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "623110",
+            "description": "Nursing care facilities",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "852777360",
+            "primaryName": "Gulf Coast Senior Care Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "467266408",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "gulfcoast",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "756639535",
+        "primaryName": "Bluebonnet Health Partners Holdings, LLC",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 2973,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "756639535",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "343149931",
+        "primaryName": "Bluebonnet Health Partners \u2013 Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Denton"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1988",
+        "numberOfEmployees": [
+          {
+            "value": 2450,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "343149931",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "722514483",
+        "primaryName": "Bluebonnet Infusion Center Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3619 Legacy Dr"
+          }
+        },
+        "startDate": "2018",
+        "numberOfEmployees": [
+          {
+            "value": 3541,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "722514483",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "304001269",
+        "primaryName": "Bluebonnet Outpatient Pharmacy Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "6522 Heritage Pkwy"
+          }
+        },
+        "startDate": "1976",
+        "numberOfEmployees": [
+          {
+            "value": 2739,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "304001269",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "271784467",
+        "primaryName": "Bluebonnet Surgical Center Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8952 Ranch Rd 620"
+          }
+        },
+        "startDate": "1995",
+        "numberOfEmployees": [
+          {
+            "value": 246,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "271784467",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "828461221",
+        "primaryName": "Bluebonnet Medical Center Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8530 Ranch Rd 620"
+          }
+        },
+        "startDate": "2008",
+        "numberOfEmployees": [
+          {
+            "value": 615,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "828461221",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "137698822",
+        "primaryName": "Bluebonnet Health Partners \u2013 San Antonio",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "McKinney"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2018",
+        "numberOfEmployees": [
+          {
+            "value": 2805,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "137698822",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "401524157",
+        "primaryName": "Bluebonnet Medical Center San Antonio",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "San Antonio"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2896 Lakeview Dr"
+          }
+        },
+        "startDate": "2008",
+        "numberOfEmployees": [
+          {
+            "value": 3340,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "401524157",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "255495071",
+        "primaryName": "Bluebonnet Surgical Center San Antonio",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "San Antonio"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3557 Heritage Pkwy"
+          }
+        },
+        "startDate": "1983",
+        "numberOfEmployees": [
+          {
+            "value": 2899,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "255495071",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "634591660",
+        "primaryName": "Bluebonnet Infusion Center San Antonio",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "San Antonio"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4804 Ranch Rd 620"
+          }
+        },
+        "startDate": "2008",
+        "numberOfEmployees": [
+          {
+            "value": 931,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "634591660",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "999287348",
+        "primaryName": "Bluebonnet Outpatient Pharmacy San Antonio",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "San Antonio"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "6283 Main St"
+          }
+        },
+        "startDate": "2016",
+        "numberOfEmployees": [
+          {
+            "value": 506,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "999287348",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "208102359",
+        "primaryName": "Bluebonnet Health Partners \u2013 Waco",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Fort Worth"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2009",
+        "numberOfEmployees": [
+          {
+            "value": 238,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "208102359",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "923215667",
+        "primaryName": "Bluebonnet Outpatient Pharmacy Waco",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9520 Alamo Pkwy"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 3655,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "923215667",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "549513222",
+        "primaryName": "Bluebonnet Infusion Center Waco",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8633 Bluebonnet Ln"
+          }
+        },
+        "startDate": "1983",
+        "numberOfEmployees": [
+          {
+            "value": 3764,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "549513222",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "688575503",
+        "primaryName": "Bluebonnet Medical Center Waco",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4183 Cedar Springs Rd"
+          }
+        },
+        "startDate": "2012",
+        "numberOfEmployees": [
+          {
+            "value": 1664,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "688575503",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "799743475",
+        "primaryName": "Bluebonnet Surgical Center Waco",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Waco"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4927 Lakeview Dr"
+          }
+        },
+        "startDate": "1988",
+        "numberOfEmployees": [
+          {
+            "value": 2241,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "799743475",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "644119181",
+        "primaryName": "Bluebonnet Health Partners \u2013 Temple",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Beaumont"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1993",
+        "numberOfEmployees": [
+          {
+            "value": 3195,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "644119181",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "326824218",
+        "primaryName": "Bluebonnet Outpatient Pharmacy Temple",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Temple"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "937 Mockingbird Ln"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 503,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "326824218",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "355018207",
+        "primaryName": "Bluebonnet Medical Center Temple",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Temple"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8545 Main St"
+          }
+        },
+        "startDate": "2005",
+        "numberOfEmployees": [
+          {
+            "value": 312,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "355018207",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "834779958",
+        "primaryName": "Bluebonnet Infusion Center Temple",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Temple"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1268 Cedar Springs Rd"
+          }
+        },
+        "startDate": "2001",
+        "numberOfEmployees": [
+          {
+            "value": 1402,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "834779958",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "617861988",
+        "primaryName": "Bluebonnet Surgical Center Temple",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Temple"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "347 Westheimer Rd"
+          }
+        },
+        "startDate": "1991",
+        "numberOfEmployees": [
+          {
+            "value": 906,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "756639535",
+            "primaryName": "Bluebonnet Health Partners Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "617861988",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "bluebonnet",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "728285911",
+        "primaryName": "Pecos Valley Medical Holdings, LLC",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1985",
+        "numberOfEmployees": [
+          {
+            "value": 460,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "728285911",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "274874099",
+        "primaryName": "Pecos Valley Medical \u2013 El Paso",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Arlington"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1975",
+        "numberOfEmployees": [
+          {
+            "value": 1521,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "274874099",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "838353681",
+        "primaryName": "Pecos Outpatient Pharmacy El Paso",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "El Paso"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "2978 Red River St"
+          }
+        },
+        "startDate": "1988",
+        "numberOfEmployees": [
+          {
+            "value": 1198,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "838353681",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "606323403",
+        "primaryName": "Pecos Specialty Clinic El Paso",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "El Paso"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3999 Bluebonnet Ln"
+          }
+        },
+        "startDate": "2000",
+        "numberOfEmployees": [
+          {
+            "value": 3035,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "606323403",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "313591469",
+        "primaryName": "Pecos Regional Hospital El Paso",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "El Paso"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4075 Red River St"
+          }
+        },
+        "startDate": "1986",
+        "numberOfEmployees": [
+          {
+            "value": 900,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "313591469",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "611555660",
+        "primaryName": "Pecos Infusion Center El Paso",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "El Paso"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4941 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "1993",
+        "numberOfEmployees": [
+          {
+            "value": 2936,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "611555660",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "698540719",
+        "primaryName": "Pecos Valley Medical \u2013 Midland",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Amarillo"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2008",
+        "numberOfEmployees": [
+          {
+            "value": 2832,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "698540719",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "374578723",
+        "primaryName": "Pecos Specialty Clinic Midland",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Midland"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9077 Legacy Dr"
+          }
+        },
+        "startDate": "1979",
+        "numberOfEmployees": [
+          {
+            "value": 2616,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "374578723",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "453872885",
+        "primaryName": "Pecos Infusion Center Midland",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Midland"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8995 University Blvd"
+          }
+        },
+        "startDate": "1992",
+        "numberOfEmployees": [
+          {
+            "value": 3415,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "453872885",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "921192124",
+        "primaryName": "Pecos Regional Hospital Midland",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Midland"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8241 Main St"
+          }
+        },
+        "startDate": "1976",
+        "numberOfEmployees": [
+          {
+            "value": 1180,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "921192124",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "118118906",
+        "primaryName": "Pecos Outpatient Pharmacy Midland",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Midland"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "8713 Lakeview Dr"
+          }
+        },
+        "startDate": "1996",
+        "numberOfEmployees": [
+          {
+            "value": 1764,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "118118906",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "334640997",
+        "primaryName": "Pecos Valley Medical \u2013 Odessa",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "El Paso"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2005",
+        "numberOfEmployees": [
+          {
+            "value": 1918,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "334640997",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "831953281",
+        "primaryName": "Pecos Outpatient Pharmacy Odessa",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Odessa"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "6227 Legacy Dr"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 1264,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "831953281",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "104616071",
+        "primaryName": "Pecos Regional Hospital Odessa",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Odessa"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "5362 Trinity Mills Rd"
+          }
+        },
+        "startDate": "1990",
+        "numberOfEmployees": [
+          {
+            "value": 3371,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "104616071",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "267254681",
+        "primaryName": "Pecos Infusion Center Odessa",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Odessa"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9839 Cedar Springs Rd"
+          }
+        },
+        "startDate": "1980",
+        "numberOfEmployees": [
+          {
+            "value": 1690,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "267254681",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "692963777",
+        "primaryName": "Pecos Specialty Clinic Odessa",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Odessa"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7031 Medical Pkwy"
+          }
+        },
+        "startDate": "1990",
+        "numberOfEmployees": [
+          {
+            "value": 2360,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "692963777",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "246264605",
+        "primaryName": "Pecos Valley Medical \u2013 Lubbock",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "2003",
+        "numberOfEmployees": [
+          {
+            "value": 1693,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "246264605",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "403909735",
+        "primaryName": "Pecos Infusion Center Lubbock",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Lubbock"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7221 Bluebonnet Ln"
+          }
+        },
+        "startDate": "2017",
+        "numberOfEmployees": [
+          {
+            "value": 106,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "403909735",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "845604209",
+        "primaryName": "Pecos Specialty Clinic Lubbock",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Lubbock"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4246 Main St"
+          }
+        },
+        "startDate": "2006",
+        "numberOfEmployees": [
+          {
+            "value": 84,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 1
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "845604209",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "365869139",
+        "primaryName": "Pecos Outpatient Pharmacy Lubbock",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Lubbock"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4143 Legacy Dr"
+          }
+        },
+        "startDate": "1994",
+        "numberOfEmployees": [
+          {
+            "value": 778,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "365869139",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
+    },
+    {
+      "organization": {
+        "duns": "864233996",
+        "primaryName": "Pecos Regional Hospital Lubbock",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Lubbock"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7520 Pecan St"
+          }
+        },
+        "startDate": "1992",
+        "numberOfEmployees": [
+          {
+            "value": 1755,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "industryCodes": [
+          {
+            "code": "622110",
+            "description": "General medical and surgical hospitals",
+            "typeDescription": "NAICS"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "728285911",
+            "primaryName": "Pecos Valley Medical Holdings, LLC"
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "864233996",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      },
+      "family": "pecos",
+      "batch": 2
     }
   ]
 }

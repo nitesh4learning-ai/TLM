@@ -63,6 +63,8 @@ def corpus():
     for r in recs.values():
         for x in r.get("crossReferences", []):
             owner[(x["system"], x["id"])] = r["id"]
+        for x in r.get("xrefs") or []:
+            owner[(x["system"], x["sourceKey"])] = r["id"]
     items = []
     for s in SAP:
         items.append({"system": "SAP S/4HANA", "id": s["KUNNR"], "name": s["NAME1"], "address": f"{s['STRAS']}, {s['ORT01']} {s['PSTLZ']}",
@@ -334,7 +336,8 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     edited = (v(fields, "edited_terms") or "no").lower().startswith("y")
     ctx = {"record_type": "Customer", "customer_type": ctype, "decision": decision, "credit_tier": tier, "failure_class": fsc,
            "proposed_limit": limit, "years_trading": years, "requested_terms": req_terms,
-           "account_validation": (acct or {}).get("code") or "none", "gpo": v(fields, "gpo"), "has_contract": False, "has_parent_billing": False,
+           "account_validation": (acct or {}).get("code") or "none", "gpo": v(fields, "gpo"), "has_contract": False,
+           "has_parent_billing": bool((dnb or {}).get("parent")) and (v(fields, "parent_billing") or "").lower().startswith("y"),
            "certificate_present": bool(cert), "existing_certificate": bool(existing and not cert),
            "certificate_holder_match": (not holder) or name_sim(holder, legal) >= P.param("BR-TX-001", "certificate_name_match", 0.9),
            "edited_terms": edited, "license_status": lic.get("status") or "Not found", "dea_status": dea.get("status") or "Not found", "wants_controlled": wants_cs}

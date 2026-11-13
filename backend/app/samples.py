@@ -103,6 +103,49 @@ Priya Raman, Finance"""},
 
 def mail_for(key):
     s = SCENARIOS[key]
+    if s.get("package"):
+        return _from_package(key)
     m = dict(s["email"])
     m["attachments"] = [{"name": n, "bytes": len(t), "text": t} for n, t in s["attachments"].items()]
     return m
+
+
+# ------------------------------------------------------------------ walkthroughs 4-8 read the test-package emails (with their PDFs)
+import os as _os
+
+_PKG = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), "..", "..", "data", "test-packages"))
+COMMON = {"request_type": F("New customer", 0.97), "sales_area": F("Pharma · US01", 0.93), "controlled_substances": F("yes", 0.95)}
+MORE = {
+    "missing-w9": ("4-missing-w9-mesquite-creek", "Missing W-9", "Mesquite Creek Pharmacy", {
+        "legal_name": F("Mesquite Creek Pharmacy, LLC"), "address": F("2215 S 14th St, Abilene, TX 79605"), "tax_id": F("73-4418205"),
+        "dea": F("FM3817542", 0.99, "DEA_Registration_FM3817542.pdf"), "state_license": F("TX-PH-512877", 0.98), "customer_type": F("Independent retail pharmacy", 0.95),
+        "expected_monthly_volume": F("45000", 0.9), "resale_certificate": F("TX 3 2104 7719 5", 0.95), "resale_certificate_name": F("Mesquite Creek Pharmacy, LLC", 0.95),
+        "bank_routing": F("111000025"), "bank_account_last4": F("4419"), "contact_name": F("Luis Ortega")}),
+    "expired-license": ("5-expired-license-pinecrest", "Expired license", "Pinecrest Apothecary", {
+        "legal_name": F("Pinecrest Apothecary, Inc."), "address": F("708 Judson Rd, Longview, TX 75601"), "tax_id": F("27-5530916", 0.98, "W-9_Pinecrest_Apothecary.pdf"),
+        "dea": F("FP5528193"), "state_license": F("TX-PH-298140"), "customer_type": F("Independent retail pharmacy", 0.95), "expected_monthly_volume": F("30000", 0.92),
+        "resale_certificate": F("TX 1 7520 4418 9", 0.95), "resale_certificate_name": F("Pinecrest Apothecary, Inc.", 0.95), "bank_routing": F("111000614"),
+        "bank_account_last4": F("6630"), "w9_provided": F("yes", 0.99, "W-9_Pinecrest_Apothecary.pdf")}),
+    "health-system-clinic": ("6-health-system-clinic-brazos-cancer-center", "New clinic in a health system", "Brazos Cancer Center – Frisco", {
+        "legal_name": F("Brazos Cancer Center – Frisco"), "address": F("5601 Warren Pkwy, Frisco, TX 75034"), "tax_id": F("81-2290457"), "dea": F("BB4417706"),
+        "state_license": F("TX-PH-604412"), "customer_type": F("Hospital outpatient oncology clinic", 0.95), "expected_monthly_volume": F("300000", 0.93),
+        "parent_billing": F("yes", 0.95), "resale_certificate": F("TX 3 2290 4570 1", 0.95), "resale_certificate_name": F("Brazos Cancer Center – Frisco", 0.95),
+        "w9_provided": F("yes", 0.99), "sales_area": F("Specialty · US02", 0.9)}),
+    "near-duplicate": ("7-near-duplicate-palo-duro", "Near-duplicate", "Palo Duro Drugs", {
+        "legal_name": F("Palo Duro Drugs LLC"), "address": F("880 Canyon Rd, Amarillo, TX 79101"), "tax_id": F("46-1187302"), "dea": F("FP7712384"),
+        "state_license": F("TX-PH-177450"), "customer_type": F("Independent retail pharmacy", 0.95), "expected_monthly_volume": F("35000", 0.92),
+        "resale_certificate": F("TX 3 1187 3020 6", 0.95), "resale_certificate_name": F("Palo Duro Drugs LLC", 0.95), "bank_routing": F("111900659"),
+        "bank_account_last4": F("2271"), "w9_provided": F("yes", 0.99)}),
+    "new-business": ("8-new-business-sunbelt-compounding", "Brand-new business", "Sunbelt Compounding Pharmacy", {
+        "legal_name": F("Sunbelt Compounding Pharmacy LLC"), "address": F("1902 Saunders St, Laredo, TX 78041"), "tax_id": F("92-3305871"), "dea": F("FS2209463"),
+        "state_license": F("TX-PH-655019"), "customer_type": F("Compounding pharmacy", 0.94), "expected_monthly_volume": F("20000", 0.9),
+        "bank_routing": F("114000093"), "bank_account_last4": F("0517"), "w9_provided": F("yes", 0.99)}),
+}
+for _key, (_dir, _title, _party, _fields) in MORE.items():
+    SCENARIOS[_key] = {"title": _title, "party": _party, "package": _dir, "email": None, "attachments": {}, "fallback": {**COMMON, **_fields}}
+
+
+def _from_package(key):
+    from .emailparse import parse_eml
+    with open(_os.path.join(_PKG, SCENARIOS[key]["package"], "email.eml"), "rb") as f:
+        return parse_eml(f.read())

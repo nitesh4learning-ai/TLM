@@ -116,7 +116,7 @@ export default function Records({ arg }) {
           <div className="grow stack">
             <div className="card"><div className="row" style={{ alignItems: 'center', gap: 10 }}><span className="mono muted">{rec.data.id}</span><h2>{rec.data.legalName}</h2>
               <span className={'tag ' + (rec.data.status === 'Active' ? 'ok' : 'human')}>{rec.data.status}</span>
-              <a className="btn dark" style={{ marginLeft: 'auto' }} href={'#/hierarchy/' + (rec.data.hierarchyNode ? 'brazos~' + rec.data.hierarchyNode : encodeURIComponent('record:' + rec.data.id) + '~' + rec.data.id)}>Hierarchy</a></div></div>
+              <a className="btn dark" style={{ marginLeft: 'auto' }} href={'#/hierarchy/' + (rec.data.hierarchyNode ? (rec.data.hierarchyFamily || 'brazos') + '~' + rec.data.hierarchyNode : encodeURIComponent('record:' + rec.data.id) + '~' + rec.data.id)}>Hierarchy</a></div></div>
             <Sections sections={build(rec.data).filter((x) => !['Cross-references', 'Winning values', 'Full comparison'].includes(x.title))} resetKey={rec.data.id} />
             <Xref rec={rec.data} onChange={(nid) => { rec.reload(); list.reload(); }} />
           </div>
