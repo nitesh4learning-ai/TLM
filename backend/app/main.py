@@ -8,7 +8,8 @@ import uuid
 
 from dotenv import load_dotenv
 
-load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+if not os.environ.get("TLM_TESTING"):  # tests never read your .env or call Claude
+    load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 from fastapi import FastAPI, File, HTTPException, UploadFile, Form  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402

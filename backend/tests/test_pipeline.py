@@ -2,6 +2,7 @@ import os
 import tempfile
 
 os.environ["TLM_STORE_DIR"] = tempfile.mkdtemp()
+os.environ["TLM_TESTING"] = "1"
 os.environ.pop("ANTHROPIC_API_KEY", None)
 os.environ["TLM_SECRETS_FILE"] = os.path.join(os.environ["TLM_STORE_DIR"], "secrets.json")
 
