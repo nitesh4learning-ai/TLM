@@ -26,7 +26,7 @@ export default function Intake() {
 
   return (
     <>
-      <Title eyebrow="Work" title="Intake">
+      <Title eyebrow="Master data intake" title="Intake">
         Upload an email with its whole thread and attachments, paste a request, or run one of the walkthrough requests. The Intake agent reads everything and hands the key values to the other agents.
       </Title>
       <section className="card" aria-label="How to run">

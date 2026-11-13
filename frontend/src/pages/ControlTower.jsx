@@ -11,7 +11,7 @@ export default function ControlTower() {
   return (
     <>
       <Title eyebrow="Overview" title="Control tower" right={<div className="row" style={{ gap: 8 }}><button type="button" className="btn" onClick={clearRuns}>Clear test runs</button><button type="button" className="btn" onClick={reset}>Reset everything</button></div>}>
-        Four applications share this platform: Work for people, the Agent console for agents, the Policy studio for governance, and Records for the hub. Start a request in Work › Intake.
+        Requests come in through Master data intake, AI agents work them under the Master data policies, and the outcome is a Business ready record. Start a request in Master data intake.
       </Title>
       <Err error={s.error} />
       <div className="kpis">

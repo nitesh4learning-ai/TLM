@@ -354,7 +354,7 @@ def queue():
 @app.get("/api/records")
 def list_records():
     recs = store.records().values()
-    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type")} | {"sources": len(r.get("crossReferences", []))}
+    return [{k: r.get(k) for k in ("id", "legalName", "status", "address", "type", "duns", "hierarchyNode", "parent")} | {"sources": len(r.get("crossReferences", []))}
             for r in sorted(recs, key=lambda r: (-len(r.get("crossReferences", [])), r["id"]))]
 
 

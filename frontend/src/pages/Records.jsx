@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { api, go } from '../api.js';
 import { Title, Sections, useLoad, Err } from '../components.jsx';
 
@@ -55,18 +55,25 @@ function build(rec) {
 
 export default function Records({ arg }) {
   const list = useLoad(() => api.get('/records'), []);
+  const [q, setQ] = useState('');
+  const shown = (list.data || []).filter((r) => !q || `${r.id} ${r.legalName} ${r.address || ''} ${r.duns || ''} ${r.type || ''}`.toLowerCase().includes(q.toLowerCase()));
   const id = arg || (list.data && list.data[0] && list.data[0].id);
   const rec = useLoad(() => (id ? api.get('/records/' + id) : Promise.resolve(null)), [id]);
   return (
     <>
-      <Title eyebrow="Records · read-only" title="Business ready records">
-        Key details first. Use … to open the source records behind each record, the value that won for each attribute and the policy that decided it.
+      <Title eyebrow="Business ready record · read-only" title="Business ready records">
+        Search a record, open it, and use Hierarchy to see its corporate family. Key details first. Use … to open the source records behind each record, the value that won for each attribute and the policy that decided it.
       </Title>
       <Err error={list.error || rec.error} />
       <div className="row">
         <div className="side" style={{ maxWidth: 320 }}>
-          <div className="stack" style={{ maxHeight: 1100, overflowY: 'auto' }}>
-            {(list.data || []).map((r) => (
+          <div className="stack" style={{ gap: 8 }}>
+            <label className="lbl" htmlFor="rq">Search records</label>
+            <input id="rq" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, ID, DUNS, address or type" />
+            <span className="small muted">{shown.length} of {(list.data || []).length} records</span>
+          </div>
+          <div className="stack" style={{ maxHeight: 1100, overflowY: 'auto', marginTop: 10 }}>
+            {shown.map((r) => (
               <button type="button" key={r.id} className={'list-item' + (r.id === id ? ' on' : '')} onClick={() => go('records/' + r.id)}>
                 <span className="mono muted">{r.id}</span><strong>{r.legalName}</strong><span className="small muted">{r.status} · {r.sources} source{r.sources === 1 ? '' : 's'}</span>
               </button>
@@ -76,7 +83,8 @@ export default function Records({ arg }) {
         {rec.data && (
           <div className="grow stack">
             <div className="card"><div className="row" style={{ alignItems: 'center', gap: 10 }}><span className="mono muted">{rec.data.id}</span><h2>{rec.data.legalName}</h2>
-              <span className={'tag ' + (rec.data.status === 'Active' ? 'ok' : 'human')}>{rec.data.status}</span></div></div>
+              <span className={'tag ' + (rec.data.status === 'Active' ? 'ok' : 'human')}>{rec.data.status}</span>
+              <a className="btn dark" style={{ marginLeft: 'auto' }} href={'#/hierarchy/' + (rec.data.hierarchyNode ? 'brazos~' + rec.data.hierarchyNode : encodeURIComponent('record:' + rec.data.id) + '~' + rec.data.id)}>Hierarchy</a></div></div>
             <Sections sections={build(rec.data)} resetKey={rec.data.id} />
           </div>
         )}

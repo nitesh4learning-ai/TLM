@@ -102,11 +102,16 @@ export default function Policies() {
     try { const p = await api.upload('/policies/upload', [f], 'file'); clearPolicyCache(); d.reload(); setSel(p.id); setFolder('all'); setEditing(true); setMsg({ ok: true, t: `Drafted ${p.id} "${p.title}" from ${f.name}. Review it, then save to publish.` }); }
     catch (err) { setMsg({ ok: false, t: err.message }); } finally { setBusy(false); e.target.value = ''; }
   };
+  const setLevel = async (p, l) => {
+    if (p.level === l) return;
+    const saved = await api.put('/policies/' + p.id, { level: l }); clearPolicyCache(); d.reload();
+    setMsg({ ok: true, t: `${saved.id} is now autonomy ${l} (version ${saved.version}).` });
+  };
   const create = async () => { const p = await api.post('/policies', { title: 'New policy', appliesTo: ['Orchestrator'] }); clearPolicyCache(); d.reload(); setSel(p.id); setFolder('all'); setEditing(true); };
 
   return (
     <>
-      <Title eyebrow="Policy studio" title="Policies" right={<div className="row" style={{ gap: 8 }}>
+      <Title eyebrow="Master data policies" title="Policies" right={<div className="row" style={{ gap: 8 }}>
         <label className="btn" style={{ position: 'relative' }}>{busy ? 'Drafting…' : 'Upload policy document'}<input type="file" accept=".pdf,.docx,.md,.txt" onChange={upload} style={{ position: 'absolute', opacity: 0, width: 1, height: 1 }} /></label>
         <button type="button" className="btn dark" onClick={create}>New policy</button></div>}>
         Edit any policy and assign it to the agents that should read it, or to all agents. Saving publishes a new version straight away; the next request uses it, and every decision records the version it used.
@@ -163,8 +168,10 @@ export default function Policies() {
       </div>
       <section className="card">
         <h2>Autonomy matrix</h2>
+        <p className="small muted">Click a cell to change who decides for that policy. Each change publishes a new version; agents use it from the next request.</p>
         <div className="scroll"><table><thead><tr><th>Policy</th><th>Applies to</th><th style={{ textAlign: 'center' }}>A · Agent decides</th><th style={{ textAlign: 'center' }}>B · Person approves above limit</th><th style={{ textAlign: 'center' }}>H · Person decides</th></tr></thead>
-          <tbody>{pols.filter((p) => p.status === 'Active').map((p) => <tr key={p.id}><td><PolicyChip id={p.id} /> {p.title}</td><td className="small">{(p.appliesTo || []).join(', ')}</td>{['A', 'B', 'H'].map((l) => <td key={l} style={{ textAlign: 'center' }}>{p.level === l ? '●' : ''}</td>)}</tr>)}</tbody></table></div>
+          <tbody>{pols.filter((p) => p.status === 'Active').map((p) => <tr key={p.id}><td><PolicyChip id={p.id} /> {p.title}</td><td className="small">{(p.appliesTo || []).join(', ')}</td>{['A', 'B', 'H'].map((l) => <td key={l} style={{ textAlign: 'center', padding: 4 }}>
+            <button type="button" className={'mcell' + (p.level === l ? ' on ' + l : '')} aria-pressed={p.level === l} aria-label={`${p.id}: set autonomy ${l}`} onClick={() => setLevel(p, l)}>{p.level === l ? '●' : ''}</button></td>)}</tr>)}</tbody></table></div>
       </section>
     </>
   );

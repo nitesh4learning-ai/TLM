@@ -96,7 +96,7 @@ function Search() {
   const res = useLoad(() => api.get('/hierarchies/search?q=' + encodeURIComponent(q)), [q]);
   return (
     <>
-      <Title eyebrow="Records / Hierarchies" title="Hierarchies">Search a company, a brand or a DUNS number, then open its corporate family as a network or a tree.</Title>
+      <Title eyebrow="Business ready record" title="Hierarchy search">Search a company, a brand or a DUNS number, then open its corporate family as a network or a tree.</Title>
       <section className="card">
         <label className="lbl" htmlFor="hq">Search</label>
         <input id="hq" type="search" autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. bra, Brazos, Cedar Park, 61-203" style={{ height: 52, fontSize: 16 }} />
@@ -147,7 +147,7 @@ function Family({ fid, focus }) {
   ] : [];
   return (
     <>
-      <Title eyebrow={<><a href="#/hierarchy">Hierarchies</a> / {nodes[0] ? nodes[0].name : ''}</>} title={nodes[0] ? nodes[0].name : 'Hierarchy'}
+      <Title eyebrow={<><a href="#/records">Business ready records</a>{focus && !String(focus).startsWith('N-') ? <> / <a href={'#/records/' + focus}>{focus}</a></> : n && n.recordId ? <> / <a href={'#/records/' + n.recordId}>{n.recordId}</a></> : null} / Hierarchy</>} title={nodes[0] ? nodes[0].name : 'Hierarchy'}
         right={<div className="seg" role="radiogroup" aria-label="View">
           <button type="button" role="radio" aria-checked={view === 'network'} className={view === 'network' ? 'on' : ''} onClick={() => setView('network')}>Network</button>
           <button type="button" role="radio" aria-checked={view === 'tree'} className={view === 'tree' ? 'on' : ''} onClick={() => setView('tree')}>Tree</button>
@@ -157,7 +157,7 @@ function Family({ fid, focus }) {
       <Err error={h.error} />
       <div className="row small" style={{ alignItems: 'center' }}>
         <span className="pill"><strong>{s.legalEntities}</strong> legal entities</span><span className="pill"><strong>{s.shipToAccounts}</strong> ship-to accounts</span><span className="pill"><strong>{s.nodes}</strong> nodes</span>
-        <a className="btn" href="#/hierarchy">← New search</a>
+        <a className="btn" href="#/records">← Back to records</a>
       </div>
       <div className="legend">{Object.entries(KIND_COLOR).map(([k, c]) => <span key={k}><i style={{ background: c }} />{k}</span>)}<span><i style={{ background: '#FFF1DE', border: '1px dashed #D97706' }} />Proposed</span></div>
       <div className="row">

@@ -214,3 +214,19 @@ pre.code { margin: 0; padding: 12px; border-radius: 10px; background: #0F1720; c
 .agentpick { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; border-radius: 9px; border: 1px solid var(--line2); font-size: 13px; cursor: pointer; background: #fff; }
 .agentpick.on { border-color: var(--blue); background: #F5F8FF; color: var(--blue); font-weight: 600; }
 .agentpick input { width: 16px; height: 16px; }
+
+.appbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.appsep { color: #9AA4B2; font-size: 16px; padding: 0 2px; min-width: 1px; }
+.appsep:empty { width: 1px; height: 26px; background: #E2E6EC; }
+.appsw { height: 42px; font-size: 14px; }
+.appedge { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border-radius: 9px; text-decoration: none; color: #4B5563; font-size: 13px; font-weight: 600; border: 1px solid transparent; }
+.appedge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
+.appedge.on { border-color: var(--line2); background: #fff; color: var(--ink); }
+.appedge.outcome { border: 1px dashed #8FC9B8; color: #0E5A49; background: #F2FAF7; }
+.appedge.outcome.on { border-style: solid; border-color: #0E7C66; background: #E6F5F0; }
+
+.mcell { width: 100%; min-width: 60px; height: 40px; border-radius: 9px; border: 1px dashed #CDD3DC; background: #fff; font-size: 16px; cursor: pointer; }
+.mcell:hover { border-style: solid; border-color: #9DB3EE; background: #F5F8FF; }
+.mcell.on.A { background: #EAF0FE; color: #1D47B8; border: 1px solid #9DB3EE; }
+.mcell.on.B { background: #F1ECFB; color: #5B2DA8; border: 1px solid #C9B6EE; }
+.mcell.on.H { background: #FFF1DE; color: #7A3B00; border: 1px solid #F2B872; }
