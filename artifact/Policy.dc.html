@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Policy studio · Agentic MDM</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:#131820;background:#F6F7F9;-webkit-font-smoothing:antialiased}
+a{color:#1F4FC8}a:hover{color:#163B99}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7F9; font-family: Inter, 'Segoe UI', system-ui, sans-serif; color: #131820">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 12px 24px; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #131820">
+<span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: #131820"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>
+<span style="font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Agentic MDM</span>
+</a>
+<span style="font-size: 12px; font-weight: 500; color: #4B5563; background: #F1F3F6; border: 1px solid #E2E6EC; border-radius: 999px; padding: 3px 10px">POC · synthetic data</span>
+<div style="flex: 1 1 260px; max-width: 520px; display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 12px; background: #F6F7F9; border: 1px solid #E2E6EC; border-radius: 10px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="search-policy" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Search</label>
+<input id="search-policy" type="search" placeholder="Search customers, suppliers, DUNS, DEA or request ID" style="flex: 1; min-width: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #131820; outline: none">
+</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-left: auto">
+<label for="persona-policy" style="font-size: 12px; color: #5F6B7A">Viewing as</label>
+<select id="persona-policy" style="height: 44px; border: 1px solid #CDD3DC; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13px; padding: 0 10px; color: #131820">
+<option>Governance lead</option>
+<option>Data steward</option>
+<option>Requester · Sales ops</option>
+<option>Customer care</option>
+<option>Platform admin</option>
+</select>
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #EAF0FE; color: #1D47B8; font-size: 12px; font-weight: 600">RC</span>
+</div>
+</header>
+
+<div style="flex: 1 0 auto; display: flex; flex-wrap: wrap">
+
+<nav aria-label="Main" style="flex: 1 1 224px; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 2px; padding: 20px 12px; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span style="flex: 1">Control tower</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Work</div>
+<a href="Intake.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13l2-7h12l2 7"></path><path d="M4 13v5h16v-5h-5a3 3 0 0 1-6 0H4z"></path></svg><span style="flex: 1">Intake</span></a>
+<a href="Steward.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6"></path></svg><span style="flex: 1">Steward queue</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">12</span></a>
+<a href="Lifecycle.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="flex: 1">Lifecycle &amp; outreach</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">7</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Records</div>
+<a href="Journey.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.5 6H15a3.5 3.5 0 0 1 0 7H9a3.5 3.5 0 0 0 0 7h6.5"></path></svg><span style="flex: 1">Request journey</span></a>
+<a href="Hierarchy.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="5" rx="1"></rect><rect x="3" y="16" width="6" height="5" rx="1"></rect><rect x="15" y="16" width="6" height="5" rx="1"></rect><path d="M12 8v4M6 16v-4h12v4"></path></svg><span style="flex: 1">Hierarchies</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Platform</div>
+<a href="Agents.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"></path></svg><span style="flex: 1">Agents</span></a>
+<a href="Policy.dc.html" aria-current="page" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 600; color: #1D47B8; background: #EAF0FE"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 11h6M9 14.5h4"></path></svg><span style="flex: 1">Policy studio</span></a>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 56px; display: flex; flex-direction: column; gap: 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em">Policy studio</h1>
+<div style="font-size: 13px; line-height: 18px; color: #5F6B7A">Policy set v3.2 published Nov 4 by Renee Castillo · 142 rules · draft v3.3 has 3 changes</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; border: 1px solid #CDD3DC; background: #FFFFFF; color: #131820; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">Compare v3.2 and v3.3</button>
+<button type="button" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; border: 0; background: #131820; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">New rule</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section aria-label="Policy library" style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E2E6EC">
+<div role="group" aria-label="Version" style="display: flex; gap: 4px; padding: 4px; border-radius: 11px; background: #E9ECF1">
+<button type="button" aria-pressed="false" style="flex: 1; height: 36px; border-radius: 8px; border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 500; color: #4B5563; cursor: pointer">Published v3.2</button>
+<button type="button" aria-pressed="true" style="flex: 1; height: 36px; border-radius: 8px; border: 0; background: #FFFFFF; box-shadow: 0 1px 2px rgba(19, 24, 32, 0.12); font-family: inherit; font-size: 13px; font-weight: 600; color: #131820; cursor: pointer">Draft v3.3</button>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 18px">
+<li style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Data quality</span><span style="color: #5F6B7A">48</span></li>
+<li style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Match &amp; survivorship</span><span style="color: #5F6B7A">22</span></div>
+<ul style="list-style: none; margin: 0; padding: 0 0 6px 8px; display: flex; flex-direction: column; gap: 2px">
+<li style="padding: 6px 8px; color: #2B323C"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #5F6B7A">MM-002</span> Duplicate threshold</li>
+<li style="padding: 6px 8px; color: #2B323C"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #5F6B7A">MM-005</span> Name and address blocking</li>
+<li style="padding: 6px 8px; color: #2B323C"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #5F6B7A">MM-007</span> Different tax ID at a known site</li>
+<li style="display: flex; flex-direction: column; gap: 4px; padding: 8px; border-radius: 8px; background: #EAF0FE; color: #131820"><span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #1D47B8">MM-007a</span> <b style="font-weight: 600">Ownership change to successor</b></span><span style="font-size: 11px; font-weight: 600; color: #1D47B8">New in v3.3</span></li>
+<li style="padding: 6px 8px; color: #2B323C"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #5F6B7A">SV-001</span> Source trust order</li>
+<li style="padding: 6px 8px; color: #2B323C"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #5F6B7A">SV-012</span> HIN: the hub wins</li>
+<li style="padding: 6px 8px; color: #5F6B7A">16 more</li>
+</ul>
+</li>
+<li style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Business rules · extended attributes</span><span style="color: #5F6B7A">39</span></div>
+<ul style="list-style: none; margin: 0; padding: 0 0 6px 8px; display: flex; flex-direction: column; gap: 2px">
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Payment terms</span><span style="color: #5F6B7A">8</span></li>
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Credit</span><span style="color: #5F6B7A">6</span></li>
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Pricing and GPO</span><span style="color: #5F6B7A">9</span></li>
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Tax</span><span style="color: #5F6B7A">7</span></li>
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Partner functions</span><span style="color: #5F6B7A">5</span></li>
+<li style="display: flex; justify-content: space-between; padding: 6px 8px; color: #2B323C"><span>Controlled substances</span><span style="color: #5F6B7A">4</span></li>
+</ul>
+</li>
+<li style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Human-in-the-loop thresholds</span><span style="color: #5F6B7A">10</span></li>
+<li style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Lifecycle &amp; outreach</span><span style="color: #5F6B7A">14</span></li>
+<li style="display: flex; justify-content: space-between; gap: 8px; padding: 10px 8px; border-radius: 8px"><span style="font-weight: 600">Access &amp; approvals</span><span style="color: #5F6B7A">9</span></li>
+</ul>
+</section>
+
+<section aria-label="Rule editor" style="flex: 2.4 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: 20px 24px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E2E6EC">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #4B5563">MM-007a</span><span style="font-size: 12px; font-weight: 600; color: #4B5563; background: #F1F3F6; border-radius: 999px; padding: 1px 8px">Draft v3.3</span><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #1D47B8; background: #EAF0FE; border-radius: 999px; padding: 1px 8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>Suggested from 12 steward decisions</span></div>
+<h2 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em">Ownership change at a known site</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #4B5563"><span>Stage: match &amp; merge</span><span>Applies to: customers</span><span>Owner: customer master governance</span><span>Changes: credit limit, payment terms</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #131820; color: #FFFFFF; font-size: 12px">1</span>Written in plain English</div>
+<div style="padding: 14px 16px; border-radius: 10px; border: 1px solid #CDD3DC; font-size: 14px; line-height: 22px; color: #131820">When a request matches an existing record at the same site but has a different tax ID, and D&amp;B reports an ownership change in the last 12 months, don't merge. Create a new customer and link it to the old one as its successor. Copy the ship-to address and delivery instructions. Send credit limit and payment terms to Credit for a fresh decision. Deactivate the old record after 30 days if it has no open orders.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px"><span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #131820; color: #FFFFFF; font-size: 12px">2</span>Compiled by the policy agent</span><span style="font-size: 12px; color: #5F6B7A">Agents run this version, not the English</span></div>
+<div style="overflow-x: auto; padding: 14px 16px; border-radius: 10px; background: #F6F7F9; border: 1px solid #E2E6EC; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #131820; white-space: nowrap">
+<div><span style="color: #1D47B8">id:</span> MM-007a</div>
+<div><span style="color: #1D47B8">stage:</span> match_merge</div>
+<div><span style="color: #1D47B8">when:</span></div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">all:</span></div>
+<div style="padding-left: 32px">- match.score &gt;= 0.80</div>
+<div style="padding-left: 32px">- match.address == exact</div>
+<div style="padding-left: 32px">- tax_id != match.tax_id</div>
+<div style="padding-left: 32px">- dnb.ownership_change_days &lt;= 365</div>
+<div><span style="color: #1D47B8">then:</span></div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">decision:</span> create_new</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">link:</span> successor_of(match.record_id)</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">carry_over:</span> [ship_to.address, ship_to.delivery_notes]</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">reset:</span> [credit_limit, payment_terms]</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">route:</span> credit_management.underwrite</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">schedule:</span></div>
+<div style="padding-left: 32px"><span style="color: #1D47B8">deactivate:</span> match.record_id</div>
+<div style="padding-left: 32px"><span style="color: #1D47B8">after_days:</span> 30</div>
+<div style="padding-left: 32px"><span style="color: #1D47B8">unless:</span> s4.open_sales_orders &gt; 0</div>
+<div><span style="color: #1D47B8">human_in_loop:</span></div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">auto_at_or_above:</span> 0.95</div>
+<div style="padding-left: 16px"><span style="color: #1D47B8">review_between:</span> [0.80, 0.95]</div>
+<div><span style="color: #1D47B8">audit:</span> explain_every_decision</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #131820; color: #FFFFFF; font-size: 12px">3</span>Check the translation</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 19px">
+<li style="display: flex; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4FC8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>All 4 conditions and 6 actions trace back to a sentence in the English text.</span></li>
+<li style="display: flex; gap: 10px; padding: 8px 10px; border-radius: 8px; background: #FFF8EE"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 8v5M12 16.5v.01"></path></svg><span>"Open orders" was ambiguous. Renee Castillo chose open sales orders in S/4HANA.</span></li>
+<li style="display: flex; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4FC8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>No conflict with MM-007 or SV-001. MM-007a runs first when D&amp;B shows an ownership change.</span></li>
+</ul>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #131820; color: #FFFFFF; font-size: 12px">4</span>Test on POC run 14</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(110px, 100%), 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 10px; background: #F6F7F9"><span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 600">6</span><span style="font-size: 12px; line-height: 16px; color: #4B5563">requests matched</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 10px; background: #F6F7F9"><span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 600">6 of 6</span><span style="font-size: 12px; line-height: 16px; color: #4B5563">agree with stewards</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 10px; background: #F6F7F9"><span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 600">0</span><span style="font-size: 12px; line-height: 16px; color: #4B5563">rule conflicts</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 10px; background: #F3F6FE"><span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 600; color: #1D47B8">+2.3 pts</span><span style="font-size: 12px; line-height: 16px; color: #4B5563">touchless, 71.5% to 73.8%</span></div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid #EEF0F3">
+<span style="flex: 1 1 260px; font-size: 13px; line-height: 19px; color: #4B5563">Needs two approvals to publish: a second governance reviewer, and Credit risk because it changes how credit limits are set.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; border: 1px solid #CDD3DC; background: #FFFFFF; color: #131820; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">Save draft</button>
+<button type="button" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; border: 0; background: #131820; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Submit for approval</button>
+</div>
+</div>
+</section>
+
+<section aria-label="Human-in-the-loop thresholds" style="flex: 1.3 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E2E6EC">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">Human-in-the-loop thresholds</h2>
+<div style="font-size: 13px; line-height: 19px; color: #5F6B7A">Where each agent stops for a person. Scores run from 0 to 1.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Intake</span><span style="color: #5F6B7A">field confidence</span></div>
+<div aria-hidden="true" style="display: flex; height: 10px; border-radius: 5px; overflow: hidden"><span style="width: 75%; background: #F2B477"></span><span style="width: 20%; background: #FBDDB9"></span><span style="width: 5%; background: #2456D6"></span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Auto at 0.95+ · requester confirms 0.75–0.95 · steward below 0.75</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Match &amp; merge</span><span style="color: #5F6B7A">match score</span></div>
+<div aria-hidden="true" style="display: flex; height: 10px; border-radius: 5px; overflow: hidden"><span style="width: 80%; background: #E2E6EC"></span><span style="width: 15%; background: #F2B477"></span><span style="width: 5%; background: #2456D6"></span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Auto-merge at 0.95+ · steward 0.80–0.95 · below 0.80 is a new record</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Enrichment</span><span style="color: #5F6B7A">D&amp;B code ÷ 10</span></div>
+<div aria-hidden="true" style="display: flex; height: 10px; border-radius: 5px; overflow: hidden"><span style="width: 50%; background: #C8322A"></span><span style="width: 30%; background: #F2B477"></span><span style="width: 20%; background: #2456D6"></span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Accept code 8+ · steward 5–7 · no match below 5</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Validation</span><span style="color: #5F6B7A">exclusion-list name match</span></div>
+<div aria-hidden="true" style="display: flex; height: 10px; border-radius: 5px; overflow: hidden"><span style="width: 80%; background: #2456D6"></span><span style="width: 15%; background: #F2B477"></span><span style="width: 5%; background: #C8322A"></span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Reversed: clear below 0.80 · steward 0.80–0.95 · block at 0.95+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Business rules</span><span style="color: #5F6B7A">approval matrix</span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Credit up to $50,000 auto · to $250,000 credit manager · above that, BU finance director too</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">Contextual outreach</span><span style="color: #5F6B7A">message type</span></div>
+<div style="font-size: 12px; line-height: 17px; color: #4B5563">Standard reminders send on their own · messages that cite past conversations need a person</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: #F3F6FE">
+<div style="font-size: 13px; font-weight: 600">What if auto-merge drops to 0.92?</div>
+<div style="font-size: 13px; line-height: 19px; color: #2B323C">Touchless +3.1 points. One false merge on the labeled test set. Synthetic data knows the right answer for every pair, so false merges can be counted.</div>
+<button type="button" style="align-self: flex-start; display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 9px; border: 1px solid #9DB3EE; background: #FFFFFF; color: #1D47B8; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Try it on POC data</button>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

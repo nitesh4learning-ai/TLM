@@ -1,0 +1,127 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Agents.dc.html": {
+      "expand": "fill",
+      "h": 1700,
+      "is_interactive": true,
+      "title": "8 · Agents",
+      "w": 1440,
+      "x": 4560,
+      "y": 2360
+    },
+    "Hierarchy.dc.html": {
+      "expand": "fill",
+      "h": 1720,
+      "is_interactive": true,
+      "title": "5 · Hierarchy explorer",
+      "w": 1440,
+      "x": 0,
+      "y": 2360
+    },
+    "Intake.dc.html": {
+      "expand": "fill",
+      "h": 1560,
+      "is_interactive": true,
+      "title": "2 · Intake",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Journey.dc.html": {
+      "expand": "fill",
+      "h": 1940,
+      "is_interactive": true,
+      "title": "3 · Request journey",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "Lifecycle.dc.html": {
+      "expand": "fill",
+      "h": 1380,
+      "is_interactive": true,
+      "title": "7 · Lifecycle & outreach",
+      "w": 1440,
+      "x": 3040,
+      "y": 2360
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 1640,
+      "is_interactive": true,
+      "title": "1 · Control tower",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Policy.dc.html": {
+      "expand": "fill",
+      "h": 1700,
+      "is_interactive": true,
+      "title": "6 · Policy studio",
+      "w": 1440,
+      "x": 1520,
+      "y": 2360
+    },
+    "Steward.dc.html": {
+      "expand": "fill",
+      "h": 1780,
+      "is_interactive": true,
+      "title": "4 · Steward queue",
+      "w": 1440,
+      "x": 4560,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-12T23:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "noteOrder": [
+    "row1",
+    "row2",
+    "legend"
+  ],
+  "notes": {
+    "legend": {
+      "text": "How to read these screens\n\nBlue: an agent acted on its own (touchless).\nOrange: a person is needed.\nRed: rejected or blocked.\n\nNames, IDs and numbers are synthetic POC data. D&B, LexisNexis, account validation and address validation are mocked.\n\nPress Play on any screen to click through the left menu.",
+      "w": 440,
+      "x": -560,
+      "y": 0
+    },
+    "row1": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "Onboarding: from request to golden record",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "row2": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "Records, governance and agents",
+      "w": 240,
+      "x": 0,
+      "y": 2060
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Intake.dc.html",
+    "Journey.dc.html",
+    "Steward.dc.html",
+    "Hierarchy.dc.html",
+    "Policy.dc.html",
+    "Lifecycle.dc.html",
+    "Agents.dc.html"
+  ],
+  "pages": [],
+  "title": "Agentic MDM POC wireframe"
+}

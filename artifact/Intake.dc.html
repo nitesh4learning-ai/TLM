@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Intake · Agentic MDM</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:#131820;background:#F6F7F9;-webkit-font-smoothing:antialiased}
+a{color:#1F4FC8}a:hover{color:#163B99}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7F9; font-family: Inter, 'Segoe UI', system-ui, sans-serif; color: #131820">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 12px 24px; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #131820">
+<span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: #131820"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>
+<span style="font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Agentic MDM</span>
+</a>
+<span style="font-size: 12px; font-weight: 500; color: #4B5563; background: #F1F3F6; border: 1px solid #E2E6EC; border-radius: 999px; padding: 3px 10px">POC · synthetic data</span>
+<div style="flex: 1 1 260px; max-width: 520px; display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 12px; background: #F6F7F9; border: 1px solid #E2E6EC; border-radius: 10px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="search-intake" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Search</label>
+<input id="search-intake" type="search" placeholder="Search customers, suppliers, DUNS, DEA or request ID" style="flex: 1; min-width: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #131820; outline: none">
+</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-left: auto">
+<label for="persona-intake" style="font-size: 12px; color: #5F6B7A">Viewing as</label>
+<select id="persona-intake" style="height: 44px; border: 1px solid #CDD3DC; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13px; padding: 0 10px; color: #131820">
+<option>Requester · Sales ops</option>
+<option>Data steward</option>
+<option>Governance lead</option>
+<option>Customer care</option>
+<option>Platform admin</option>
+</select>
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #FFF1DE; color: #9A4A00; font-size: 12px; font-weight: 600">PN</span>
+</div>
+</header>
+
+<div style="flex: 1 0 auto; display: flex; flex-wrap: wrap">
+
+<nav aria-label="Main" style="flex: 1 1 224px; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 2px; padding: 20px 12px; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span style="flex: 1">Control tower</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Work</div>
+<a href="Intake.dc.html" aria-current="page" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 600; color: #1D47B8; background: #EAF0FE"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13l2-7h12l2 7"></path><path d="M4 13v5h16v-5h-5a3 3 0 0 1-6 0H4z"></path></svg><span style="flex: 1">Intake</span></a>
+<a href="Steward.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6"></path></svg><span style="flex: 1">Steward queue</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">12</span></a>
+<a href="Lifecycle.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="flex: 1">Lifecycle &amp; outreach</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">7</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Records</div>
+<a href="Journey.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.5 6H15a3.5 3.5 0 0 1 0 7H9a3.5 3.5 0 0 0 0 7h6.5"></path></svg><span style="flex: 1">Request journey</span></a>
+<a href="Hierarchy.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="5" rx="1"></rect><rect x="3" y="16" width="6" height="5" rx="1"></rect><rect x="15" y="16" width="6" height="5" rx="1"></rect><path d="M12 8v4M6 16v-4h12v4"></path></svg><span style="flex: 1">Hierarchies</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Platform</div>
+<a href="Agents.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"></path></svg><span style="flex: 1">Agents</span></a>
+<a href="Policy.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 11h6M9 14.5h4"></path></svg><span style="flex: 1">Policy studio</span></a>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 56px; display: flex; flex-direction: column; gap: 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #5F6B7A"><a href="Intake.dc.html" style="color: #4B5563; text-decoration: none">Intake</a><span aria-hidden="true">/</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px">REQ-10482</span></div>
+<h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em">New customer request</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #4B5563">
+<span style="display: inline-flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 999px; padding: 3px 10px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5l8.5 6.5 8.5-6.5"></path></svg>Email to the onboarding inbox</span>
+<span style="background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 999px; padding: 3px 10px">Received 9:14 AM</span>
+<span style="background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 999px; padding: 3px 10px">Customer · Pharma · US</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; border: 1px solid #CDD3DC; background: #FFFFFF; color: #131820; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">Save draft</button>
+<a href="Journey.dc.html" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; background: #131820; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none">Submit to agents<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 16px">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 12px; background: #F3F6FE; border: 1px solid #C9D6F7">
+<span style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: #FFFFFF; color: #1F4FC8"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path><path d="M10 13h6M10 17h4"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<div style="font-size: 14px; font-weight: 600">Intake agent read 4 documents in 6 seconds</div>
+<div style="font-size: 13px; line-height: 19px; color: #4B5563">It found 34 fields. 33 are at 0.95 confidence or above. One needs you to confirm before it goes to the agents.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 12px; background: #F3F6FE; border: 1px solid #C9D6F7">
+<span style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: #FFFFFF; color: #1F4FC8"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4-4"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">Search before create: no duplicate<span style="font-size: 12px; font-weight: 600; color: #1D47B8; background: #FFFFFF; border-radius: 999px; padding: 1px 8px">1 related record</span></div>
+<div style="font-size: 13px; line-height: 19px; color: #4B5563">Lakeside Pharmacy #2 (<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px">CUST-0042871</span>, Troup Hwy, Tyler) has the same owner but a different tax ID, site and DEA registration. Its score of 0.71 is under the 0.80 duplicate line, so a new record will be created and linked to it under one parent. <a href="Hierarchy.dc.html">View record</a></div>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section aria-label="Source documents" style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E2E6EC">
+<h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">Source documents</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<button type="button" aria-pressed="false" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #E2E6EC; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #4B5563; cursor: pointer">Email</button>
+<button type="button" aria-pressed="false" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #E2E6EC; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #4B5563; cursor: pointer">Credit application</button>
+<button type="button" aria-pressed="false" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #E2E6EC; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #4B5563; cursor: pointer">W-9</button>
+<button type="button" aria-pressed="true" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #131820; background: #131820; font-family: inherit; font-size: 13px; font-weight: 600; color: #FFFFFF; cursor: pointer">DEA registration</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 12px; background: #F1F3F6">
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 6px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(19, 24, 32, 0.08), 0 4px 16px rgba(19, 24, 32, 0.06)">
+<div aria-hidden="true" style="display: flex; flex-direction: column; gap: 6px"><div style="width: 58%; height: 10px; border-radius: 3px; background: #D9DEE5"></div><div style="width: 36%; height: 8px; border-radius: 3px; background: #E6E9EE"></div></div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px; background: #F3F6FE; border: 1.5px solid #2456D6">
+<span style="font-size: 11px; font-weight: 600; color: #1D47B8">Registration number · 0.99</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px">FL4827311</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px; background: #F3F6FE; border: 1.5px solid #2456D6">
+<span style="font-size: 11px; font-weight: 600; color: #1D47B8">Registrant · 0.99</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">LAKESIDE COMMUNITY PHARMACY LLC</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px; background: #F3F6FE; border: 1.5px solid #2456D6">
+<span style="font-size: 11px; font-weight: 600; color: #1D47B8">Registered address · 0.98</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">1420 S BROADWAY AVE STE 200, TYLER TX 75701</span>
+</div>
+<div aria-hidden="true" style="display: flex; flex-direction: column; gap: 6px"><div style="width: 92%; height: 8px; border-radius: 3px; background: #E6E9EE"></div><div style="width: 74%; height: 8px; border-radius: 3px; background: #E6E9EE"></div></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px; background: #F3F6FE; border: 1.5px solid #2456D6">
+<span style="font-size: 11px; font-weight: 600; color: #1D47B8">Schedules · 0.99</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">2, 2N, 3, 3N, 4, 5</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px; background: #F3F6FE; border: 1.5px solid #2456D6">
+<span style="font-size: 11px; font-weight: 600; color: #1D47B8">Expires · 0.99</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">06-30-2027</span>
+</div>
+</div>
+<div aria-hidden="true" style="display: flex; flex-direction: column; gap: 6px"><div style="width: 88%; height: 8px; border-radius: 3px; background: #E6E9EE"></div><div style="width: 52%; height: 8px; border-radius: 3px; background: #E6E9EE"></div></div>
+</div>
+<div style="font-size: 12px; line-height: 17px; color: #5F6B7A">Document preview is a placeholder. Every extracted value links back to where the agent found it.</div>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEF0F3">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5l8.5 6.5 8.5-6.5"></path></svg>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; font-weight: 500">Email from Tom Reyes, owner</span><span style="font-size: 12px; color: #5F6B7A">Contacts, ship-to hours, requested terms</span></span>
+<span style="font-size: 12px; color: #4B5563">9 fields</span>
+</li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEF0F3">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; font-weight: 500">Credit application.pdf</span><span style="font-size: 12px; color: #5F6B7A">3 pages</span></span>
+<span style="font-size: 12px; color: #4B5563">14 fields</span>
+</li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEF0F3">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; font-weight: 500">W-9.pdf</span><span style="font-size: 12px; color: #5F6B7A">1 page</span></span>
+<span style="font-size: 12px; color: #4B5563">5 fields</span>
+</li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEF0F3">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; font-weight: 500">DEA registration.pdf</span><span style="font-size: 12px; color: #5F6B7A">1 page</span></span>
+<span style="font-size: 12px; color: #4B5563">6 fields</span>
+</li>
+</ul>
+</section>
+
+<section aria-label="Extracted fields" style="flex: 1.3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding: 20px 24px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E2E6EC">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px">
+<h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">Extracted fields</h2>
+<span style="font-size: 13px; color: #5F6B7A">34 fields · 33 at 0.95 or above</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px; line-height: 20px">
+<thead>
+<tr>
+<th scope="col" style="text-align: left; padding: 6px 12px 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Field</th>
+<th scope="col" style="text-align: left; padding: 6px 12px 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Value</th>
+<th scope="col" style="text-align: left; padding: 6px 12px 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Confidence</th>
+<th scope="col" style="text-align: left; padding: 6px 0 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="rowgroup" style="text-align: left; padding: 14px 0 6px; font-size: 12px; font-weight: 600; color: #131820; border-top: 1px solid #E2E6EC">Legal entity</th><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td></tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563; width: 150px">Legal name</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">Lakeside Community Pharmacy, LLC</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.99</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">W-9</td>
+</tr>
+<tr style="background: #FFF8EE">
+<td style="padding: 10px 12px 10px 8px; vertical-align: top; color: #4B5563">DBA name</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #9A4A00">Two spellings found. Pick one.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<button type="button" aria-pressed="true" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1.5px solid #131820; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 600; color: #131820; cursor: pointer">Lakeside Pharmacy</button>
+<button type="button" aria-pressed="false" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #CDD3DC; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #4B5563; cursor: pointer">Lakeside Community Rx</button>
+</div>
+</div>
+</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #9A4A00; background: #FFF1DE; border-radius: 6px; padding: 2px 6px">0.78</span></td>
+<td style="padding: 10px 8px 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Email, credit application</td>
+</tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Tax ID (EIN)</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">••-•••4471</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.99</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">W-9</td>
+</tr>
+<tr><th scope="rowgroup" style="text-align: left; padding: 14px 0 6px; font-size: 12px; font-weight: 600; color: #131820; border-top: 1px solid #E2E6EC">Addresses</th><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td></tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Sold-to and bill-to</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">1420 S Broadway Ave, Suite 200, Tyler, TX 75701</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.98</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Credit application</td>
+</tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Ship-to</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">Same as sold-to. Receiving Mon–Fri, 8:00 to 17:00.</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.96</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Email</td>
+</tr>
+<tr><th scope="rowgroup" style="text-align: left; padding: 14px 0 6px; font-size: 12px; font-weight: 600; color: #131820; border-top: 1px solid #E2E6EC">Licenses</th><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td></tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">DEA registration</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">FL4827311</span> · schedules 2 to 5 · expires Jun 30, 2027</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.99</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">DEA registration</td>
+</tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">State pharmacy license</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">Texas <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">31847</span> · Class A community pharmacy</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.97</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Credit application</td>
+</tr>
+<tr><th scope="rowgroup" style="text-align: left; padding: 14px 0 6px; font-size: 12px; font-weight: 600; color: #131820; border-top: 1px solid #E2E6EC">Commercial terms requested</th><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td><td style="border-top: 1px solid #E2E6EC"></td></tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Payment terms</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">Net 30 · no GPO or PSAO named</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.96</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Credit application</td>
+</tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Credit limit</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">$75,000</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.99</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Credit application</td>
+</tr>
+<tr>
+<td style="padding: 10px 12px 10px 0; vertical-align: top; color: #4B5563">Sales tax</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top">Texas resale certificate on file</td>
+<td style="padding: 10px 12px 10px 0; vertical-align: top"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; color: #1D47B8; background: #EAF0FE; border-radius: 6px; padding: 2px 6px">0.97</span></td>
+<td style="padding: 10px 0; vertical-align: top; font-size: 13px; color: #5F6B7A">Credit application</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #E2E6EC">
+<button type="button" aria-expanded="false" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; border-bottom: 1px solid #EEF0F3; background: transparent; font-family: inherit; font-size: 14px; color: #131820; text-align: left; cursor: pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg><span style="flex: 1; font-weight: 600">Banking for ACH</span><span style="font-size: 13px; color: #5F6B7A">3 fields · all 0.98 or above</span></button>
+<button type="button" aria-expanded="false" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #131820; text-align: left; cursor: pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg><span style="flex: 1; font-weight: 600">Contacts</span><span style="font-size: 13px; color: #5F6B7A">Owner, pharmacist-in-charge, accounts payable</span></button>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 10px; background: #F6F7F9">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4B5563"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6"></path></svg>Fields between 0.75 and 0.95 go to you. Below 0.75 they go to a steward.</span>
+<a href="Journey.dc.html" style="display: inline-flex; align-items: center; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 9px; background: #131820; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none">Confirm and submit</a>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
