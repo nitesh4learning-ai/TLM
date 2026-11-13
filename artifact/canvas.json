@@ -6,7 +6,7 @@
       "expand": "fill",
       "h": 1700,
       "is_interactive": true,
-      "title": "8 · Agents",
+      "title": "8 \u00b7 Agents",
       "w": 1440,
       "x": 4560,
       "y": 2360
@@ -15,7 +15,7 @@
       "expand": "fill",
       "h": 1720,
       "is_interactive": true,
-      "title": "5 · Hierarchy explorer",
+      "title": "5 \u00b7 Hierarchy explorer",
       "w": 1440,
       "x": 0,
       "y": 2360
@@ -24,7 +24,7 @@
       "expand": "fill",
       "h": 1560,
       "is_interactive": true,
-      "title": "2 · Intake",
+      "title": "2 \u00b7 Intake",
       "w": 1440,
       "x": 1520,
       "y": 0
@@ -33,7 +33,7 @@
       "expand": "fill",
       "h": 1940,
       "is_interactive": true,
-      "title": "3 · Request journey",
+      "title": "3 \u00b7 Request journey",
       "w": 1440,
       "x": 3040,
       "y": 0
@@ -42,7 +42,7 @@
       "expand": "fill",
       "h": 1380,
       "is_interactive": true,
-      "title": "7 · Lifecycle & outreach",
+      "title": "7 \u00b7 Lifecycle & outreach",
       "w": 1440,
       "x": 3040,
       "y": 2360
@@ -51,16 +51,16 @@
       "expand": "fill",
       "h": 1640,
       "is_interactive": true,
-      "title": "1 · Control tower",
+      "title": "1 \u00b7 Control tower",
       "w": 1440,
       "x": 0,
       "y": 0
     },
     "Policy.dc.html": {
       "expand": "fill",
-      "h": 1700,
+      "h": 2100,
       "is_interactive": true,
-      "title": "6 · Policy studio",
+      "title": "6 \u00b7 Policy studio",
       "w": 1440,
       "x": 1520,
       "y": 2360
@@ -69,10 +69,19 @@
       "expand": "fill",
       "h": 1780,
       "is_interactive": true,
-      "title": "4 · Steward queue",
+      "title": "4 \u00b7 Steward queue",
       "w": 1440,
       "x": 4560,
       "y": 0
+    },
+    "Records.dc.html": {
+      "expand": "fill",
+      "h": 1700,
+      "is_interactive": true,
+      "title": "9 \u00b7 Business ready records",
+      "w": 1440,
+      "x": 6080,
+      "y": 2360
     }
   },
   "createdOnFiles": {
@@ -90,7 +99,7 @@
   ],
   "notes": {
     "legend": {
-      "text": "How to read these screens\n\nBlue: an agent acted on its own (touchless).\nOrange: a person is needed.\nRed: rejected or blocked.\n\nNames, IDs and numbers are synthetic POC data. D&B, LexisNexis, account validation and address validation are mocked.\n\nPress Play on any screen to click through the left menu.",
+      "text": "How to read these screens\n\nBlue: an agent acted on its own (touchless).\nOrange: a person is needed.\nRed: rejected or blocked.\n\nPress Play on any screen to click through the left menu.",
       "w": 440,
       "x": -560,
       "y": 0
@@ -98,7 +107,7 @@
     "row1": {
       "kind": "title1",
       "maxW": 6000,
-      "text": "Onboarding: from request to golden record",
+      "text": "Onboarding: from request to Business ready record",
       "w": 240,
       "x": 0,
       "y": -300
@@ -120,8 +129,9 @@
     "Hierarchy.dc.html",
     "Policy.dc.html",
     "Lifecycle.dc.html",
-    "Agents.dc.html"
+    "Agents.dc.html",
+    "Records.dc.html"
   ],
   "pages": [],
-  "title": "Agentic MDM POC wireframe"
+  "title": "Agentic MDM"
 }

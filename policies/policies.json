@@ -1,0 +1,540 @@
+{
+ "levels": {
+  "A": "Agent decides",
+  "B": "Agent decides, human approves above limit",
+  "H": "Human decides"
+ },
+ "policies": [
+  {
+   "id": "MM-002",
+   "title": "Duplicate threshold",
+   "folder": "match-survivorship",
+   "stage": "Match & merge",
+   "agent": "Match & merge",
+   "level": "B",
+   "owner": "Customer master governance",
+   "text": "Compare a request with existing records. At 0.95 or above, treat it as the same customer and link it. From 0.80 to below 0.95, a data steward decides. Below 0.80, create a new customer.",
+   "rows": [
+    [
+     "Match score 0.95 or above",
+     "Link to existing record; add new sales areas only",
+     "Agent"
+    ],
+    [
+     "Match score 0.80 to below 0.95",
+     "Hold for review with the candidates side by side",
+     "Data steward"
+    ],
+    [
+     "Match score below 0.80",
+     "Create a new customer; keep related records as references",
+     "Agent"
+    ]
+   ],
+   "exceptions": "Same address with a different tax ID is handled by MM-007a, not by score alone.",
+   "cites": []
+  },
+  {
+   "id": "MM-007a",
+   "title": "Ownership change at a known site",
+   "folder": "match-survivorship",
+   "stage": "Match & merge",
+   "agent": "Match & merge",
+   "level": "B",
+   "owner": "Customer master governance",
+   "text": "When a request matches an existing record at the same site with a different tax ID, and D&B reports an ownership change in the last 12 months, do not merge. Create a new customer and link it to the old one as its successor. Copy the ship-to address and delivery instructions. Send credit limit and payment terms to Credit for a fresh decision. Deactivate the old record after 30 days if it has no open orders.",
+   "rows": [
+    [
+     "Match score 0.80 or above, address exact, tax ID differs, ownership change within 365 days",
+     "Create new customer; link as successor",
+     "Agent"
+    ],
+    [
+     "Credit limit and payment terms",
+     "Reset; routed to Credit",
+     "Credit agent"
+    ],
+    [
+     "Old record with open sales orders",
+     "Keep active until orders close",
+     "Agent"
+    ]
+   ],
+   "exceptions": "No ownership change reported: the request goes to a data steward.",
+   "cites": [
+    "BR-CR-001",
+    "BR-PT-001"
+   ]
+  },
+  {
+   "id": "SV-001",
+   "title": "Source trust order",
+   "folder": "match-survivorship",
+   "stage": "Match & merge",
+   "agent": "Match & merge",
+   "level": "A",
+   "owner": "Customer master governance",
+   "text": "Each attribute of the Business ready record takes the value from its most trusted source. Where sources disagree, the higher-ranked source wins and the decision is recorded with this policy.",
+   "rows": [
+    [
+     "Legal name, DUNS, parent",
+     "D&B",
+     "Agent"
+    ],
+    [
+     "Standardized address",
+     "Address validation",
+     "Agent"
+    ],
+    [
+     "Tax ID",
+     "Validated tax document, then SAP",
+     "Agent"
+    ],
+    [
+     "Payment terms, credit limit",
+     "SAP, then policy default",
+     "Agent"
+    ],
+    [
+     "DEA and state license",
+     "LexisNexis, then issuing authority",
+     "Agent"
+    ]
+   ],
+   "exceptions": "A value that fails validation never wins, whatever the source rank.",
+   "cites": []
+  },
+  {
+   "id": "BR-PT-001",
+   "title": "Customer payment terms",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Credit",
+   "level": "B",
+   "owner": "Finance / Credit",
+   "text": "A new customer gets Net 30. Longer terms are allowed only when credit tier, customer type and contract support them. Terms outside the table go to a person.",
+   "rows": [
+    [
+     "Any approved customer",
+     "Net 30",
+     "Agent"
+    ],
+    [
+     "Credit tier A, limit up to $50,000, 12+ months trading",
+     "Net 45",
+     "Agent"
+    ],
+    [
+     "Credit tier A or B, signed contract, limit up to $250,000",
+     "Net 60",
+     "Credit manager"
+    ],
+    [
+     "Contract names the terms (government, hospital system, GPO)",
+     "Terms in the contract",
+     "Credit manager"
+    ],
+    [
+     "Business under 12 months old, or no D&B score",
+     "Prepay or Net 15",
+     "Credit manager"
+    ],
+    [
+     "Past-due balance on the parent",
+     "No new terms",
+     "Credit manager"
+    ],
+    [
+     "Request above Net 60",
+     "Held",
+     "BU finance director"
+    ]
+   ],
+   "exceptions": "Early-pay discounts follow the contract. Terms are never carried to a successor record (MM-007a).",
+   "cites": [
+    "MM-007a"
+   ]
+  },
+  {
+   "id": "BR-PM-001",
+   "title": "Payment method",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Credit",
+   "level": "B",
+   "owner": "Treasury / AP",
+   "text": "Electronic payment (ACH) is the default. Check and wire are used only for the reasons below. Bank details must pass account validation before any electronic method is set.",
+   "rows": [
+    [
+     "Account validation GREEN",
+     "ACH",
+     "Agent"
+    ],
+    [
+     "Account validation AMBER (partial name match)",
+     "Hold; steward confirms account holder",
+     "Data steward"
+    ],
+    [
+     "Account validation RED, or no bank details",
+     "Check",
+     "Agent"
+    ],
+    [
+     "Customer asks for check without a reason",
+     "Check, flagged for review",
+     "Credit manager"
+    ],
+    [
+     "Single payment above $250,000, or foreign bank",
+     "Wire",
+     "Treasury"
+    ]
+   ],
+   "exceptions": "A change of bank details on an existing customer always needs a call-back to a known contact.",
+   "cites": [
+    "AG-001"
+   ]
+  },
+  {
+   "id": "BR-CR-001",
+   "title": "Credit limit approvals",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Credit",
+   "level": "B",
+   "owner": "Credit risk",
+   "text": "The Credit agent proposes a limit from the D&B score, trading history and parent exposure. The limit is approved at the level below. Children of a parent share the parent's limit.",
+   "rows": [
+    [
+     "Up to $50,000",
+     "Approve",
+     "Agent"
+    ],
+    [
+     "Above $50,000 up to $250,000",
+     "Approve",
+     "Credit manager"
+    ],
+    [
+     "Above $250,000",
+     "Approve",
+     "Credit manager and BU finance director"
+    ],
+    [
+     "No D&B score, or score class 5",
+     "Prepay terms; limit set by Credit",
+     "Credit manager"
+    ]
+   ],
+   "exceptions": "A limit reset after an ownership change always goes to Credit (MM-007a).",
+   "cites": [
+    "MM-007a"
+   ]
+  },
+  {
+   "id": "BR-TX-001",
+   "title": "Tax status and resale certificates",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Tax",
+   "level": "A",
+   "owner": "Tax",
+   "text": "A customer buying for resale is tax-exempt only with a valid resale certificate for the ship-to state. Without one, the customer is taxable and a person is asked to collect the certificate.",
+   "rows": [
+    [
+     "Resale certificate present, state matches ship-to, not expired",
+     "Exempt for resale",
+     "Agent"
+    ],
+    [
+     "Certificate missing or expired",
+     "Taxable; request certificate",
+     "Tax specialist"
+    ],
+    [
+     "Certificate state differs from ship-to state",
+     "Taxable until corrected",
+     "Tax specialist"
+    ]
+   ],
+   "exceptions": "Government and non-profit exemptions need a person to review the document.",
+   "cites": []
+  },
+  {
+   "id": "BR-LG-001",
+   "title": "Agreements and compliance acknowledgements",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Legal",
+   "level": "B",
+   "owner": "Legal",
+   "text": "A customer is active only after the standard terms of sale and the compliance acknowledgement are accepted. Standard terms are accepted by the agent. Any change to the terms goes to Legal.",
+   "rows": [
+    [
+     "Standard terms accepted, no edits",
+     "Proceed",
+     "Agent"
+    ],
+    [
+     "Customer edited or added terms",
+     "Hold for review",
+     "Legal counsel"
+    ],
+    [
+     "Customer in a jurisdiction outside the standard terms",
+     "Hold for review",
+     "Legal counsel"
+    ]
+   ],
+   "exceptions": "Controlled-substance customers also need RG-CS-001.",
+   "cites": [
+    "RG-CS-001"
+   ]
+  },
+  {
+   "id": "BR-PR-001",
+   "title": "Pricing group",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Procurement",
+   "level": "A",
+   "owner": "Pricing and contracts",
+   "text": "The pricing group follows the customer type and contract. A customer with no contract gets the standard group for its type. A named contract or GPO membership sets the group the contract names.",
+   "rows": [
+    [
+     "Independent retail pharmacy, no contract",
+     "Independent retail",
+     "Agent"
+    ],
+    [
+     "Hospital or health system with an IDN contract",
+     "Group named in the contract",
+     "Agent"
+    ],
+    [
+     "GPO member with membership verified",
+     "GPO tier from the membership",
+     "Agent"
+    ],
+    [
+     "Contract found but group not named",
+     "Hold for pricing team",
+     "Pricing analyst"
+    ]
+   ],
+   "exceptions": "Special price lists always go to the pricing team.",
+   "cites": []
+  },
+  {
+   "id": "BR-PF-001",
+   "title": "Partner functions",
+   "folder": "business-rules",
+   "stage": "Business rules",
+   "agent": "Procurement",
+   "level": "A",
+   "owner": "Customer master governance",
+   "text": "A new customer gets sold-to, bill-to and payer set to the same account, with one ship-to. Separate bill-to or payer accounts need a named parent and approval from the parent.",
+   "rows": [
+    [
+     "Single site, no parent",
+     "Sold-to = bill-to = payer; one ship-to",
+     "Agent"
+    ],
+    [
+     "Site in a corporate family, parent confirms billing",
+     "Bill-to and payer at the parent",
+     "Agent"
+    ],
+    [
+     "Parent does not confirm billing",
+     "Hold for steward",
+     "Data steward"
+    ]
+   ],
+   "exceptions": "Additional ship-tos are added by request, not inferred.",
+   "cites": []
+  },
+  {
+   "id": "RG-CS-001",
+   "title": "Pharmacy licensure and controlled substances",
+   "folder": "regulatory",
+   "stage": "Validation",
+   "agent": "Legal",
+   "level": "B",
+   "owner": "Regulatory compliance",
+   "text": "Before a pharmacy or other dispenser can order, we verify a valid state license and, for controlled substances, an active DEA registration for the schedules it will order. Trading partners must be licensed or registered for their role under the Drug Supply Chain Security Act.",
+   "rows": [
+    [
+     "State license active and DEA active for requested schedules",
+     "Controlled ordering on",
+     "Agent"
+    ],
+    [
+     "State license active, no DEA",
+     "Controlled ordering off; non-controlled only",
+     "Agent"
+    ],
+    [
+     "DEA or state license lapsing within 60 days",
+     "Active with a renewal reminder",
+     "Agent"
+    ],
+    [
+     "License expired, suspended or not found",
+     "Hold; no ordering",
+     "Regulatory compliance"
+    ],
+    [
+     "Ship-to is a PO box and controlled items are requested",
+     "Reject the ship-to",
+     "Data steward"
+    ]
+   ],
+   "exceptions": "Exclusion-list hits (OIG, SAM, OFAC) block the customer until a person clears them.",
+   "cites": [
+    "AG-002"
+   ],
+   "source": "https://www.fda.gov/drugs/drug-supply-chain-security-act/are-you-ready-drug-supply-chain-security-act"
+  },
+  {
+   "id": "BPO-001",
+   "title": "Supplier onboarding information",
+   "folder": "bpo-playbooks",
+   "stage": "Intake",
+   "agent": "Procurement",
+   "level": "B",
+   "owner": "Procurement operations",
+   "text": "For each supplier type, the BPO collects a fixed set of information before the request is accepted. The Procurement agent checks completeness and sends the BPO a list of what is missing.",
+   "rows": [
+    [
+     "All suppliers",
+     "Legal name, tax ID (W-9 or W-8), address, contact, bank details with voided check or bank letter",
+     "BPO"
+    ],
+    [
+     "Drug and device suppliers",
+     "Plus FDA establishment registration or state wholesale license",
+     "BPO"
+    ],
+    [
+     "Services above $100,000 a year",
+     "Plus insurance certificate and signed code of conduct",
+     "BPO"
+    ],
+    [
+     "Non-US suppliers",
+     "Plus W-8, local registration and sanctions screening evidence",
+     "BPO"
+    ],
+    [
+     "Information complete",
+     "Move to validation",
+     "Agent"
+    ],
+    [
+     "Information missing after two requests",
+     "Escalate to category manager",
+     "Category manager"
+    ]
+   ],
+   "exceptions": "Sole-source suppliers go to a category manager before onboarding.",
+   "cites": [
+    "AG-002"
+   ]
+  },
+  {
+   "id": "AG-001",
+   "title": "Autonomy matrix",
+   "folder": "agent-policies",
+   "stage": "All stages",
+   "agent": "Orchestrator",
+   "level": "H",
+   "owner": "Data governance",
+   "text": "Every policy has one autonomy level. When no policy covers a decision, the request goes to a person. Levels: Agent decides; Agent decides and a human approves above a limit; Human decides.",
+   "rows": [
+    [
+     "A \u2013 Agent decides",
+     "Agent acts and logs the decision with its policy",
+     "Agent"
+    ],
+    [
+     "B \u2013 Agent decides, human approves above limit",
+     "Agent acts up to the limit; above it the request waits",
+     "Named approver"
+    ],
+    [
+     "H \u2013 Human decides",
+     "Agent prepares the case; a person decides",
+     "Named approver"
+    ],
+    [
+     "No policy found",
+     "Route to a person; log the gap for governance",
+     "Data steward"
+    ]
+   ],
+   "exceptions": "Changing a policy's level needs two approvals.",
+   "cites": []
+  },
+  {
+   "id": "AG-002",
+   "title": "Confidence thresholds",
+   "folder": "agent-policies",
+   "stage": "All stages",
+   "agent": "Orchestrator",
+   "level": "B",
+   "owner": "Data governance",
+   "text": "Each agent scores its output from 0 to 1. Scores at or above the auto line proceed; scores in the review band go to a person; scores below it are rejected or sent back.",
+   "rows": [
+    [
+     "Intake field confidence",
+     "Auto at 0.95+; requester confirms 0.75\u20130.95; steward below 0.75",
+     "Agent / requester / steward"
+    ],
+    [
+     "Match score",
+     "Auto at 0.95+; steward 0.80\u20130.95; new record below 0.80",
+     "Agent / steward"
+    ],
+    [
+     "D&B confidence code",
+     "Accept 8+; steward 5\u20137; no match below 5",
+     "Agent / steward"
+    ],
+    [
+     "Exclusion-list name match",
+     "Clear below 0.80; steward 0.80\u20130.95; block at 0.95+",
+     "Agent / steward"
+    ]
+   ],
+   "exceptions": "A stage that fails twice stops for a person.",
+   "cites": []
+  },
+  {
+   "id": "AG-003",
+   "title": "Citations and audit",
+   "folder": "agent-policies",
+   "stage": "All stages",
+   "agent": "Orchestrator",
+   "level": "A",
+   "owner": "Data governance",
+   "text": "Every decision an agent takes records the policy IDs it used, the inputs it saw and the outcome. Screens show the policy on hover, and the full trail is kept in the audit log.",
+   "rows": [
+    [
+     "Every agent decision",
+     "Policy ID, version, inputs, outcome, time",
+     "Agent"
+    ],
+    [
+     "Decision with no matching policy",
+     "Logged as a gap; routed to a person",
+     "Agent"
+    ]
+   ],
+   "exceptions": "None.",
+   "cites": []
+  }
+ ]
+}

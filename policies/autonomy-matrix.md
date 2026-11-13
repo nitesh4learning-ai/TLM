@@ -10,6 +10,8 @@
 | BR-CR-001 | Credit limit approvals | business-rules | Credit | B – Agent decides, human approves above limit |
 | BR-TX-001 | Tax status and resale certificates | business-rules | Tax | A – Agent decides |
 | BR-LG-001 | Agreements and compliance acknowledgements | business-rules | Legal | B – Agent decides, human approves above limit |
+| BR-PR-001 | Pricing group | business-rules | Procurement | A – Agent decides |
+| BR-PF-001 | Partner functions | business-rules | Procurement | A – Agent decides |
 | RG-CS-001 | Pharmacy licensure and controlled substances | regulatory | Legal | B – Agent decides, human approves above limit |
 | BPO-001 | Supplier onboarding information | bpo-playbooks | Procurement | B – Agent decides, human approves above limit |
 | AG-001 | Autonomy matrix | agent-policies | Orchestrator | H – Human decides |

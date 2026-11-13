@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Business ready records · Agentic MDM</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:#131820;background:#F6F7F9;-webkit-font-smoothing:antialiased}
+a{color:#1F4FC8}a:hover{color:#163B99}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7F9; font-family: Inter, 'Segoe UI', system-ui, sans-serif; color: #131820">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 12px 24px; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #131820">
+<span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: #131820"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>
+<span style="font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Agentic MDM</span>
+</a>
+<div style="flex: 1 1 260px; max-width: 520px; display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 12px; background: #F6F7F9; border: 1px solid #E2E6EC; border-radius: 10px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F6B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="search-records" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Search</label>
+<input id="search-records" type="search" placeholder="Search customers, suppliers, DUNS, DEA or request ID" style="flex: 1; min-width: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #131820; outline: none">
+</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-left: auto">
+<label for="persona-records" style="font-size: 12px; color: #5F6B7A">Viewing as</label>
+<select id="persona-records" style="height: 44px; border: 1px solid #CDD3DC; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13px; padding: 0 10px; color: #131820">
+<option>Data steward</option><option>Governance lead</option><option>Requester · Sales ops</option><option>Customer care</option><option>Platform admin</option>
+</select>
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #EAF0FE; color: #1D47B8; font-size: 12px; font-weight: 600">JO</span>
+</div>
+</header>
+<div style="flex: 1 0 auto; display: flex; flex-wrap: wrap">
+<nav aria-label="Main" style="flex: 1 1 224px; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 2px; padding: 20px 12px; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+<a href="Main.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span style="flex: 1">Control tower</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Work</div>
+<a href="Intake.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13l2-7h12l2 7"></path><path d="M4 13v5h16v-5h-5a3 3 0 0 1-6 0H4z"></path></svg><span style="flex: 1">Intake</span></a>
+<a href="Steward.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6"></path></svg><span style="flex: 1">Steward queue</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">12</span></a>
+<a href="Lifecycle.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="flex: 1">Lifecycle &amp; outreach</span><span style="font-size: 12px; font-weight: 600; color: #9A4A00; background: #FFF1DE; border-radius: 999px; padding: 1px 8px">7</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Records</div>
+<a href="Journey.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.5 6H15a3.5 3.5 0 0 1 0 7H9a3.5 3.5 0 0 0 0 7h6.5"></path></svg><span style="flex: 1">Request journey</span></a>
+<a href="Records.dc.html" aria-current="page" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 600; color: #1D47B8; background: #EAF0FE"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg><span style="flex: 1">Business ready records</span></a>
+<a href="Hierarchy.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="5" rx="1"></rect><rect x="3" y="16" width="6" height="5" rx="1"></rect><rect x="15" y="16" width="6" height="5" rx="1"></rect><path d="M12 8v4M6 16v-4h12v4"></path></svg><span style="flex: 1">Hierarchies</span></a>
+<div style="flex: 1 1 100%; padding: 16px 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6B7A">Platform</div>
+<a href="Agents.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"></path></svg><span style="flex: 1">Agents</span></a>
+<a href="Policy.dc.html" style="flex: 1 1 180px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 9px; text-decoration: none; font-size: 14px; font-weight: 500; color: #4B5563"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 11h6M9 14.5h4"></path></svg><span style="flex: 1">Policy studio</span></a>
+</nav>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 56px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<div style="font-size: 13px; line-height: 18px; color: #5F6B7A">Records / Business ready records</div>
+<h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em">Business ready records</h1>
+<p style="margin: 0; max-width: 760px; font-size: 14px; line-height: 21px; color: #4B5563">Each record shows its key details first. Use … to open the source records it was built from, the value that won for each attribute and the policy that decided it.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<div role="list" aria-label="Records" style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{list}}" as="it" hint-placeholder-count="2">
+<button type="button" role="listitem" aria-current="{{it.current}}" onClick="{{it.pick}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 12px 14px; border-radius: 12px; border: 1px solid; font-family: inherit; text-align: left; cursor: pointer; {{it.style}}">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #4B5563">{{it.id}}</span>
+<span style="font-size: 14px; font-weight: 600; color: #131820">{{it.name}}</span>
+<span style="font-size: 12px; color: #5F6B7A">{{it.sub}}</span>
+</button>
+</sc-for>
+</div>
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 20px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 14px">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #4B5563">{{rid}}</span>
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 600">{{rname}}</h2>
+<span style="font-size: 12px; font-weight: 600; color: #0E5A32; background: #EEF7F1; border-radius: 999px; padding: 3px 10px">{{rstatus}}</span>
+<span style="flex-basis: 100%; font-size: 13px; color: #5F6B7A">{{rsub}}</span>
+</div>
+<sc-for list="{{visible}}" as="sec" hint-placeholder-count="2">
+<section style="display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px">
+<h3 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 600">{{sec.title}}</h3>
+<span style="font-size: 12px; color: #5F6B7A">{{sec.meta}}</span>
+</div>
+<sc-if value="{{sec.isText}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 13px; line-height: 20px; color: #2B323C; white-space: pre-line">{{sec.text}}</p></sc-if>
+<sc-if value="{{sec.isKv}}" hint-placeholder-val="{{true}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 10px 20px">
+<sc-for list="{{sec.rows}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<span style="font-size: 12px; color: #5F6B7A">{{r.k}}</span>
+<span style="font-size: 14px; line-height: 20px; color: #131820; overflow-wrap: anywhere">{{r.v}}</span>
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: #5F6B7A">{{r.note}}<sc-if value="{{r.policy}}" hint-placeholder-val="{{false}}"><span title="{{r.tip}}" tabindex="0" style="display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #F1F3F6; border: 1px solid #E2E6EC; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #2B323C; cursor: help; white-space: nowrap">{{r.policy}}</span></sc-if></span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{sec.isTable}}" hint-placeholder-val="{{false}}">
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; line-height: 19px">
+<thead><tr><sc-for list="{{sec.cols}}" as="c"><th scope="col" style="text-align: left; padding: 8px 10px; border-bottom: 1px solid #E2E6EC; font-size: 12px; font-weight: 600; color: #5F6B7A; white-space: nowrap">{{c.v}}</th></sc-for></tr></thead>
+<tbody><sc-for list="{{sec.rows}}" as="r"><tr style="{{r.style}}"><sc-for list="{{r.cells}}" as="c"><td style="padding: 8px 10px; border-bottom: 1px solid #F1F3F6; vertical-align: top; {{c.style}}">{{c.v}}<sc-if value="{{c.policy}}" hint-placeholder-val="{{false}}"> <span title="{{c.tip}}" tabindex="0" style="display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #F1F3F6; border: 1px solid #E2E6EC; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #2B323C; cursor: help; white-space: nowrap">{{c.policy}}</span></sc-if></td></sc-for></tr></sc-for></tbody>
+</table>
+</div>
+</sc-if>
+<sc-if value="{{sec.isChecks}}" hint-placeholder-val="{{false}}">
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{sec.rows}}" as="r">
+<li style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 9px; {{r.style}}">
+<span style="font-size: 12px; font-weight: 700; min-width: 64px">{{r.mark}}</span>
+<span style="flex: 1 1 260px; font-size: 13px; line-height: 19px">{{r.k}}<span style="color: #5F6B7A"> · {{r.note}}</span></span>
+<sc-if value="{{r.policy}}" hint-placeholder-val="{{false}}"><span title="{{r.tip}}" tabindex="0" style="display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #F1F3F6; border: 1px solid #E2E6EC; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #2B323C; cursor: help; white-space: nowrap">{{r.policy}}</span></sc-if>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+</section>
+</sc-for>
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{more}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 9px; border: 1px dashed #9DB3EE; background: #F5F8FF; color: #1D47B8; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer"><span aria-hidden="true" style="font-size: 18px; line-height: 1">…</span>{{moreLabel}}</button></sc-if>
+<sc-if value="{{canLess}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{less}}" style="display: inline-flex; align-items: center; gap: 6px; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 9px; border: 1px solid #CDD3DC; background: #FFFFFF; color: #131820; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Show less</button></sc-if>
+</div>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = {}; }
+  data() { return {"records": [{"id": "BRR-0004417", "name": "Cedar Park Family Pharmacy, LLC", "status": "Active", "sub": "Independent pharmacy · Cedar Park, TX · 5 sources", "sections": [{"title": "Key details", "kind": "kv", "level": 1, "meta": "", "rows": [{"k": "Legal name", "v": "Cedar Park Family Pharmacy, LLC", "note": "From D&B", "policy": "SV-001"}, {"k": "DUNS", "v": "61-203-4471", "note": "Confidence code 10", "policy": ""}, {"k": "Address", "v": "1200 E Whitestone Blvd, Cedar Park, TX 78613-3047", "note": "Standardized", "policy": "SV-001"}, {"k": "Tax ID", "v": "••-•••5846", "note": "TIN match passed", "policy": "SV-001"}, {"k": "Sales areas", "v": "Pharma · US01 · Specialty · US02", "note": "US02 added Nov 12", "policy": ""}, {"k": "Cross-references", "v": "5 sources: 3 SAP, 1 Oracle EBS, 1 AS/400", "note": "", "policy": ""}]}, {"title": "Cross-references", "kind": "table", "level": 2, "meta": "5 source records", "cols": ["System", "System ID", "Name as held there", "Merged"], "rows": [{"cells": ["SAP S/4HANA", "0001004417", "CEDAR PARK FAMILY PHARMACY LLC", "2023-06-02"]}, {"cells": ["SAP S/4HANA", "0001004418", "Cedar Park Family Pharmacy", "2023-06-02"]}, {"cells": ["SAP S/4HANA", "0001009902", "CEDAR PARK FAMILY PHARM", "2024-01-15"]}, {"cells": ["Oracle EBS", "ORA-88213", "Cedar Pk Family Pharmacy Inc", "2023-06-02"]}, {"cells": ["AS/400 Order Entry", "AS4-30771", "CEDAR PARK FAM PHCY", "2025-02-11 · steward confirmed"]}]}, {"title": "Winning values", "kind": "table", "level": 2, "meta": "", "cols": ["Attribute", "Business ready record", "Winning source", "Why it won"], "rows": [{"cells": ["Legal name", "Cedar Park Family Pharmacy, LLC", "D&B", {"v": "", "policy": "SV-001"}]}, {"cells": ["Address", "1200 E WHITESTONE BLVD, CEDAR PARK TX 78613-3047", "Address validation", {"v": "", "policy": "SV-001"}]}, {"cells": ["Tax ID", "••-•••5846", "SAP 0001004417 (validated W-9)", {"v": "", "policy": "SV-001"}]}, {"cells": ["Payment terms", "Net 30", "SAP 0001004417", {"v": "", "policy": "BR-PT-001"}]}, {"cells": ["Credit limit", "$50,000", "SAP 0001004417", {"v": "", "policy": "BR-CR-001"}]}, {"cells": ["Payment method", "ACH", "Account validation GREEN", {"v": "", "policy": "BR-PM-001"}]}, {"cells": ["DEA", "FC2201846 · II–V", "LexisNexis", {"v": "", "policy": "SV-001"}]}]}, {"title": "Full comparison", "kind": "table", "level": 3, "meta": "Highlighted cells won", "cols": ["Attribute", "Business ready record", "SAP 0001004417", "SAP 0001004418", "SAP 0001009902", "Oracle EBS ORA-88213", "AS/400 AS4-30771"], "rows": [{"cells": ["Name", "Cedar Park Family Pharmacy, LLC", "CEDAR PARK FAMILY PHARMACY LLC", "Cedar Park Family Pharmacy", "CEDAR PARK FAMILY PHARM", "Cedar Pk Family Pharmacy Inc", "CEDAR PARK FAM PHCY"]}, {"cells": ["Street", "1200 E Whitestone Blvd", {"v": "1200 E WHITESTONE BLVD", "win": true, "policy": "SV-001"}, "1200 E Whitestone Blvd Ste 4", "1200 E WHITESTONE", "1200 Whitestone Blvd", "1200 E WHITESTONE BLVD STE 4"]}, {"cells": ["Postal code", "78613-3047", {"v": "78613-3047", "win": true, "policy": "SV-001"}, "78613", "78613", "78613", "—"]}, {"cells": ["Tax ID", "••-•••5846", {"v": "••-•••5846", "win": true, "policy": "SV-001"}, "••-•••5846", "••-•••5846", "••-•••5846", "missing"]}, {"cells": ["Payment terms", "Net 30", {"v": "NT30", "win": true, "policy": "BR-PT-001"}, "NT30", "NT45", "N30", "NET 30"]}, {"cells": ["Credit limit", "$50,000", {"v": "50,000", "win": true, "policy": "BR-CR-001"}, "25,000", "0", "—", "—"]}, {"cells": ["Account group", "Sold-to", "Z001 sold-to", "Z002 ship-to", "Z003 payer", "—", "—"]}]}, {"title": "History", "kind": "table", "level": 3, "meta": "", "cols": ["When", "Change", "By"], "rows": [{"cells": ["Nov 12, 2026 2:21 PM", "Sales area Specialty · US02 added (REQ-10495)", "Match & merge agent"]}, {"cells": ["Nov 9, 2026", "D&B refresh: employees 19 → 22", "Enrichment agent"]}, {"cells": ["Feb 11, 2025", "AS/400 AS4-30771 merged", "J. Ortiz, data steward"]}]}]}, {"id": "BRR-0051207", "name": "Lakeside Community Pharmacy, LLC", "status": "Active", "sub": "Independent pharmacy · Tyler, TX · created Nov 12", "sections": [{"title": "Key details", "kind": "kv", "level": 1, "meta": "", "rows": [{"k": "Legal name", "v": "Lakeside Community Pharmacy, LLC", "note": "D&B, matches W-9", "policy": "SV-001"}, {"k": "DBA", "v": "Lakeside Pharmacy", "note": "Requester confirmed", "policy": ""}, {"k": "DUNS", "v": "08-447-3921", "note": "Confidence code 9", "policy": ""}, {"k": "Address", "v": "1420 S Broadway Ave, Ste 200, Tyler, TX 75701-3318", "note": "Standardized", "policy": "SV-001"}, {"k": "Sales area", "v": "Pharma · US01", "note": "", "policy": ""}, {"k": "Cross-references", "v": "1 source: SAP 0001051207 (created from this record)", "note": "", "policy": ""}]}, {"title": "Extended · Pharma · US01", "kind": "kv", "level": 2, "meta": "", "rows": [{"k": "Payment terms", "v": "Net 30", "note": "", "policy": "BR-PT-001"}, {"k": "Credit limit", "v": "$75,000", "note": "Approved by credit manager", "policy": "BR-CR-001"}, {"k": "Payment method", "v": "ACH", "note": "", "policy": "BR-PM-001"}, {"k": "Pricing group", "v": "Independent retail", "note": "", "policy": "BR-PR-001"}, {"k": "Tax class", "v": "Exempt for resale", "note": "", "policy": "BR-TX-001"}, {"k": "Controlled ordering", "v": "CII–CV on", "note": "", "policy": "RG-CS-001"}, {"k": "Partners", "v": "Sold-to = bill-to = payer · 1 ship-to", "note": "", "policy": "BR-PF-001"}]}, {"title": "Cross-references", "kind": "table", "level": 2, "meta": "", "cols": ["System", "System ID", "Name as held there", "Linked"], "rows": [{"cells": ["SAP S/4HANA", "0001051207", "LAKESIDE COMMUNITY PHARMACY LLC", "Nov 12, 2026"]}]}, {"title": "Family and related accounts", "kind": "kv", "level": 3, "meta": "", "rows": [{"k": "Parent", "v": "Lakeside Rx Holdings, LLC", "note": "D&B", "policy": ""}, {"k": "Related account", "v": "Lakeside Pharmacy #2 · SAP 0000042871", "note": "Same owner, separate customer", "policy": ""}]}]}]}; }
+  policies() { return {"MM-002": {"title": "Duplicate threshold", "level": "B", "agent": "Match & merge", "folder": "match-survivorship"}, "MM-007a": {"title": "Ownership change at a known site", "level": "B", "agent": "Match & merge", "folder": "match-survivorship"}, "SV-001": {"title": "Source trust order", "level": "A", "agent": "Match & merge", "folder": "match-survivorship"}, "BR-PT-001": {"title": "Customer payment terms", "level": "B", "agent": "Credit", "folder": "business-rules"}, "BR-PM-001": {"title": "Payment method", "level": "B", "agent": "Credit", "folder": "business-rules"}, "BR-CR-001": {"title": "Credit limit approvals", "level": "B", "agent": "Credit", "folder": "business-rules"}, "BR-TX-001": {"title": "Tax status and resale certificates", "level": "A", "agent": "Tax", "folder": "business-rules"}, "BR-LG-001": {"title": "Agreements and compliance acknowledgements", "level": "B", "agent": "Legal", "folder": "business-rules"}, "BR-PR-001": {"title": "Pricing group", "level": "A", "agent": "Procurement", "folder": "business-rules"}, "BR-PF-001": {"title": "Partner functions", "level": "A", "agent": "Procurement", "folder": "business-rules"}, "RG-CS-001": {"title": "Pharmacy licensure and controlled substances", "level": "B", "agent": "Legal", "folder": "regulatory"}, "BPO-001": {"title": "Supplier onboarding information", "level": "B", "agent": "Procurement", "folder": "bpo-playbooks"}, "AG-001": {"title": "Autonomy matrix", "level": "H", "agent": "Orchestrator", "folder": "agent-policies"}, "AG-002": {"title": "Confidence thresholds", "level": "B", "agent": "Orchestrator", "folder": "agent-policies"}, "AG-003": {"title": "Citations and audit", "level": "A", "agent": "Orchestrator", "folder": "agent-policies"}}; }
+  levels() { return {"A": "Agent decides", "B": "Agent decides, human approves above limit", "H": "Human decides"}; }
+
+  tip(id) {
+    const p = this.policies()[id];
+    if (!p) return id;
+    return id + ' · ' + p.title + ' · Autonomy ' + p.level + ' (' + this.levels()[p.level] + ') · Agent: ' + p.agent;
+  }
+  prepRow(r, kind) {
+    const out = Object.assign({}, r);
+    out.policy = r.policy || '';
+    out.tip = r.policy ? this.tip(r.policy) : '';
+    if (kind === 'table') {
+      out.cells = (r.cells || []).map((c) => {
+        const cell = typeof c === 'object' && c !== null ? Object.assign({}, c) : { v: c };
+        cell.v = cell.v === undefined || cell.v === null ? '' : String(cell.v);
+        cell.policy = cell.policy || '';
+        cell.tip = cell.policy ? this.tip(cell.policy) : '';
+        cell.style = cell.win ? 'background: #EAF0FE; color: #1D47B8; font-weight: 600' : (cell.style || '');
+        return cell;
+      });
+      out.style = r.style || '';
+    }
+    if (kind === 'checks') {
+      const pass = r.pass === true, human = r.pass === 'human';
+      out.mark = pass ? '✓ Passed' : (human ? '● Person' : '✕ Failed');
+      out.style = pass ? 'background: #EEF7F1; color: #0E5A32' : (human ? 'background: #FFF1DE; color: #7A3B00' : 'background: #FDECEC; color: #8A1C1C');
+      out.note = r.note || '';
+    }
+    out.note = out.note || '';
+    return out;
+  }
+  prep(sections, depth) {
+    const all = (sections || []).map((s) => ({
+      title: s.title, meta: s.meta || '', level: s.level || 1, text: s.text || '',
+      isText: s.kind === 'text', isKv: s.kind === 'kv', isTable: s.kind === 'table', isChecks: s.kind === 'checks',
+      cols: (s.cols || []).map((c) => ({ v: c })),
+      rows: (s.rows || []).map((r) => this.prepRow(r, s.kind)),
+    }));
+    const maxLevel = all.reduce((m, s) => Math.max(m, s.level), 1);
+    return { visible: all.filter((s) => s.level <= depth), hasMore: depth < maxLevel, canLess: depth > 1 && depth >= maxLevel, maxLevel };
+  }
+
+
+  renderVals() {
+
+    const D = this.data();
+    const ri = this.state.r || 0;
+    const rec = D.records[ri];
+    const depth = this.state.depth || 1;
+    const p = this.prep(rec.sections, depth);
+    const list = D.records.map((r, i) => ({ id: r.id, name: r.name, sub: r.sub, current: i === ri ? 'true' : 'false',
+      style: i === ri ? 'border-color: #1D47B8; background: #F5F8FF' : 'border-color: #E2E6EC; background: #FFFFFF',
+      pick: () => this.setState({ r: i, depth: 1 }) }));
+    return Object.assign({ list, rid: rec.id, rname: rec.name, rsub: rec.sub, rstatus: rec.status,
+      moreLabel: depth === 1 ? 'Show sources and winning values' : 'Show full comparison and history',
+      more: () => this.setState({ depth: depth + 1 }), less: () => this.setState({ depth: 1 }) }, p);
+
+  }
+}
+</script>
+</body>
+</html>
