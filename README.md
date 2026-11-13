@@ -16,3 +16,24 @@ function agents (Legal, Procurement, Credit, Tax). Every decision cites the poli
 ## Terminology
 
 Use **Business ready record**. Do not use "golden record".
+
+## Run locally
+
+Needs Python 3.11+ and Node 18+.
+
+```bash
+# backend (http://127.0.0.1:8000, docs at /docs)
+cd backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env      # then put your ANTHROPIC_API_KEY in .env
+uvicorn app.main:app --reload --port 8000
+
+# frontend (http://localhost:5173), in a second terminal
+cd frontend
+npm install
+npm run dev
+```
+
+Without a key, the three walkthrough requests still run (Intake uses the sample's key values); email upload and policy upload need the key.
+Sample emails to upload: `data/samples/*.eml`. Tests: `cd backend && pytest`.
