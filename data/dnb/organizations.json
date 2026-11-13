@@ -1,0 +1,1013 @@
+{
+  "source": "D&B Direct+ (identity resolution + family tree)",
+  "organizations": [
+    {
+      "organization": {
+        "duns": "958224121",
+        "primaryName": "Brazos Health System Holdings, Inc.",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Dallas"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1983",
+        "numberOfEmployees": [
+          {
+            "value": 3474,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": null
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "958224121",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "133568864",
+        "primaryName": "Brazos Health System \u2013 North Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Plano"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1991",
+        "numberOfEmployees": [
+          {
+            "value": 2613,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "95-822-4121"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "133568864",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "237566698",
+        "primaryName": "Brazos Specialty Hospital Plano",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Plano"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1524 Trinity Mills Rd"
+          }
+        },
+        "startDate": "2003",
+        "numberOfEmployees": [
+          {
+            "value": 1112,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "13-356-8864"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "237566698",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      }
+    },
+    {
+      "organization": {
+        "duns": "108722482",
+        "primaryName": "Brazos Senior Living \u2013 North Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Plano"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7024 Cedar Springs Rd"
+          }
+        },
+        "startDate": "1998",
+        "numberOfEmployees": [
+          {
+            "value": 634,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "13-356-8864"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "108722482",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      }
+    },
+    {
+      "organization": {
+        "duns": "819713161",
+        "primaryName": "Brazos Surgical Center \u2013 North Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Plano"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "6301 S Broadway Ave"
+          }
+        },
+        "startDate": "2014",
+        "numberOfEmployees": [
+          {
+            "value": 859,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "13-356-8864"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "819713161",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "610196784",
+        "primaryName": "Brazos Outpatient Pharmacy \u2013 North Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Plano"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7528 Cedar Springs Rd"
+          }
+        },
+        "startDate": "2010",
+        "numberOfEmployees": [
+          {
+            "value": 2212,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "13-356-8864"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "610196784",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "609296474",
+        "primaryName": "Brazos Health System \u2013 East Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1982",
+        "numberOfEmployees": [
+          {
+            "value": 2041,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "95-822-4121"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "609296474",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "535244910",
+        "primaryName": "Brazos Senior Living Tyler",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "3852 Legacy Ridge Pkwy"
+          }
+        },
+        "startDate": "1988",
+        "numberOfEmployees": [
+          {
+            "value": 3629,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-929-6474"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "535244910",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "287408643",
+        "primaryName": "Brazos Surgical Center \u2013 East Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9297 Mockingbird Ln"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 2492,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-929-6474"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "287408643",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "305140142",
+        "primaryName": "Brazos Specialty Hospital \u2013 East Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7016 Trinity Mills Rd"
+          }
+        },
+        "startDate": "1994",
+        "numberOfEmployees": [
+          {
+            "value": 985,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-929-6474"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "305140142",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "960284365",
+        "primaryName": "Brazos Outpatient Pharmacy \u2013 East Texas",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Tyler"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1927 Oak Hollow Blvd"
+          }
+        },
+        "startDate": "1995",
+        "numberOfEmployees": [
+          {
+            "value": 2348,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-929-6474"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "960284365",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "601858672",
+        "primaryName": "Brazos Health System \u2013 Gulf Coast",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1991",
+        "numberOfEmployees": [
+          {
+            "value": 2202,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "95-822-4121"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 5
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "601858672",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "535074897",
+        "primaryName": "Brazos Surgical Center Houston",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "419 S Broadway Ave"
+          }
+        },
+        "startDate": "1981",
+        "numberOfEmployees": [
+          {
+            "value": 796,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-185-8672"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 5
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "535074897",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "272324107",
+        "primaryName": "Brazos Senior Living \u2013 Gulf Coast",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "9107 Medical Center Dr"
+          }
+        },
+        "startDate": "1980",
+        "numberOfEmployees": [
+          {
+            "value": 69,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-185-8672"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "272324107",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "705974441",
+        "primaryName": "Brazos Medical Center \u2013 Gulf Coast",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4161 Bluebonnet Ln"
+          }
+        },
+        "startDate": "1994",
+        "numberOfEmployees": [
+          {
+            "value": 1363,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-185-8672"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 5
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "705974441",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      }
+    },
+    {
+      "organization": {
+        "duns": "142161755",
+        "primaryName": "Brazos Outpatient Pharmacy \u2013 Gulf Coast",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Houston"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1260 Mockingbird Ln"
+          }
+        },
+        "startDate": "2013",
+        "numberOfEmployees": [
+          {
+            "value": 119,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "60-185-8672"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "142161755",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "230098336",
+        "primaryName": "Brazos Health System \u2013 Hill Country",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": null
+          }
+        },
+        "startDate": "1987",
+        "numberOfEmployees": [
+          {
+            "value": 335,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "95-822-4121"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "230098336",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "172707331",
+        "primaryName": "Brazos Outpatient Pharmacy Austin",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1093 Heritage Pkwy"
+          }
+        },
+        "startDate": "2005",
+        "numberOfEmployees": [
+          {
+            "value": 1084,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "23-009-8336"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 2
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "172707331",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 10
+      }
+    },
+    {
+      "organization": {
+        "duns": "694760018",
+        "primaryName": "Brazos Infusion Center \u2013 Hill Country",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "1704 Legacy Ridge Pkwy"
+          }
+        },
+        "startDate": "2001",
+        "numberOfEmployees": [
+          {
+            "value": 366,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "23-009-8336"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "694760018",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    },
+    {
+      "organization": {
+        "duns": "102892896",
+        "primaryName": "Brazos Surgical Center \u2013 Hill Country",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "4445 Lakeview Dr"
+          }
+        },
+        "startDate": "1993",
+        "numberOfEmployees": [
+          {
+            "value": 882,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "23-009-8336"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 4
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "102892896",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 8
+      }
+    },
+    {
+      "organization": {
+        "duns": "167299909",
+        "primaryName": "Brazos Specialty Hospital \u2013 Hill Country",
+        "countryISOAlpha2Code": "US",
+        "primaryAddress": {
+          "addressLocality": {
+            "name": "Austin"
+          },
+          "addressRegion": {
+            "abbreviatedName": "TX"
+          },
+          "streetAddress": {
+            "line1": "7911 Mockingbird Ln"
+          }
+        },
+        "startDate": "1987",
+        "numberOfEmployees": [
+          {
+            "value": 1979,
+            "informationScopeDescription": "Consolidated"
+          }
+        ],
+        "corporateLinkage": {
+          "parent": {
+            "duns": "23-009-8336"
+          },
+          "globalUltimate": {
+            "duns": "958224121",
+            "primaryName": "Brazos Health System Holdings, Inc."
+          },
+          "familyTreeMembersCount": 21
+        },
+        "dnbAssessment": {
+          "failureScore": {
+            "classScore": 3
+          }
+        }
+      },
+      "inquiryDetail": {
+        "duns": "167299909",
+        "productID": "cmpelk",
+        "productVersion": "v1"
+      },
+      "matchQualityInformation": {
+        "confidenceCode": 9
+      }
+    }
+  ]
+}

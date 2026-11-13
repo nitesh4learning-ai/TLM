@@ -1,0 +1,32 @@
+{
+  "title": "Request on an existing site with a different tax ID",
+  "request": {
+    "channel": "form",
+    "legal_name": "Westbrook Infusion Partners LP",
+    "address": "4500 W Park Blvd Ste 120, Plano, TX 75093",
+    "tax_id": "44-3670896",
+    "request_type": "New customer"
+  },
+  "search": {
+    "results": [
+      {
+        "rank": 1,
+        "id": "SAP 0001003388",
+        "name": "WESTBROOK INFUSION CENTER LLC",
+        "confidence": 0.89,
+        "decision": "Same site, different tax ID"
+      },
+      {
+        "rank": 2,
+        "id": "Oracle EBS ORA-55102",
+        "name": "Westbrook Infusion Ctr",
+        "confidence": 0.86,
+        "decision": "Same site"
+      }
+    ]
+  },
+  "enrichment": {
+    "dnb": "Ownership change reported 2026-09-02 (Westbrook Infusion Center LLC acquired by Westbrook Infusion Partners LP)"
+  },
+  "outcome": "Policy MM-007a: create a new customer, link as successor of 0001003388; carry over ship-to; Credit decides limit and terms afresh."
+}

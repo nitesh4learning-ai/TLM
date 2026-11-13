@@ -1,0 +1,29 @@
+{
+  "source": "Address validation service (USPS CASS)",
+  "records": [
+    {
+      "input": "1420 S Broadway Ave, Ste 200, Tyler, TX 75701",
+      "standardized": "1420 S BROADWAY AVE STE 200, TYLER TX 75701-3318",
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "1200 E Whitestone Blvd, Cedar Park, TX 78613",
+      "standardized": "1200 E WHITESTONE BLVD, CEDAR PARK TX 78613-3047",
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    },
+    {
+      "input": "4500 W Park Blvd Ste 120, Plano, TX 75093",
+      "standardized": "4500 W PARK BLVD STE 120, PLANO TX 75093-2210",
+      "dpvConfirmation": "Y",
+      "deliverable": true,
+      "poBox": false,
+      "rdi": "Commercial"
+    }
+  ]
+}

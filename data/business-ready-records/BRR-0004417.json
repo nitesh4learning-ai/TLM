@@ -1,0 +1,115 @@
+{
+  "id": "BRR-0004417",
+  "attributes": {
+    "legal_name": {
+      "value": "Cedar Park Family Pharmacy, LLC",
+      "winner": "D&B",
+      "policy": "SV-001"
+    },
+    "address": {
+      "value": "1200 E Whitestone Blvd, Cedar Park, TX 78613-3047",
+      "winner": "Address validation",
+      "policy": "SV-001"
+    },
+    "tax_id": {
+      "value": "62-1415846",
+      "winner": "SAP 0001004417",
+      "policy": "SV-001"
+    },
+    "payment_terms": {
+      "value": "Net 30",
+      "winner": "SAP 0001004417",
+      "policy": "BR-PT-001"
+    },
+    "credit_limit": {
+      "value": 50000,
+      "winner": "SAP 0001004417",
+      "policy": "BR-CR-001"
+    }
+  },
+  "crossReferences": [
+    {
+      "system": "SAP S/4HANA",
+      "id": "0001004417",
+      "record": {
+        "KUNNR": "0001004417",
+        "NAME1": "CEDAR PARK FAMILY PHARMACY LLC",
+        "STRAS": "1200 E WHITESTONE BLVD",
+        "ORT01": "CEDAR PARK",
+        "REGIO": "TX",
+        "LAND1": "US",
+        "PSTLZ": "78613-3047",
+        "STCD1": "62-1415846",
+        "ZTERM": "NT30",
+        "KLIMK": 50000,
+        "ZWELS": "C",
+        "KTOKD": "Z001",
+        "VKORG": "US01"
+      }
+    },
+    {
+      "system": "SAP S/4HANA",
+      "id": "0001004418",
+      "record": {
+        "KUNNR": "0001004418",
+        "NAME1": "Cedar Park Family Pharmacy",
+        "STRAS": "1200 E Whitestone Blvd Ste 4",
+        "ORT01": "Cedar Park",
+        "REGIO": "TX",
+        "LAND1": "US",
+        "PSTLZ": "78613",
+        "STCD1": "62-1415846",
+        "ZTERM": "NT30",
+        "KLIMK": 25000,
+        "ZWELS": "C",
+        "KTOKD": "Z002",
+        "VKORG": "US02"
+      }
+    },
+    {
+      "system": "SAP S/4HANA",
+      "id": "0001009902",
+      "record": {
+        "KUNNR": "0001009902",
+        "NAME1": "CEDAR PARK FAMILY PHARM",
+        "STRAS": "1200 E WHITESTONE",
+        "ORT01": "CEDAR PARK",
+        "REGIO": "TX",
+        "LAND1": "US",
+        "PSTLZ": "78613",
+        "STCD1": "62-1415846",
+        "ZTERM": "NT45",
+        "KLIMK": 0,
+        "ZWELS": "C",
+        "KTOKD": "Z003",
+        "VKORG": "US01"
+      }
+    },
+    {
+      "system": "Oracle EBS",
+      "id": "ORA-88213",
+      "record": {
+        "system": "Oracle EBS",
+        "legacyId": "ORA-88213",
+        "customerName": "Cedar Pk Family Pharmacy Inc",
+        "addressLine": "1200 Whitestone Blvd, Cedar Park TX 78613",
+        "taxRef": "621415846",
+        "paymentTerms": "N30",
+        "notes": null
+      }
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "id": "AS4-30771",
+      "record": {
+        "system": "AS/400 Order Entry",
+        "legacyId": "AS4-30771",
+        "customerName": "CEDAR PARK FAM PHCY",
+        "addressLine": "1200 E WHITESTONE BLVD STE 4 CEDAR PARK TX",
+        "taxRef": null,
+        "paymentTerms": "NET 30",
+        "notes": "tax id missing"
+      }
+    }
+  ]
+}

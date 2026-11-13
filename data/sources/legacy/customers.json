@@ -1,0 +1,143 @@
+{
+  "systems": [
+    "Oracle EBS",
+    "AS/400 Order Entry"
+  ],
+  "records": [
+    {
+      "system": "Oracle EBS",
+      "legacyId": "ORA-88213",
+      "customerName": "Cedar Pk Family Pharmacy Inc",
+      "addressLine": "1200 Whitestone Blvd, Cedar Park TX 78613",
+      "taxRef": "621415846",
+      "paymentTerms": "N30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "AS4-30771",
+      "customerName": "CEDAR PARK FAM PHCY",
+      "addressLine": "1200 E WHITESTONE BLVD STE 4 CEDAR PARK TX",
+      "taxRef": null,
+      "paymentTerms": "NET 30",
+      "notes": "tax id missing"
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "ORA-55102",
+      "customerName": "Westbrook Infusion Ctr",
+      "addressLine": "4500 W Park Blvd Ste 120, Plano TX 75093",
+      "taxRef": "625163555",
+      "paymentTerms": "N30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70000",
+      "customerName": "Riverbend Pharmacy",
+      "addressLine": "9505 Oak Hollow Blvd, Round Rock TX 78664",
+      "taxRef": "709031491",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-70001",
+      "customerName": "Lakeside Drug",
+      "addressLine": "7927 S Broadway Ave, Frisco TX 75034",
+      "taxRef": "187722755",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-70002",
+      "customerName": "Prairie Community Pharmacy",
+      "addressLine": "9321 Oak Hollow Blvd, Tyler TX 75701",
+      "taxRef": "205163953",
+      "paymentTerms": "N30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70003",
+      "customerName": "Ironwood Compounding Pharmacy",
+      "addressLine": "3797 Mockingbird Ln, Katy TX 77494",
+      "taxRef": "588558378",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70004",
+      "customerName": "Oakmont Compounding Pharmacy",
+      "addressLine": "1086 Trinity Mills Rd, Frisco TX 75034",
+      "taxRef": "224486102",
+      "paymentTerms": "N45",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70005",
+      "customerName": "Riverbend Community Pharmacy",
+      "addressLine": "4029 Medical Center Dr, Plano TX 75024",
+      "taxRef": "802259379",
+      "paymentTerms": "N30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70006",
+      "customerName": "Pioneer Clinic Pharmacy",
+      "addressLine": "9829 Lakeview Dr, Tyler TX 75701",
+      "taxRef": "471547605",
+      "paymentTerms": "N30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70007",
+      "customerName": "Pioneer Pharmacy",
+      "addressLine": "3924 Oak Hollow Blvd, Frisco TX 75034",
+      "taxRef": "904318855",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-70008",
+      "customerName": "Prairie Drug",
+      "addressLine": "2430 S Broadway Ave, Tyler TX 75701",
+      "taxRef": "173783722",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70009",
+      "customerName": "Pioneer Pharmacy",
+      "addressLine": "7779 Oak Hollow Blvd, Katy TX 77494",
+      "taxRef": "997752972",
+      "paymentTerms": "NET 30",
+      "notes": null
+    },
+    {
+      "system": "AS/400 Order Entry",
+      "legacyId": "LEG-70010",
+      "customerName": "Pioneer Pharmacy",
+      "addressLine": "9898 Legacy Ridge Pkwy, Katy TX 77494",
+      "taxRef": "656407658",
+      "paymentTerms": "N45",
+      "notes": null
+    },
+    {
+      "system": "Oracle EBS",
+      "legacyId": "LEG-70011",
+      "customerName": "Riverbend Community Pharmacy",
+      "addressLine": "9524 Trinity Mills Rd, Frisco TX 75034",
+      "taxRef": "125521644",
+      "paymentTerms": "N45",
+      "notes": null
+    }
+  ]
+}

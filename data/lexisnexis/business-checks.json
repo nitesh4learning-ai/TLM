@@ -1,0 +1,659 @@
+{
+  "source": "LexisNexis business and exclusion checks",
+  "records": [
+    {
+      "entity": "Brazos Specialty Hospital Plano",
+      "duns": "23-756-6698",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-308496",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB6001337",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Senior Living \u2013 North Texas",
+      "duns": "10-872-2482",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-988662",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB4235114",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Surgical Center \u2013 North Texas",
+      "duns": "81-971-3161",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-338968",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB8495930",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Outpatient Pharmacy \u2013 North Texas",
+      "duns": "61-019-6784",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-864544",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB2553419",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Senior Living Tyler",
+      "duns": "53-524-4910",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-623481",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB5641394",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Surgical Center \u2013 East Texas",
+      "duns": "28-740-8643",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-617488",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB4969652",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Specialty Hospital \u2013 East Texas",
+      "duns": "30-514-0142",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-855731",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB1669780",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Outpatient Pharmacy \u2013 East Texas",
+      "duns": "96-028-4365",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-211579",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB6270487",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Surgical Center Houston",
+      "duns": "53-507-4897",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-609597",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB5430397",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Senior Living \u2013 Gulf Coast",
+      "duns": "27-232-4107",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-426858",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB4896380",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Medical Center \u2013 Gulf Coast",
+      "duns": "70-597-4441",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-174441",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB1509833",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Outpatient Pharmacy \u2013 Gulf Coast",
+      "duns": "14-216-1755",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-922733",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB3473826",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Outpatient Pharmacy Austin",
+      "duns": "17-270-7331",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-292401",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB5133385",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Infusion Center \u2013 Hill Country",
+      "duns": "69-476-0018",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-520521",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB8013269",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Surgical Center \u2013 Hill Country",
+      "duns": "10-289-2896",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-707314",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB4687236",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Brazos Specialty Hospital \u2013 Hill Country",
+      "duns": "16-729-9909",
+      "checks": {
+        "ofac": {
+          "result": "clear",
+          "listsChecked": [
+            "SDN",
+            "Consolidated"
+          ]
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active"
+        },
+        "stateLicense": {
+          "number": "TX-PH-346629",
+          "status": "Active",
+          "expires": "2027-03-31"
+        },
+        "dea": {
+          "number": "BB8208123",
+          "status": "Active",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Lakeside Community Pharmacy, LLC",
+      "duns": "08-447-3921",
+      "checks": {
+        "ofac": {
+          "result": "clear"
+        },
+        "oig_leie": {
+          "result": "clear"
+        },
+        "sam_gov": {
+          "result": "clear"
+        },
+        "businessRegistration": {
+          "state": "TX",
+          "status": "Active",
+          "formed": "2019-05-14"
+        },
+        "stateLicense": {
+          "number": "TX-PH-481220",
+          "status": "Active",
+          "expires": "2027-06-30"
+        },
+        "dea": {
+          "number": "FL4827311",
+          "status": "Active",
+          "expires": "2027-06-30",
+          "schedules": [
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        },
+        "nameMatch": {
+          "watchlistHits": [
+            {
+              "list": "OIG",
+              "name": "Lakeside Pharmacy Services",
+              "score": 0.41,
+              "result": "below threshold, clear"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

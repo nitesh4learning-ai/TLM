@@ -1,0 +1,39 @@
+{
+  "source": "Account validation service",
+  "records": [
+    {
+      "entity": "Lakeside Community Pharmacy, LLC",
+      "routing": "111000025",
+      "accountLast4": "7302",
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Cedar Park Family Pharmacy LLC",
+      "routing": "111900659",
+      "accountLast4": "1184",
+      "result": {
+        "code": "GREEN",
+        "accountStatus": "open",
+        "nameMatch": "match",
+        "ownerType": "business"
+      }
+    },
+    {
+      "entity": "Westbrook Infusion Partners LP",
+      "routing": "111000614",
+      "accountLast4": "9051",
+      "result": {
+        "code": "AMBER",
+        "accountStatus": "open",
+        "nameMatch": "partial",
+        "ownerType": "business",
+        "note": "Account holder shows prior owner name"
+      }
+    }
+  ]
+}

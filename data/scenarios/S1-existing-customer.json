@@ -1,0 +1,76 @@
+{
+  "title": "Request for a customer that already exists",
+  "request": {
+    "channel": "email",
+    "from": "ap@cedarparkfamilyrx.com",
+    "received": "2026-11-12T14:07:00Z",
+    "subject": "Add Specialty account \u2013 Cedar Park Family Pharmacy",
+    "thread": [
+      {
+        "from": "ap@cedarparkfamilyrx.com",
+        "body": "Please add a specialty account for Cedar Park Family Pharmacy, 1200 E Whitestone Blvd, Cedar Park TX 78613. We will order specialty oncology drugs."
+      },
+      {
+        "from": "onboarding@mckesson.example",
+        "body": "Thanks. Can you confirm the legal name and attach your current pharmacy license and W-9?"
+      },
+      {
+        "from": "ap@cedarparkfamilyrx.com",
+        "body": "Legal name is Cedar Park Family Pharmacy LLC. W-9 and license attached."
+      }
+    ],
+    "attachments": [
+      "W-9.pdf",
+      "TX_Pharmacy_License.pdf"
+    ]
+  },
+  "keyValues": {
+    "legal_name": "Cedar Park Family Pharmacy LLC",
+    "address": "1200 E Whitestone Blvd, Cedar Park, TX 78613",
+    "tax_id": "62-1415846",
+    "request_type": "Add sales area",
+    "sales_area": "Specialty \u00b7 US02",
+    "product_line": "Specialty oncology"
+  },
+  "search": {
+    "query": "Cedar Park Family Pharmacy LLC / 1200 E Whitestone Blvd",
+    "results": [
+      {
+        "rank": 1,
+        "id": "BRR-0004417",
+        "name": "Cedar Park Family Pharmacy, LLC",
+        "confidence": 0.98,
+        "decision": "Same customer"
+      },
+      {
+        "rank": 2,
+        "id": "SAP 0001004418",
+        "name": "Cedar Park Family Pharmacy",
+        "confidence": 0.96,
+        "decision": "Merged into BRR-0004417"
+      },
+      {
+        "rank": 3,
+        "id": "SAP 0001009902",
+        "name": "CEDAR PARK FAMILY PHARM",
+        "confidence": 0.93,
+        "decision": "Merged into BRR-0004417"
+      },
+      {
+        "rank": 4,
+        "id": "Oracle EBS ORA-88213",
+        "name": "Cedar Pk Family Pharmacy Inc",
+        "confidence": 0.91,
+        "decision": "Merged into BRR-0004417"
+      },
+      {
+        "rank": 5,
+        "id": "AS/400 AS4-30771",
+        "name": "CEDAR PARK FAM PHCY",
+        "confidence": 0.84,
+        "decision": "Merged; steward confirmed"
+      }
+    ]
+  },
+  "outcome": "No new customer. Request linked to BRR-0004417; Specialty US02 sales area added."
+}

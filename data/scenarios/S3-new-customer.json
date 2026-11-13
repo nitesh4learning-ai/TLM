@@ -1,0 +1,33 @@
+{
+  "title": "New customer that does not exist",
+  "request": {
+    "channel": "email + attachments",
+    "legal_name": "Lakeside Community Pharmacy, LLC",
+    "dba": "Lakeside Pharmacy",
+    "address": "1420 S Broadway Ave, Ste 200, Tyler, TX 75701-3318",
+    "tax_id": "15-3939212",
+    "dea": "FL4827311",
+    "request_type": "New customer",
+    "sales_area": "Pharma \u00b7 US01",
+    "product_line": "Independent retail pharmacy"
+  },
+  "search": {
+    "results": [
+      {
+        "rank": 1,
+        "id": "SAP 0000042871",
+        "name": "LAKESIDE PHARMACY #2",
+        "confidence": 0.71,
+        "decision": "Related: same owner, different tax ID. Below 0.80, no merge."
+      }
+    ]
+  },
+  "enrichment": {
+    "dnb": {
+      "duns": "08-447-3921",
+      "parent": "Lakeside Rx Holdings, LLC",
+      "confidenceCode": 9
+    }
+  },
+  "outcome": "New customer BRR-0051207 created after Credit, Tax, Legal and Procurement decisions."
+}
