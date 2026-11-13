@@ -111,6 +111,8 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email"):
     if mail:
         came += [("From", mail.get("from") or "—", ""), ("Subject", mail.get("subject") or "—", ""),
                  ("Attachments", " · ".join(a["name"] for a in mail.get("attachments", [])) or "None", f"{len(mail.get('attachments', []))} documents")]
+        if mail.get("to"):
+            came.insert(3, ("To", mail["to"], ""))
     very_low = [f for f, c in low if c < 0.75]
     sections = [kv(came, "What came in"),
                 table(["Extracted field", "Value", "Confidence", "Maps to"], [r[:4] for r in rows[:8]], "Key values", meta=f"{min(8, len(rows))} of {len(rows)} shown"),

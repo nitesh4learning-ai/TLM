@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api, go } from '../api.js';
-import { Title, Sections, PolicyChip, useLoad, Err } from '../components.jsx';
+import { Title, Sections, PolicyChip, useLoad, Err, EmailPreview } from '../components.jsx';
 
 export default function Journey({ arg }) {
   const list = useLoad(() => api.get('/requests'), []);
@@ -113,7 +113,14 @@ function StageDetail({ r, st, onChange }) {
           </div>
         )}
       </div>
+      {st.key === 'intake' && r.uploadId && <UploadedEmail uid={r.uploadId} />}
       <Sections sections={st.sections} resetKey={r.id + st.key} />
     </section>
   );
+}
+
+function UploadedEmail({ uid }) {
+  const u = useLoad(() => api.get('/uploads/' + uid), [uid]);
+  if (!u.data) return null;
+  return (<div className="stack"><h3>Email and attachments as received</h3><EmailPreview mail={u.data} /></div>);
 }

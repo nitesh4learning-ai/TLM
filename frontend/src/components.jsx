@@ -82,3 +82,47 @@ export function useLoad(fn, deps) {
 }
 
 export function Err({ error }) { return error ? <div className="notice err" role="alert">{error}</div> : null; }
+
+const kb = (n) => (n > 1024 * 1024 ? (n / 1024 / 1024).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB');
+
+/** Shows an email (headers, full thread) and its attachments, with PDFs viewable inline. */
+export function EmailPreview({ mail }) {
+  const [open, setOpen] = useState(null);
+  useEffect(() => setOpen(mail.attachments.length ? mail.attachments[0].name : null), [mail.id]);
+  const cur = mail.attachments.find((a) => a.name === open);
+  const isPdf = cur && cur.name.toLowerCase().endsWith('.pdf');
+  return (
+    <div className="stack">
+      <section className="card" aria-label="Email">
+        <div className="kv">
+          <div><div className="k">From</div><div className="v">{mail.from || '—'}</div></div>
+          <div><div className="k">To</div><div className="v">{mail.to || '—'}</div></div>
+          <div><div className="k">Date</div><div className="v">{mail.date || '—'}</div></div>
+        </div>
+        <div><div className="small muted">Subject</div><h3>{mail.subject || '(no subject)'}</h3></div>
+        <div className="mailbody">{mail.body || '(no text in the email body)'}</div>
+      </section>
+      <section className="card" aria-label="Attachments">
+        <h3>Attachments ({mail.attachments.length})</h3>
+        {mail.attachments.length === 0 && <p className="small muted">No attachments.</p>}
+        <div className="row" style={{ gap: 8 }}>
+          {mail.attachments.map((a) => (
+            <button type="button" key={a.name} className={'att' + (a.name === open ? ' on' : '')} aria-pressed={a.name === open} onClick={() => setOpen(a.name)}>
+              <span className="atticon" aria-hidden="true">{a.name.split('.').pop().toUpperCase()}</span>
+              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}><strong style={{ fontSize: 13 }}>{a.name}</strong><span className="small muted">{kb(a.bytes)}</span></span>
+            </button>
+          ))}
+        </div>
+        {cur && (
+          <div className="stack" style={{ gap: 8 }}>
+            <div className="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+              <strong className="small">{cur.name}</strong>
+              <a className="btn" href={cur.url} target="_blank" rel="noreferrer">Open in new tab</a>
+            </div>
+            {isPdf ? <iframe title={cur.name} src={cur.url} className="pdfview" /> : <iframe title={cur.name} src={cur.url} className="pdfview" style={{ height: 320 }} />}
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}

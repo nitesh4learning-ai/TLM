@@ -36,16 +36,16 @@ def parse_eml(data):
     for part in msg.iter_attachments():
         name = part.get_filename() or "attachment"
         payload = part.get_payload(decode=True) or b""
-        attachments.append({"name": name, "bytes": len(payload), "text": doc_text(name, payload)})
-    return {"subject": msg.get("subject", ""), "from": msg.get("from", ""), "date": msg.get("date", ""), "body": text, "attachments": attachments}
+        attachments.append({"name": name, "bytes": len(payload), "text": doc_text(name, payload), "data": payload, "type": part.get_content_type()})
+    return {"subject": msg.get("subject", ""), "from": msg.get("from", ""), "to": msg.get("to", ""), "date": msg.get("date", ""), "body": text, "attachments": attachments}
 
 
 def parse_msg(data):
     import extract_msg
     m = extract_msg.Message(io.BytesIO(data))
     atts = [{"name": a.longFilename or a.shortFilename or "attachment", "bytes": len(a.data or b""),
-             "text": doc_text(a.longFilename or "", a.data or b"")} for a in m.attachments if getattr(a, "data", None) is not None]
-    return {"subject": m.subject or "", "from": m.sender or "", "date": str(m.date or ""), "body": m.body or "", "attachments": atts}
+             "text": doc_text(a.longFilename or "", a.data or b""), "data": a.data or b"", "type": ""} for a in m.attachments if getattr(a, "data", None) is not None]
+    return {"subject": m.subject or "", "from": m.sender or "", "to": m.to or "", "date": str(m.date or ""), "body": m.body or "", "attachments": atts}
 
 
 def parse_upload(files):
@@ -58,9 +58,18 @@ def parse_upload(files):
         elif mail is None and low.endswith(".msg"):
             mail = parse_msg(data)
         else:
-            extra.append({"name": name, "bytes": len(data), "text": doc_text(name, data)})
+            extra.append({"name": name, "bytes": len(data), "text": doc_text(name, data), "data": data, "type": ""})
     if mail is None:
-        mail = {"subject": "", "from": "", "date": "", "body": "", "attachments": []}
+        # no .eml/.msg: a plain-text email (e.g. email.txt) becomes the body
+        body_file = next((a for a in extra if a["name"].lower().endswith(".txt")), None)
+        if body_file:
+            extra.remove(body_file)
+        mail = {"subject": "", "from": "", "to": "", "date": "", "body": body_file["text"] if body_file else "", "attachments": []}
+        if body_file:
+            for line in body_file["text"].splitlines()[:6]:
+                for k in ("Subject", "From", "To", "Date"):
+                    if line.startswith(k + ":"):
+                        mail[k.lower()] = line.split(":", 1)[1].strip()
     mail["attachments"] += extra
     return mail
 

@@ -65,3 +65,14 @@ def test_delete_undoes_effects():
     rec = c.get("/api/records/BRR-0004417").json()
     assert all(sa.get("addedBy") != r2["id"] for sa in rec["salesAreas"])
     assert r2["id"] not in [x["id"] for x in c.get("/api/requests").json()]
+
+
+def test_upload_preview_and_files():
+    data = open(os.path.join(os.path.dirname(__file__), "..", "..", "data", "test-packages", "1-new-customer-lakeside", "email.eml"), "rb").read()
+    r = c.post("/api/uploads", files=[("files", ("email.eml", data, "message/rfc822"))]).json()
+    assert r["subject"].startswith("RE: New account request")
+    assert "Dana" in r["body"] and len(r["attachments"]) == 5
+    f = c.get(r["attachments"][0]["url"])
+    assert f.status_code == 200 and f.content[:4] == b"%PDF"
+    assert c.get(f"/api/uploads/{r['id']}/files/meta.json").status_code == 404
+    assert c.post(f"/api/uploads/{r['id']}/submit").status_code == 503   # needs the Claude key

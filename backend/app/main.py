@@ -1,6 +1,10 @@
 """TLM API: policies, agents, requests and the agent pipeline, Business ready records, hierarchy."""
 import datetime
+import json
+import mimetypes
 import os
+import re
+import uuid
 
 from dotenv import load_dotenv
 
@@ -8,6 +12,7 @@ load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 from fastapi import FastAPI, File, HTTPException, UploadFile, Form  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
+from fastapi.responses import FileResponse  # noqa: E402
 from pydantic import BaseModel  # noqa: E402
 
 from . import emailparse, llm, pipeline, store  # noqa: E402
@@ -154,13 +159,90 @@ def run_scenario(key: str):
     return req
 
 
+UPLOADS = os.path.join(store.STORE_DIR, "uploads")
+SAFE = re.compile(r"[^A-Za-z0-9._ -]")
+
+
+def _safe(name):
+    return SAFE.sub("_", os.path.basename(name or "file")) or "file"
+
+
+def save_upload(mail):
+    uid = uuid.uuid4().hex[:12]
+    d = os.path.join(UPLOADS, uid)
+    os.makedirs(d, exist_ok=True)
+    atts, seen = [], set()
+    for a in mail["attachments"]:
+        name = _safe(a["name"])
+        while name in seen:
+            name = "copy-" + name
+        seen.add(name)
+        with open(os.path.join(d, name), "wb") as f:
+            f.write(a.get("data") or b"")
+        atts.append({"name": name, "bytes": a["bytes"], "text": a.get("text", ""), "url": f"/api/uploads/{uid}/files/{name}"})
+    meta = {k: mail.get(k, "") for k in ("subject", "from", "to", "date", "body")}
+    meta.update({"id": uid, "attachments": atts})
+    with open(os.path.join(d, "meta.json"), "w") as f:
+        json.dump(meta, f)
+    return meta
+
+
+def load_upload(uid):
+    p = os.path.join(UPLOADS, _safe(uid), "meta.json")
+    if not os.path.exists(p):
+        raise HTTPException(404, "No such upload")
+    with open(p) as f:
+        return json.load(f)
+
+
+def public(meta):
+    return {k: v for k, v in meta.items() if k != "attachments"} | {"attachments": [{k: a[k] for k in ("name", "bytes", "url")} for a in meta["attachments"]]}
+
+
+@app.post("/api/uploads")
+async def preview_upload(files: list[UploadFile] = File(...)):
+    """Parses an uploaded email and its attachments and keeps them, so the Intake page can show them before submitting."""
+    items = [(f.filename, await f.read()) for f in files]
+    mail = emailparse.parse_upload(items)
+    if not (mail["body"] or mail["attachments"]):
+        raise HTTPException(400, "No readable email or documents in the upload.")
+    return public(save_upload(mail))
+
+
+@app.get("/api/uploads/{uid}")
+def get_upload(uid: str):
+    return public(load_upload(uid))
+
+
+@app.get("/api/uploads/{uid}/files/{name}")
+def upload_file(uid: str, name: str):
+    p = os.path.join(UPLOADS, _safe(uid), _safe(name))
+    if not os.path.exists(p) or name == "meta.json":
+        raise HTTPException(404, "No such file")
+    mt = mimetypes.guess_type(p)[0] or "application/octet-stream"
+    return FileResponse(p, media_type=mt, headers={"Content-Disposition": f'inline; filename="{_safe(name)}"'})
+
+
+@app.post("/api/uploads/{uid}/submit")
+def submit_upload(uid: str):
+    meta = load_upload(uid)
+    req = run_from_mail(meta, "Uploaded email")
+    req["uploadId"] = uid
+    store.save_request(req)
+    return req
+
+
 @app.post("/api/requests/upload")
 async def upload_request(files: list[UploadFile] = File(...)):
     items = [(f.filename, await f.read()) for f in files]
     mail = emailparse.parse_upload(items)
     if not (mail["body"] or mail["attachments"]):
         raise HTTPException(400, "No readable email or documents in the upload.")
-    return run_from_mail(mail, "Uploaded email")
+    meta = save_upload(mail)
+    req = run_from_mail(meta, "Uploaded email")
+    req["uploadId"] = meta["id"]
+    store.save_request(req)
+    return req
 
 
 class TextRequest(BaseModel):
@@ -266,6 +348,8 @@ def summary():
 
 @app.post("/api/reset")
 def reset():
+    import shutil
+    shutil.rmtree(UPLOADS, ignore_errors=True)
     for name in ("requests", "records", "policy_drafts", "agent_changes"):
         p = store._path(name)
         if os.path.exists(p):
