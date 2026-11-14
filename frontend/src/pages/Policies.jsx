@@ -5,12 +5,14 @@ import PolicyForm from './PolicyForm.jsx';
 
 const ALL = 'All agents';
 
-export default function Policies() {
+export default function Policies({ arg }) {
+  const [argId, argVer] = (arg ? decodeURIComponent(arg) : '').split('~v');
   const d = useLoad(() => api.get('/policies'), []);
   const [folder, setFolder] = useState('all');
   const [agentF, setAgentF] = useState('');
   const [q, setQ] = useState('');
-  const [sel, setSel] = useState(null);
+  const [sel, setSel] = useState(argId || null);
+  useEffect(() => { if (argId) { setSel(argId); setFolder('all'); setQ(''); setAgentF(''); } }, [arg]); // eslint-disable-line
   const [editing, setEditing] = useState(false);
   const [msg, setMsg] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -59,7 +61,7 @@ export default function Policies() {
         <div className="side stack" style={{ maxWidth: 300, gap: 8 }}>
           {list.length === 0 && <p className="card muted small">No policy matches. A request with no matching policy goes to a person (AG-001).</p>}
           {list.map((p) => (
-            <button type="button" key={p.id} className={'list-item' + (cur && p.id === cur.id ? ' on' : '')} onClick={() => setSel(p.id)}>
+            <button type="button" key={p.id} className={'list-item' + (cur && p.id === cur.id ? ' on' : '')} onClick={() => { setSel(p.id); window.location.hash = '#/policies/' + encodeURIComponent(p.id); }}>
               <span className="row" style={{ gap: 8, alignItems: 'center' }}><span className="mono muted">{p.id} · v{p.version}</span><span className={'lvl ' + p.level}>{p.level}</span>
                 {p.status !== 'Active' && <span className="small" style={{ color: 'var(--purple)' }}>{p.status}</span>}</span>
               <strong>{p.title}</strong><span className="small muted">{(p.appliesTo || []).join(', ')}</span>
@@ -72,6 +74,8 @@ export default function Policies() {
             <div className="row" style={{ alignItems: 'center', gap: 10 }}><span className="mono muted">{cur.id}</span><h2>{cur.title}</h2><span className={'lvl ' + cur.level}>{cur.level} · {cur.levelName}</span>
               <button type="button" className="btn dark" style={{ marginLeft: 'auto' }} onClick={() => setEditing(true)}>Edit policy</button></div>
             <div className="row small muted" style={{ gap: 18 }}><span>Folder: {cur.folderName}</span><span>Stage: {cur.stage}</span><span>Owner: {cur.owner}</span><span>Effective {cur.effective}</span><span>{cur.status} · v{cur.version}</span></div>
+            {argVer && cur.id === argId && Number(argVer) !== cur.version && (
+              <div className="notice info small">The agent used version {argVer} of this policy; the current version is {cur.version}. What changed since is in the version history below.</div>)}
             {cur.status === 'Draft' && <div className="notice warn small">Draft: agents do not read this policy until it is complete and activated. Fields marked “Needs governance input” were not in the uploaded document.</div>}
             <div className="row" style={{ gap: 6, alignItems: 'center' }}><span className="small muted">Applies to</span>{(cur.appliesTo || []).map((a) => <span key={a} className={'pmode ' + (a === ALL ? 'live' : 'test')} style={a === ALL ? {} : { background: '#EAF0FE', color: '#1D47B8', borderColor: '#9DB3EE' }}>{a}</span>)}
               {(cur.roles || []).map((r) => <span key={r} className="pmode" style={{ background: '#FFF1DE', color: '#7A3B00', border: '1px solid #F2B872' }}>{r}</span>)}</div>

@@ -16,7 +16,9 @@ export default function ControlTower() {
       <Err error={s.error} />
       <div className="kpis">
         <div className="kpi"><div className="small muted">Requests</div><div className="val">{d.requests ?? '—'}</div></div>
-        <div className="kpi"><div className="small muted">Touchless</div><div className="val">{d.requests ? `${Math.round((100 * d.touchless) / d.requests)}%` : '—'}</div></div>
+        <div className="kpi"><div className="small muted">Human touch (average)</div><div className="val">{d.humanTouch == null ? '—' : d.humanTouch + '%'}</div>
+          <div className="small muted">Agents did {d.agentShare == null ? '—' : d.agentShare + '%'} of the work</div></div>
+        <div className="kpi"><div className="small muted">Fully touchless</div><div className="val">{d.requests ? `${d.touchless} of ${d.requests}` : '—'}</div></div>
         <div className="kpi"><div className="small muted">Waiting on a person</div><div className="val">{d.waiting ?? '—'}</div></div>
         <div className="kpi"><div className="small muted">Business ready records</div><div className="val">{d.records ?? '—'}</div></div>
         <div className="kpi"><div className="small muted">Policies · agents</div><div className="val">{d.policies ?? '—'} · {d.agents ?? '—'}</div></div>
@@ -25,11 +27,12 @@ export default function ControlTower() {
         <h2>Recent requests</h2>
         {r.data && r.data.length === 0 && <p className="muted">No requests yet. Go to <a href="#/intake">Intake</a> to run one.</p>}
         {r.data && r.data.length > 0 && (
-          <div className="scroll"><table><thead><tr><th>Request</th><th>Party</th><th>Type</th><th>Record</th><th>Status</th></tr></thead>
+          <div className="scroll"><table><thead><tr><th>Request</th><th>Party</th><th>Type</th><th>Record</th><th>Status · human touch</th></tr></thead>
             <tbody>{r.data.map((x) => (
               <tr key={x.id}><td><a href={`#/journey/${x.id}`} className="mono">{x.id}</a></td><td>{x.legalName}</td><td>{x.requestType}</td>
                 <td><a href={`#/records/${x.recordId}`} className="mono">{x.recordId}</a></td>
-                <td><span className={'tag ' + (x.status === 'Complete' ? (x.touchless ? 'agent' : 'ok') : 'human')}>{x.status === 'Complete' && x.touchless ? 'Complete · touchless' : x.status}</span></td></tr>
+                <td><span className={'tag ' + (x.status === 'Complete' ? (x.touchless ? 'agent' : 'ok') : 'human')}>{x.status === 'Complete' && x.touchless ? 'Complete · touchless' : x.status}</span>
+                  <span className="small muted"> · {x.humanTouch ?? 0}% human touch</span></td></tr>
             ))}</tbody></table></div>
         )}
       </section>

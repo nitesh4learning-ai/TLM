@@ -251,3 +251,50 @@ pre.code { margin: 0; padding: 12px; border-radius: 10px; background: #0F1720; c
 .assist-a { max-width: 92%; padding: 10px 12px; border-radius: 12px 12px 12px 2px; background: #F5F8FF; border: 1px solid #DCE5FB; font-size: 13px; line-height: 19px; }
 .schip { min-height: 32px; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--blue-line); background: #F5F8FF; color: var(--blue); font-size: 12px; font-weight: 600; text-align: left; }
 .state.rejected { color: #8A1C1C; }
+
+.plink { text-decoration: none; cursor: pointer; }
+.plink:hover { border-color: #6D3FC0; color: #5B2DA8; background: #F1ECFB; }
+.checks li.clickrow { cursor: pointer; }
+.checks li.clickrow:hover { filter: brightness(.97); box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+
+/* ---------- agent cards ---------- */
+.agentcard { position: relative; width: 100%; display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 16px; text-align: left; cursor: pointer;
+  border: 1.5px solid transparent; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #9DB3EE, #C9B6EE) border-box;
+  box-shadow: 0 4px 14px rgba(29,71,184,.08); transition: transform .15s ease, box-shadow .15s ease; }
+.agentcard:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(29,71,184,.16); }
+.agentcard.sel { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #131820, #1D47B8) border-box; box-shadow: 0 0 0 2px #131820, 0 10px 24px rgba(15,23,32,.16); }
+.agentcard.waiting { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #F2B872, #D97706) border-box; }
+.agentcard.approved { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #9DB3EE, #1E8A4C) border-box; }
+.agentcard.rejected { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #F5B5B5, #B91C1C) border-box; }
+.agentcard.pending { opacity: .55; cursor: default; background: linear-gradient(#F8FAFC, #F8FAFC) padding-box, linear-gradient(135deg, #CDD3DC, #CDD3DC) border-box; box-shadow: none; }
+.ac-head { display: flex; align-items: center; gap: 10px; }
+.avatar { position: relative; flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; }
+.avatar .face { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #EAF0FE, #F1ECFB); color: #1D47B8; }
+.avatar .ring { position: absolute; inset: 0; border-radius: 50%; border: 2.5px solid #9DB3EE; }
+.avatar.done .ring { border-color: #1D47B8; }
+.avatar.approved .ring { border-color: #1E8A4C; }
+.avatar.waiting .ring { border-color: #D97706; border-style: dashed; }
+.avatar.waiting .face { background: #FFF1DE; color: #B45309; }
+.avatar.rejected .ring { border-color: #B91C1C; }
+.avatar.running .ring { border-color: #2F5FE0 transparent #2F5FE0 transparent; animation: spin 1s linear infinite; }
+.avatar.pending .ring { border-color: #CDD3DC; border-style: dotted; }
+.avatar.pending .face { background: #EEF1F5; color: #8A94A3; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.avatar .ai { position: absolute; right: -4px; bottom: -3px; padding: 0 4px; height: 15px; border-radius: 6px; background: #131820; color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .04em; line-height: 15px; }
+.ac-id { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.ac-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+.ac-run { font-size: 11px; color: var(--muted); }
+.ac-said { font-size: 12.5px; line-height: 18px; color: var(--ink2); font-style: italic; }
+.ac-foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ac-stat { font-size: 11.5px; font-weight: 600; color: #1D47B8; background: #EAF0FE; padding: 2px 8px; border-radius: 99px; }
+.agentcard.waiting .ac-stat { color: #7A3B00; background: #FFF1DE; }
+.ac-pol { font-size: 11px; color: #5B2DA8; background: #F1ECFB; padding: 2px 8px; border-radius: 99px; }
+.handoff { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 10px; background: #FFF8EB; border: 1px dashed #F2B872; color: #7A3B00; font-size: 12px; }
+.handoff.approved { background: #EEF7F1; border: 1px solid #A8D5B8; color: #0E5A32; }
+.handoff.rejected { background: #FDECEC; border-color: #F5B5B5; color: #8A1C1C; }
+.handoff .person { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: #fff; border: 1px solid currentColor; }
+.state.done { color: #1D47B8; }
+.touchstat .tbar { display: block; width: 140px; height: 5px; border-radius: 99px; background: rgba(217,119,6,.75); overflow: hidden; margin-top: 3px; }
+.touchstat .tbar > i { display: block; height: 100%; background: #9DB3EE; }
+.agentcard > .state { align-self: flex-start; }
+.ac-name { line-height: 18px; }

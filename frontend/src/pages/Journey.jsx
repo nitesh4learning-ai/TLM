@@ -85,7 +85,7 @@ export default function Journey({ arg }) {
                 <input type="checkbox" aria-label={'Select ' + x.id} checked={!!picked[x.id]} onChange={(e) => setPicked({ ...picked, [x.id]: e.target.checked })} style={{ width: 20, height: 20, marginTop: 4 }} />
                 <button type="button" onClick={() => go('journey/' + x.id)} style={{ flex: 1, minWidth: 0, border: 0, background: 'transparent', textAlign: 'left', padding: 0, display: 'flex', flexDirection: 'column', gap: 3 }}>
                   <span className="mono muted">{x.id} · {x.created}</span><strong>{x.legalName}</strong>
-                  <span className="small muted">{x.requestType} · {x.mode === 'step' ? 'Agent by agent' : 'Auto run'}</span>
+                  <span className="small muted">{x.requestType} · {x.mode === 'step' ? 'Agent by agent' : 'Auto run'} · {x.humanTouch ?? 0}% human touch</span>
                   <span className={'tag ' + (x.status === 'Complete' ? (x.touchless ? 'agent' : 'ok') : 'human')} style={{ alignSelf: 'flex-start', borderRadius: 8, lineHeight: '16px' }}>{x.status === 'Complete' && x.touchless ? 'Complete · touchless' : x.status}</span>
                 </button>
                 <button type="button" className="btn" aria-label={'Delete ' + x.id} onClick={() => delOne(x)} style={{ height: 36, padding: '0 10px' }}>Delete</button>
@@ -104,8 +104,12 @@ export default function Journey({ arg }) {
                 <span style={{ fontSize: 13, color: '#C9D3E3' }}>{r.requestType} · <a href={`#/records/${r.recordId}`} style={{ color: '#9DB3EE' }}>{r.recordId}</a></span>
               </div>
               <div className="stat"><span className="s1">Status</span><span className="s2" style={{ fontSize: 14 }}>{r.status}</span></div>
-              <div className="stat"><span className="s1">Touchless</span><span className="s2">{!finished && people === 0 ? 'So far' : r.touchless && finished ? 'Yes' : 'No'}</span></div>
-              <div className="stat"><span className="s1">People</span><span className="s2">{people}</span></div>
+              <div className="stat touchstat" title="Share of the agent stages that run so far which needed a person">
+                <span className="s1">Human touch</span>
+                <span className="s2">{r.humanTouch ?? 0}%<span style={{ fontSize: 12, fontWeight: 500, color: '#A9B6CC' }}> · agents {r.agentShare ?? 100}%</span></span>
+                <span className="tbar" aria-hidden="true"><i style={{ width: (r.agentShare ?? 100) + '%' }} /></span>
+              </div>
+              <div className="stat"><span className="s1">People</span><span className="s2">{people} of {visibleStages.length}</span></div>
               <div className="stat"><span className="s1">Policies</span><span className="s2">{policies}</span></div>
               <div className="stat"><span className="s1">Agent time</span><span className="s2">{r.elapsedMs != null ? (r.elapsedMs / 1000).toFixed(1) + 's' : '—'}</span></div>
             </div>
@@ -147,17 +151,7 @@ export default function Journey({ arg }) {
                       const i = idxOf(k); const s = r.stages[i]; const state = stateOf(s, i, shown, anim !== null);
                       const visible = i < shown;
                       return (
-                        <button type="button" key={k} disabled={!visible}
-                          className={`anode ${visible ? s.actor : 'pending'} ${state === 'running' ? 'running' : ''} ${st && visible && st.key === k ? 'sel' : ''}`}
-                          onClick={() => setOpen(k)} onDoubleClick={() => setOpen(k)} title={visible ? 'Double-click for detail' : 'Not run yet'} aria-pressed={!!(st && st.key === k)}>
-                          {state === 'approved' && <span className="badge-tick" aria-label="Approved">✓</span>}
-                          <span className="ic">{AGENT_ICON[k]}</span>
-                          <span style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
-                            <span className={'state ' + state}>{state === 'running' ? <span className="dots"><i /><i /><i /></span> : state === 'approved' ? <span className="tick">✓</span> : null}{STATE_LABEL[state]}</span>
-                            <span className="nm">{s.name}</span>
-                            {visible && <span className="st">{s.status}</span>}
-                          </span>
-                        </button>
+                        <AgentCard key={k} s={s} k={k} state={state} visible={visible} selected={!!(st && visible && st.key === k)} onOpen={() => setOpen(k)} />
                       );
                     })}
                   </div>
@@ -214,7 +208,7 @@ function StageDetail({ r, st, onChange }) {
         </div>
         <p style={{ fontSize: 14, lineHeight: '21px' }}>{st.summary}</p>
         {st.explanation && <p className="small" style={{ lineHeight: '19px', color: 'var(--ink2)' }}><strong>Why:</strong> {st.explanation}</p>}
-        <div className="row" style={{ gap: 6, alignItems: 'center' }}><span className="small muted">Policies considered</span>{st.policies.map((p) => <PolicyChip key={p} id={p} />)}</div>
+        <div className="row" style={{ gap: 6, alignItems: 'center' }}><span className="small muted">Policies considered</span>{st.policies.map((p) => <PolicyChip key={p} id={p} version={(st.policyVersions || {})[p]} />)}</div>
         {st.state === 'waiting' && (
           <div className="row" style={{ alignItems: 'flex-end' }}>
             <div className="stack" style={{ gap: 4 }}><label className="lbl" htmlFor="who">Decided by</label><input id="who" type="text" value={who} onChange={(e) => setWho(e.target.value)} /></div>
@@ -323,5 +317,47 @@ function RequestActions({ r, onDone }) {
         </div>
       )}
     </div>
+  );
+}
+
+const AGENT_META = {
+  intake: ['Intake agent', 'Claude'], search: ['Search agent', 'Fuzzy matching'], match: ['Match & merge agent', 'Rules · MM-002, SV-001'],
+  enrich: ['Enrichment agent', 'D&B · LexisNexis'], validate: ['Validation agent', 'Validation services + Claude'], legal: ['Legal agent', 'Rules engine + Claude'],
+  procurement: ['Procurement agent', 'Rules engine + Claude'], credit: ['Credit agent', 'Rules engine + Claude'], tax: ['Tax agent', 'Rules engine + Claude'],
+  record: ['Orchestrator', 'Publishes the record'],
+};
+
+/** An agent at work: avatar with a state ring, what runs it, what it decided, and a visible hand-off when a person is needed. */
+function AgentCard({ s, k, state, visible, selected, onOpen }) {
+  const [name, runtime] = AGENT_META[k] || [s.name, ''];
+  const approval = state === 'approved' ? ((s.sections.find((x) => x.title === 'Decision by a person') || {}).rows || []).find((x) => x.k === 'Approved by') : null;
+  const said = visible ? (s.summary || '').replace(/\s+/g, ' ') : '';
+  const line = said.length > 96 ? said.slice(0, 94).replace(/\s\S*$/, '') + '…' : said;
+  const npol = (s.policies || []).length;
+  return (
+    <button type="button" disabled={!visible} onClick={onOpen} onDoubleClick={onOpen} aria-pressed={selected}
+      className={`agentcard ${visible ? state : 'pending'} ${selected ? 'sel' : ''}`} title={visible ? 'Double-click for detail' : 'Not run yet'}>
+      <span className={'state ' + state}>{state === 'running' ? <span className="dots"><i /><i /><i /></span> : state === 'done' || state === 'approved' ? <span className="tick">✓</span> : null}{STATE_LABEL[state]}</span>
+      <span className="ac-head">
+        <span className={'avatar ' + (visible ? state : 'pending')}>
+          <span className="ring" aria-hidden="true" />
+          <span className="face">{AGENT_ICON[k]}</span>
+          <span className="ai" aria-hidden="true">AI</span>
+        </span>
+        <span className="ac-id">
+          <span className="ac-name">{name}</span>
+          <span className="ac-run">{runtime}</span>
+        </span>
+      </span>
+      {visible && <span className="ac-said">“{line}”</span>}
+      {visible && <span className="ac-foot"><span className="ac-stat">{s.status}</span>{npol > 0 && <span className="ac-pol">{npol} polic{npol > 1 ? 'ies' : 'y'}</span>}</span>}
+      {visible && s.actor === 'human' && (
+        <span className={'handoff ' + state}>
+          <span aria-hidden="true">→</span>
+          <span className="person" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="8" r="3.5" /><path d="M5 20c1-3.8 3.8-6 7-6s6 2.2 7 6" /></svg></span>
+          {state === 'approved' ? <span>Approved by {approval ? approval.v : 'a person'} ✓</span> : state === 'rejected' ? <span>Rejected</span> : <span>Hands off to <strong>{s.waitingFor || 'a person'}</strong></span>}
+        </span>
+      )}
+    </button>
   );
 }

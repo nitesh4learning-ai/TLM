@@ -11,7 +11,7 @@ export function usePolicies() {
 
 function PolicyTip({ p, id }) {
   if (!p) return <span>{id}</span>;
-  return (<><strong>{id} · {p.title}</strong> <span style={{ opacity: .7 }}>v{p.version}</span><br />{p.text}<br /><span className="lv">Autonomy {p.level} · {p.levelName}</span><br /><span style={{ opacity: .8 }}>Applies to: {(p.appliesTo || [p.agent]).join(', ')}</span></>);
+  return (<><strong>{id} · {p.title}</strong> <span style={{ opacity: .7 }}>v{p.version}</span><br />{p.text}<br /><span className="lv">Autonomy {p.level} · {p.levelName}</span><br /><span style={{ opacity: .8 }}>Applies to: {(p.appliesTo || [p.agent]).join(', ')}</span><br /><span style={{ opacity: .8 }}>Click to open the policy →</span></>);
 }
 
 /** Hover or focus anywhere on the wrapped element shows a tooltip that always stays inside the window. */
@@ -35,11 +35,15 @@ export function HoverTip({ content, children, as = 'span', className, style, ...
   );
 }
 
-export function PolicyChip({ id }) {
+/** A policy ID: hover for the summary, click to open the policy (at the version the agent used, when known). */
+export function PolicyChip({ id, version }) {
   const m = usePolicies();
   if (!id) return null;
-  return <HoverTip className="chip2" content={<PolicyTip p={m[id]} id={id} />} aria-label={m[id] ? `${id}: ${m[id].title}` : id}>{id}</HoverTip>;
+  return <HoverTip as="a" href={policyHref(id, version)} className="chip2 plink" content={<PolicyTip p={m[id]} id={id} />}
+    aria-label={(m[id] ? `${id}: ${m[id].title}` : id) + ' (open policy)'} onClick={(e) => e.stopPropagation()}>{id}{version ? <span style={{ opacity: .6 }}>&nbsp;v{version}</span> : null}</HoverTip>;
 }
+
+export const policyHref = (id, version) => '#/policies/' + encodeURIComponent(id) + (version ? '~v' + version : '');
 
 export function usePolicyTip() {
   const m = usePolicies();
@@ -78,7 +82,8 @@ function Section({ s }) {
         <ul className="checks">{s.rows.map((r, i) => {
           const cls = r.pass === true ? 'ok' : r.pass === 'human' ? 'person' : 'fail';
           const mark = r.pass === true ? '✓ Passed' : r.pass === 'human' ? '● Person' : '✕ Not met';
-          return (<HoverTip as="li" key={i} className={cls} content={tip(r.policy)}><span className="mark">{mark}</span><span style={{ flex: '1 1 260px' }}>{r.k}<span className="muted"> · {r.note}</span></span>{r.policy && <span className="chip2">{r.policy}</span>}</HoverTip>);
+          return (<HoverTip as="li" key={i} className={cls + (r.policy ? ' clickrow' : '')} content={tip(r.policy)} role={r.policy ? 'link' : undefined}
+            onClick={() => { if (r.policy) window.location.hash = policyHref(r.policy); }} onKeyDown={(e) => { if (r.policy && e.key === 'Enter') window.location.hash = policyHref(r.policy); }}><span className="mark">{mark}</span><span style={{ flex: '1 1 260px' }}>{r.k}<span className="muted"> · {r.note}</span></span>{r.policy && <span className="chip2">{r.policy}</span>}</HoverTip>);
         })}</ul>
       )}
     </section>

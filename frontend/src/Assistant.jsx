@@ -59,7 +59,7 @@ export default function Assistant() {
         {log.map((e, i) => (
           <div key={i} className="stack" style={{ gap: 4 }}>
             <div className="assist-q">{e.q}</div>
-            {e.a && <div className="assist-a">{e.a}{(e.policies || []).length > 0 && <div className="row" style={{ gap: 4, marginTop: 6 }}>{e.policies.map((p) => <a key={p} href="#/policies" style={{ textDecoration: 'none' }}><PolicyChip id={p} /></a>)}</div>}</div>}
+            {e.a && <div className="assist-a">{e.a}{(e.policies || []).length > 0 && <div className="row" style={{ gap: 4, marginTop: 6 }}>{e.policies.map((p) => <PolicyChip key={p} id={p} />)}</div>}</div>}
             {e.err && <div className="assist-a" style={{ color: 'var(--red)' }}>{e.err}</div>}
           </div>
         ))}

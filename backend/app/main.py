@@ -347,7 +347,7 @@ def next_agent(rid: str):
 @app.get("/api/requests")
 def list_requests():
     reqs = sorted(store.requests().values(), key=lambda r: int(r["id"].split("-")[1]), reverse=True)
-    return [{k: r.get(k) for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision", "channel", "mode")} for r in reqs]
+    return [{k: r.get(k) for k in ("id", "created", "legalName", "requestType", "recordId", "status", "touchless", "decision", "channel", "mode", "humanTouch")} for r in reqs]
 
 
 @app.delete("/api/requests/{rid}")
@@ -379,6 +379,8 @@ def get_request(rid: str):
     r = store.requests().get(rid)
     if not r:
         raise HTTPException(404, "No such request")
+    if "humanTouch" not in r:
+        pipeline.touch(r)
     return r
 
 
@@ -555,7 +557,13 @@ def family_view(key):
 def summary():
     reqs = list(store.requests().values())
     waiting = sum(1 for r in reqs for s in r["stages"][: r.get("revealed", len(r["stages"]))] if s["state"] == "waiting")
-    return {"requests": len(reqs), "touchless": sum(1 for r in reqs if r.get("touchless")), "waiting": waiting,
+    for r in reqs:
+        if "humanTouch" not in r:
+            pipeline.touch(r)
+    live = [r for r in reqs if not r.get("rejected")]
+    avg = round(sum(r["humanTouch"] for r in live) / len(live)) if live else None
+    return {"requests": len(reqs), "touchless": sum(1 for r in reqs if r.get("touchless")), "waiting": waiting, "humanTouch": avg,
+            "agentShare": None if avg is None else 100 - avg,
             "records": len(store.records()), "policies": len(policies()), "agents": len(AGENTS), "llm": llm.available()}
 
 

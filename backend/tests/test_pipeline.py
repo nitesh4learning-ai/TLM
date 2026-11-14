@@ -237,3 +237,13 @@ def test_packages_4_to_8():
     r = c.post("/api/scenarios/new-business/run").json()
     a = _actors(r)
     assert a["validate"] == a["credit"] == a["tax"] == "human" and "Prepay" in next(s for s in r["stages"] if s["key"] == "credit")["summary"]
+
+
+def test_human_touch_percentage():
+    c.post("/api/reset")
+    r = c.post("/api/scenarios/new-customer/run").json()
+    assert r["humanTouch"] == 10 and r["agentShare"] == 90       # 1 of 10 stages (Credit) needed a person
+    r = c.post("/api/scenarios/existing-customer/run").json()
+    assert r["humanTouch"] == 0
+    s = c.get("/api/summary").json()
+    assert s["humanTouch"] == 5 and s["touchless"] == 1

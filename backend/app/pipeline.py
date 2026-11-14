@@ -526,7 +526,18 @@ def run(request_id, fields, intake_summary, mail=None, channel="Email", mode="au
     return req
 
 
+def touch(req):
+    """Share of the work done by people: stages a person handled, out of the stages that have run."""
+    shown = req["stages"][: req.get("revealed", len(req["stages"]))]
+    human = sum(1 for s in shown if s["actor"] == "human")
+    req["humanTouch"] = round(100 * human / len(shown)) if shown else 0
+    req["agentShare"] = 100 - req["humanTouch"]
+    req["humanStages"] = human
+    req["stagesRun"] = len(shown)
+
+
 def refresh(req):
+    touch(req)
     if req.get("rejected"):
         req["status"] = "Rejected · " + ("email to requester recorded" if req["rejected"].get("action") == "email" else "closed")
         req["touchless"] = False
